@@ -1,0 +1,19 @@
+var NAVTREEINDEX16 =
+{
+"structcy__stc__ble__wssc__t.html#a202aa66fde0bf0c858d9291dd839851f":[7,1,32,3,5,1],
+"structcy__stc__ble__wssc__t.html#a5015bb5132bb94b4b027551fd2736fdd":[7,1,32,3,5,0],
+"structcy__stc__ble__wsss__char__t.html":[7,1,32,3,2],
+"structcy__stc__ble__wsss__char__t.html#a7b1f6b5fc06d277fc04c407d0846eb76":[7,1,32,3,2,0],
+"structcy__stc__ble__wsss__char__t.html#a8e537358865d8c8927fcebd8184afc04":[7,1,32,3,2,1],
+"structcy__stc__ble__wsss__config__t.html":[7,1,32,3,6],
+"structcy__stc__ble__wsss__config__t.html#a516180a9252c3dcc9ef7325200627807":[7,1,32,3,6,0],
+"structcy__stc__ble__wsss__t.html":[7,1,32,3,3],
+"structcy__stc__ble__wsss__t.html#a9807644f37a69b9387ae95dbade8eb89":[7,1,32,3,3,0],
+"structcy__stc__ble__wsss__t.html#aaf5437ce0bddb3173a8407e0e9610e8f":[7,1,32,3,3,1],
+"unioncy__ble__uuid__t.html":[7,0,5,2,2,11],
+"unioncy__ble__uuid__t.html#a01c0ee755054c85b5ff7bb0ca05c3bae":[7,0,5,2,2,11,0],
+"unioncy__ble__uuid__t.html#aab631ad549d7f9c5329750022a990673":[7,0,5,2,2,11,1],
+"unioncy__stc__ble__gatts__att__value__t.html":[7,0,5,2,2,43],
+"unioncy__stc__ble__gatts__att__value__t.html#a78fca2f8ee6176e807de23fb0e5e8d82":[7,0,5,2,2,43,0],
+"unioncy__stc__ble__gatts__att__value__t.html#ada918ddaa38491485f9a2d666b9ad851":[7,0,5,2,2,43,1]
+};

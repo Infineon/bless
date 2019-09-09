@@ -1,0 +1,10 @@
+var searchData=
+[
+  ['offset',['offset',['../structcy__stc__ble__gatt__handle__value__offset__param__t.html#a8beef17e3537f7728adac787c004075e',1,'cy_stc_ble_gatt_handle_value_offset_param_t::offset()'],['../structcy__stc__ble__gattc__handle__offset__pair__t.html#a07317ada3df48c024d10256203137728',1,'cy_stc_ble_gattc_handle_offset_pair_t::offset()'],['../structcy__stc__ble__gatts__db__attr__val__info__t.html#af6df9bdad39515416f018d8a24ef9763',1,'cy_stc_ble_gatts_db_attr_val_info_t::offset()']]],
+  ['offsetcompensation',['offsetCompensation',['../structcy__stc__ble__cps__cp__adjustment__t.html#a18595a5093eb74836844180d4c0ced98',1,'cy_stc_ble_cps_cp_adjustment_t']]],
+  ['oobdata',['oobData',['../structcy__stc__ble__gap__oob__info__t.html#a15091b2c2ca9ccb6e40237ba0de2e396',1,'cy_stc_ble_gap_oob_info_t::oobData()'],['../structcy__stc__ble__gap__oob__data__param__t.html#a60c8db4a9d6398cbadd6f0d83140c515',1,'cy_stc_ble_gap_oob_data_param_t::oobData()']]],
+  ['oobdatalen',['oobDataLen',['../structcy__stc__ble__gap__oob__info__t.html#a1567cecafefb21ec8204f1b390f5abe2',1,'cy_stc_ble_gap_oob_info_t::oobDataLen()'],['../structcy__stc__ble__gap__oob__data__param__t.html#ad1f40f8b534089199e376dc5b3fe2436',1,'cy_stc_ble_gap_oob_data_param_t::oobDataLen()']]],
+  ['oobflag',['oobFlag',['../structcy__stc__ble__gap__oob__info__t.html#a7f6cb504566c4b14a97fbf67ebfc2775',1,'cy_stc_ble_gap_oob_info_t']]],
+  ['opcode',['opcode',['../structcy__stc__ble__gattc__long__procedure__end__param__t.html#a16abe9d70402324c96eed21331565f85',1,'cy_stc_ble_gattc_long_procedure_end_param_t::opcode()'],['../structcy__stc__ble__gatt__err__info__t.html#a9174ff868ae764005940c2b87d272d6e',1,'cy_stc_ble_gatt_err_info_t::opCode()']]],
+  ['ownaddrtype',['ownAddrType',['../structcy__stc__ble__gapc__disc__info__t.html#a679cf1cbfbfb013968cb5f1069b4a35e',1,'cy_stc_ble_gapc_disc_info_t::ownAddrType()'],['../structcy__stc__ble__gapc__conn__info__t.html#a7c30b588fa901312d606b8e43efce4e5',1,'cy_stc_ble_gapc_conn_info_t::ownAddrType()'],['../structcy__stc__ble__gapp__disc__param__t.html#a765ec5c8ac1b9393cd25a43b2426ba3d',1,'cy_stc_ble_gapp_disc_param_t::ownAddrType()']]]
+];

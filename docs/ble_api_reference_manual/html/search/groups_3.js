@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['common',['Common',['../group__group__ble__common__api__definitions.html',1,'']]],
+  ['common',['Common',['../group__group__ble__common__api__macros.html',1,'']]],
+  ['continuous_20glucose_20monitoring_20service_20_28cgms_29',['Continuous Glucose Monitoring Service (CGMS)',['../group__group__ble__service__api___c_g_m_s.html',1,'']]],
+  ['cgms_20client_20functions',['CGMS Client Functions',['../group__group__ble__service__api___c_g_m_s__client.html',1,'']]],
+  ['cgms_20definitions_20and_20data_20structures',['CGMS Definitions and Data Structures',['../group__group__ble__service__api___c_g_m_s__definitions.html',1,'']]],
+  ['cgms_20server_20functions',['CGMS Server Functions',['../group__group__ble__service__api___c_g_m_s__server.html',1,'']]],
+  ['cgms_20server_20and_20client_20function',['CGMS Server and Client Function',['../group__group__ble__service__api___c_g_m_s__server__client.html',1,'']]],
+  ['cycling_20power_20service_20_28cps_29',['Cycling Power Service (CPS)',['../group__group__ble__service__api___c_p_s.html',1,'']]],
+  ['cps_20client_20functions',['CPS Client Functions',['../group__group__ble__service__api___c_p_s__client.html',1,'']]],
+  ['cps_20definitions_20and_20data_20structures',['CPS Definitions and Data Structures',['../group__group__ble__service__api___c_p_s__definitions.html',1,'']]],
+  ['cps_20server_20functions',['CPS Server Functions',['../group__group__ble__service__api___c_p_s__server.html',1,'']]],
+  ['cps_20server_20and_20client_20function',['CPS Server and Client Function',['../group__group__ble__service__api___c_p_s__server__client.html',1,'']]],
+  ['cycling_20speed_20and_20cadence_20service_20_28cscs_29',['Cycling Speed and Cadence Service (CSCS)',['../group__group__ble__service__api___c_s_c_s.html',1,'']]],
+  ['cscs_20client_20functions',['CSCS Client Functions',['../group__group__ble__service__api___c_s_c_s__client.html',1,'']]],
+  ['cscs_20definitions_20and_20data_20structures',['CSCS Definitions and Data Structures',['../group__group__ble__service__api___c_s_c_s__definitions.html',1,'']]],
+  ['cscs_20server_20functions',['CSCS Server Functions',['../group__group__ble__service__api___c_s_c_s__server.html',1,'']]],
+  ['cscs_20server_20and_20client_20function',['CSCS Server and Client Function',['../group__group__ble__service__api___c_s_c_s__server__client.html',1,'']]],
+  ['current_20time_20service_20_28cts_29',['Current Time Service (CTS)',['../group__group__ble__service__api___c_t_s.html',1,'']]],
+  ['cts_20client_20functions',['CTS Client Functions',['../group__group__ble__service__api___c_t_s__client.html',1,'']]],
+  ['cts_20definitions_20and_20data_20structures',['CTS Definitions and Data Structures',['../group__group__ble__service__api___c_t_s__definitions.html',1,'']]],
+  ['cts_20server_20functions',['CTS Server Functions',['../group__group__ble__service__api___c_t_s__server.html',1,'']]],
+  ['cts_20server_20and_20client_20function',['CTS Server and Client Function',['../group__group__ble__service__api___c_t_s__server__client.html',1,'']]],
+  ['custom_20service',['Custom Service',['../group__group__ble__service__api__custom.html',1,'']]]
+];
