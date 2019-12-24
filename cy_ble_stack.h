@@ -1,6 +1,6 @@
 /*******************************************************************************
 * \file cy_ble_stack.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 * This file contains the BLE Stack, which will be updated on the Jenkins
@@ -43,10 +43,10 @@ extern "C" {
 #define CY_BLE_STACK_MINOR                                               (0u)
 
 /** Patch version number for device firmware. */
-#define CY_BLE_STACK_PATCH                                               (5u)
+#define CY_BLE_STACK_PATCH                                               (6u)
 
 /** Firmware build number. */
-#define CY_BLE_STACK_BUILD                                               (110u)
+#define CY_BLE_STACK_BUILD                                               (161u)
 
 /** BT Address Size */
 #define CY_BLE_BD_ADDR_SIZE                                              (0x06u)
@@ -699,7 +699,7 @@ typedef enum
 
     /* 0x3010u -> Reserved for future*/
 
-    /** This event is triggered for Cy_BLE_GetBatteryLevel() function.
+    /** This event is triggered for Cy_BLE_SetSlaveLatencyMode() function.
      *  Event parameter returned with this event is of (cy_stc_ble_events_param_generic_t*) type.
      *  There are two members of the structure pointed to by the event parameter: status (uint8_t) and eventParams (void *).
      *  eventParams must be cast to (uint8_t *) to access the pointer to the bdHandle corresponding to this event.
@@ -713,10 +713,18 @@ typedef enum
      */
     CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE, /* 0x3012u */
 
-    /** This event is used to inform the application of temperature data as measured. Event parameter is of 'uint16_t' */
+    /** This event is used to inform the application of temperature data as measured. Event parameter is of
+     * (cy_stc_ble_events_param_generic_t*) type. There are two members of the structure pointed to by
+     * the event parameter: status (uint8_t) and eventParams (void *). eventParams must be cast to
+     * (uint16_t *) to access the pointer to the radio temparature level in degree Celsius.
+     */
     CY_BLE_EVT_RADIO_TEMPERATURE, /* 0x3013u */
 
-    /** This event is used to inform the application of voltage data as measured. Event parameter is of 'uint16_t' */
+    /** This event is used to inform the application of voltage data as measured. Event parameter is of
+     * (cy_stc_ble_events_param_generic_t*) type. There are two members of the structure pointed to by
+     * the event parameter: status (uint8_t) and eventParams (void *). eventParams must be cast to
+     * (uint16_t *) to access the pointer to the radio voltage level in mV.
+     */
     CY_BLE_EVT_RADIO_VOLTAGE_LEVEL, /* 0x3014u */
 
     /** This event is used to inform the application that the AES CMAC generation is completed

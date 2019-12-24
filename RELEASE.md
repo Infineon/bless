@@ -1,4 +1,4 @@
-﻿# Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20
+﻿# Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30
 
 ### What's Included?
 Please refer to the [README.md](./README.md) and the [API Reference Guide](https://cypresssemiconductorco.github.io/bless/ble_api_reference_manual/html/index.html) for a complete description of the PSoC 6 BLE Middleware.
@@ -6,20 +6,15 @@ Please refer to the [README.md](./README.md) and the [API Reference Guide](https
 The revision history of the PSoC 6 BLE Middleware is also available on the [API Reference Guide Changelog](https://cypresssemiconductorco.github.io/bless/ble_api_reference_manual/html/page_group_ble_changelog.html).
 
 ### New in this release:
-* Added support ARM Compiler 6
-* Added support for BLE dual CPU mode in pre-built CM0 image
-* Added support for autonomous feature exchange on connection complete
-* Added support for configurable PA LDO settings
-* The SoC mode library was split into three libraries: host, controller, and stack manager
+* Added support QFN68 and BGA124 packages.
 
 ### Defect Fixes
-* Fixed CY_BLE_ENABLE_PHY_UPDATE macros  for enable "LE 2 Mbps" feature
-* Optimized the ACL TX path for a better throughput
-* Updated RSSI formula
-* Fixed issue with disconnection
-* Updated Cy_BLE_StackInit API to check that if DLE is disabled, max TX and RX octets must be set to 27 Bytes.
+* Updated the procedure of processing events to clear the cy_ble_pair_Status flags on CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE and CY_BLE_EVT_SOFT_RESET_COMPLETE events
+* Fixed the setting of a device address in handling the CY_BLE_EVT_STACK_ON event, if the BLE middleware is configured to operate only in the Broadcaster GAP role
+* Added checks for Malformed LL PDUs. 
 
 Refer to section [Changelog of PSoC 6 BLE Middleware API Reference Guide](https://cypresssemiconductorco.github.io/bless/ble_api_reference_manual/html/page_group_ble_changelog.html) for details.
+
 
 ### Product/Asset Specific Instructions
 Include cy_ble_common.h and cy_ble_event_handler.h to get access to all functions and other declarations in this library. If you are using the ModusToolbox Bluetooth Configurator, you can include cycfg_ble.h only.
@@ -30,7 +25,8 @@ The [Quick Start section of the PSoC 6 BLE Middleware API Reference Guide](https
 ### Known Issues
 | Problem                                                  | Workaround |
 | :---                                                     | :----  |
-| PSoC 6 device does not respond with “LL_UNKNOWN_RSP” for mal-formed LL control packets.    | No effect on operation. |
+| Peers in Active scan mode may not receive SCAN_RSP from PSoC 6 BLE if the peer address is Private Resolvable Type. Even after adding a peer to its resolving list, the PSoC 6 BLE device may not respond to SCAN_REQ from the peer.  | No workaround. This issue will be fixed in the subsequent releases. |
+| The CY_BLE_EVT_STACK_BUSY_STATUS event may not return a CY_BLE_STACK_STATE_FREE state, if the application initiates an active connection (Peripheral/Central GAP role) along with Scan activity (GAP Observer) with a high duty cycle (scan window value is close to scan interval). | Increase the scan interval and reduce the scan window values to have a  ratio of at least 1/2. |
 
 
 ### Supported Software and Tools

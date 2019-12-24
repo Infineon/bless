@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20: BLE Common Events</title>
+<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30: BLE Common Events</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><a href="http://www.cypress.com/"><img alt="Logo" src="cypress_logo.png"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20</div>
+   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30</div>
   </td>
  </tr>
  </tbody>
@@ -481,17 +481,17 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="gga7c1ef7e6d246e0f3eb6c883e23d82b86ac7593fbc5f89598c92a3b9bb2ec2bf70"></a>CY_BLE_EVT_AES_CCM_DECRYPT_COMPLETE&#160;</td><td class="fielddoc"><p>This event indicates that the AES CCM decrypt command has completed. </p>
 <p>Event parameter returned with this event is of (cy_stc_ble_events_param_generic_t*) type. There are two members of the structure pointed to by the event parameter: status (uint8_t) and eventParams (void *). eventParams must be cast to (cy_stc_ble_aes_ccm_param_t*) type to access the AES CCM decrypted data information. eventParams is valid only if status is success(0x00).eventParams-&gt;mic to be ignored. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga7c1ef7e6d246e0f3eb6c883e23d82b86a622060fd5b9b188538cc27f86fcfc53b"></a>CY_BLE_EVT_SET_SLAVE_LATENCY_MODE_COMPLETE&#160;</td><td class="fielddoc"><p>This event is triggered for <a class="el" href="group__group__ble__common__api__functions.html#ga3728fcc4889898b9484df0e283e950df" title="This function allows the application to read the current supply voltage of the BLE radio (VDDR)...">Cy_BLE_GetBatteryLevel()</a> function. </p>
+<tr><td class="fieldname"><a id="gga7c1ef7e6d246e0f3eb6c883e23d82b86a622060fd5b9b188538cc27f86fcfc53b"></a>CY_BLE_EVT_SET_SLAVE_LATENCY_MODE_COMPLETE&#160;</td><td class="fielddoc"><p>This event is triggered for <a class="el" href="group__group__ble__common__api__functions.html#gab4bca29999a2d832e5ce8da9a54355c3" title="This function overrides the default BLE Stack Control Policy for an LE connection with non zero slave...">Cy_BLE_SetSlaveLatencyMode()</a> function. </p>
 <p>Event parameter returned with this event is of (cy_stc_ble_events_param_generic_t*) type. There are two members of the structure pointed to by the event parameter: status (uint8_t) and eventParams (void *). eventParams must be cast to (uint8_t *) to access the pointer to the bdHandle corresponding to this event. eventParams is valid only if status is success(0x00) </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga7c1ef7e6d246e0f3eb6c883e23d82b86a19cedb90d0f015c6656b1228cdd67931"></a>CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE&#160;</td><td class="fielddoc"><p>This event is used to inform the application that BLE Stack Shutdown is complete. </p>
 <p>However, the application shall wait for at least 10ms, before calling the Cy_BLE_Start() API, after receiving this event. The event parameter returned along with this event is NULL. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga7c1ef7e6d246e0f3eb6c883e23d82b86a8a5a51d0c1309b1705d696fd714e3406"></a>CY_BLE_EVT_RADIO_TEMPERATURE&#160;</td><td class="fielddoc"><p>This event is used to inform the application of temperature data as measured. </p>
-<p>Event parameter is of 'uint16_t' </p>
+<p>Event parameter is of (cy_stc_ble_events_param_generic_t*) type. There are two members of the structure pointed to by the event parameter: status (uint8_t) and eventParams (void *). eventParams must be cast to (uint16_t *) to access the pointer to the radio temparature level in degree Celsius. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga7c1ef7e6d246e0f3eb6c883e23d82b86a4eb36a39342fa0ece016383494fdec78"></a>CY_BLE_EVT_RADIO_VOLTAGE_LEVEL&#160;</td><td class="fielddoc"><p>This event is used to inform the application of voltage data as measured. </p>
-<p>Event parameter is of 'uint16_t' </p>
+<p>Event parameter is of (cy_stc_ble_events_param_generic_t*) type. There are two members of the structure pointed to by the event parameter: status (uint8_t) and eventParams (void *). eventParams must be cast to (uint16_t *) to access the pointer to the radio voltage level in mV. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga7c1ef7e6d246e0f3eb6c883e23d82b86a397a2616cd6c2ddaf4b671130da25eff"></a>CY_BLE_EVT_AES_CMAC_GEN_COMPLETE&#160;</td><td class="fielddoc"><p>This event is used to inform the application that the AES CMAC generation is completed Event parameter returned with this event is of (cy_stc_ble_events_param_generic_t*) type. </p>
 <p>There are two members of the structure pointed to by the event parameter: status (uint8_t) and eventParams (void *). eventParams must be ignored. </p>
@@ -732,7 +732,7 @@ Enumerations</h2></td></tr>
 <div id="nav-path" class="navpath">
     <ul>
         <li class="footer">
-            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20</b> by <b>Cypress Semiconductor Corporation</b>.
+            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30</b> by <b>Cypress Semiconductor Corporation</b>.
             All rights reserved.
         </li>
     </ul>

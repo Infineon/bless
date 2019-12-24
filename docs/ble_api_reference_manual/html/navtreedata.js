@@ -1,6 +1,6 @@
 var NAVTREE =
 [
-  [ "Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20", "index.html", [
+  [ "Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30", "index.html", [
     [ "General Description", "page_ble_general.html", [
       [ "When to use the BLE", "page_ble_general.html#group_ble_when_use", null ],
       [ "SIG adopted Profiles and Services", "page_ble_general.html#group_ble_sig_adopted", null ],

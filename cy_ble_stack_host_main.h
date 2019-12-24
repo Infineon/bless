@@ -1,6 +1,6 @@
 /*******************************************************************************
 * \file cy_ble_stack_host_main.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains declarations of public BLE APIs other than those covered by
@@ -199,7 +199,7 @@ extern "C" {
 /** Size of the checksum to be stored in Flash memory  */
 #define CY_BLE_STACK_CHECKSUM_SIZE                (0x02u)
 
-/**  Flash size is configurable by PSoC 6 BLE Middleware; configuration is mentioned below.
+/**  Flash size is configurable by BLE middleware; configuration is mentioned below.
     * \#define CY_BLE_STACK_FLASH_STORAGE_SIZE       CY_BLE_STACK_CHECKSUM_SIZE + (total memory required for 
     * flash storage based on below calculation)
     *
@@ -1447,7 +1447,7 @@ cy_en_ble_api_result_t Cy_BLE_GetTemperature
 * Function Name: Cy_BLE_GetBatteryLevel
 ***************************************************************************//**
 *
-* This function allows the application to read the current supply voltage of the BLE radio (VDDR).
+* This function allows the application to read the current supply voltage of the BLE radio (VDDR_HVL).
 *
 * This is a non-blocking function. 
 * Voltage value is informed through 'CY_BLE_EVT_RADIO_VOLTAGE_LEVEL' event in milliVolts.
@@ -2329,8 +2329,7 @@ void Cy_BLE_HciShutdown
 ***************************************************************************//**
 * 
 *  The application must use this function for sending HCI command/data packet to the controller. 
-*  Refer to BLE Core 5.0 Specification, Vol 2, Part E Section 7 for details on HCI command/data packet format.
-
+*  Refer to BLE Core 5.0 Specification, Vol 2, Part E Section 7 for details on HCI command/data packet format.
 
 *  This function must be called after calling 'Cy_BLE_RegisterHciCb()'.
 * 

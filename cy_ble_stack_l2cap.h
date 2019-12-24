@@ -1,6 +1,6 @@
 /*******************************************************************************
 * \file cy_ble_stack_l2cap.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains declarations of public BLE APIs of L2CAP.
@@ -647,7 +647,7 @@ cy_en_ble_api_result_t Cy_BLE_L2CAP_CbfcSendFlowControlCredit
 *  is kept for backward compatibility with previous Cypress' applications and the 
 *  user should handle cy_en_ble_api_result_t to determine whether the last data packet was sent properly.
 * 
-*  If the peer device is PSoC 6 device, the CY_BLE_EVT_L2CAP_CBFC_DATA_READ event is used 
+*  If the peer device is PSoC6 device, the CY_BLE_EVT_L2CAP_CBFC_DATA_READ event is used 
 *  to inform the application about the data received over the L2CAP CBFC channel.
 *
 *  Refer to Bluetooth 5.0 core specification, Volume 3, Part A, section 3.4 for 
@@ -719,7 +719,7 @@ cy_en_ble_api_result_t Cy_BLE_L2CAP_DisconnectReq
 *  This function should be used only in LE Peripheral role. This function is used to request 
 *  the peer Central device to update the connection parameters.
 *
-*  This is a non-blocking function. If the peer Central device is PSoC 6 device, then this
+*  This is a non-blocking function. If the peer Central device is PSoC6 device, then this
 *  function results in a CY_BLE_EVT_L2CAP_CONN_PARAM_UPDATE_REQ event at the Peer's end.
 *
 *  If peer Central device accepts and sends Connection Parameter Update Response, then 
@@ -765,7 +765,7 @@ cy_en_ble_api_result_t Cy_BLE_L2CAP_LeConnectionParamUpdateRequest
 *  receiving the Connection Parameter Update Request through
 *  CY_BLE_EVT_L2CAP_CONN_PARAM_UPDATE_REQ event. This is a non-blocking function.
 * 
-*  If the peer Peripheral device is PSoC 6 device, this function results in 
+*  If the peer Peripheral device is PSoC6 device, this function results in 
 *  CY_BLE_EVT_L2CAP_CONN_PARAM_UPDATE_RSP event at the Peripheral side.
 *
 *  \param param: Parameter is of type 'cy_stc_ble_l2cap_conn_update_param_rsp_info_t'.

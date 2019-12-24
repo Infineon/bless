@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_lns.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains the function prototypes and constants used in

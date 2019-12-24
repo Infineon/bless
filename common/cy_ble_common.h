@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_common.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains the source code for the API of the PSoC 6 BLE Middleware.

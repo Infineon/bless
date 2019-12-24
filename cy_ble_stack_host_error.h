@@ -1,6 +1,6 @@
 /*******************************************************************************
 * \file cy_ble_stack_host_error.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains all the spec defined error code in Core Spec 5.0, Vol2, Part D

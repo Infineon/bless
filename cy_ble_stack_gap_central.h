@@ -1,6 +1,6 @@
 /*******************************************************************************
 * \file cy_ble_stack_gap_central.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains declarations of public BLE APIs of Generic Access Profile - Central Role.

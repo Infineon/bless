@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_cfg_common.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains the source code for the API of the PSoC 6 BLE Middleware.
@@ -43,6 +43,11 @@
 #elif defined(COMPONENT_BLESS_CONTROLLER) && !defined(COMPONENT_BLESS_HOST)
     #define CY_BLE_CONFIG_MODE                 (CY_BLE_HCI)
     #define CY_BLE_CONFIG_STACK_MODE           (CY_BLE_STACK_MODE_SINGLE_SOC)
+    
+#else
+    #define CY_BLE_CONFIG_MODE                 (CY_BLE_PROFILE)
+    #define CY_BLE_CONFIG_STACK_MODE           (CY_BLE_STACK_MODE_SINGLE_SOC)
+    #define CY_BLE_CONFIG_HOST_CORE            (CY_BLE_CORE_CORTEX_M4)
 #endif
 
 

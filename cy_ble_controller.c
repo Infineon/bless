@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_controller.c
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains the source code for the API of the PSoC 6 BLE Middleware.
@@ -503,6 +503,9 @@ static cy_en_syspm_status_t Cy_BLE_ControllerDeepSleepCallback(cy_stc_syspm_call
     /* Local variable to store the status of BLESS Hardware block */
     cy_en_ble_lp_mode_t sleepMode;
 
+    /* Suppress unused variable warning */
+    (void) callbackParams;
+    
     switch(mode)
     {
         case (CY_SYSPM_CHECK_READY):

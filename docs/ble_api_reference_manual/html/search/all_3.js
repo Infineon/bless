@@ -2667,7 +2667,7 @@ var searchData=
   ['cts_20server_20functions',['CTS Server Functions',['../group__group__ble__service__api___c_t_s__server.html',1,'']]],
   ['cts_20server_20and_20client_20function',['CTS Server and Client Function',['../group__group__ble__service__api___c_t_s__server__client.html',1,'']]],
   ['custom_20service',['Custom Service',['../group__group__ble__service__api__custom.html',1,'']]],
-  ['cypress_20psoc_206_20bluetooth_20low_20energy_20middleware_20library_203_2e20',['Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20',['../index.html',1,'']]],
+  ['cypress_20psoc_206_20bluetooth_20low_20energy_20middleware_20library_203_2e30',['Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30',['../index.html',1,'']]],
   ['configuration_20considerations',['Configuration Considerations',['../page_ble_section_configuration_considerations.html',1,'']]],
   ['changelog',['Changelog',['../page_group_ble_changelog.html',1,'']]]
 ];

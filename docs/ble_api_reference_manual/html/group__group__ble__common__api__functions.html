@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20: BLE Common Core Functions</title>
+<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30: BLE Common Core Functions</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><a href="http://www.cypress.com/"><img alt="Logo" src="cypress_logo.png"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20</div>
+   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30</div>
   </td>
  </tr>
  </tbody>
@@ -242,7 +242,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memdesc:gaf0ca40388771ec265cc2a0facd6fa13b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function allows the application to read the current temperature from the temperature sensor in the BLE radio.  <a href="#gaf0ca40388771ec265cc2a0facd6fa13b">More...</a><br /></td></tr>
 <tr class="separator:gaf0ca40388771ec265cc2a0facd6fa13b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3728fcc4889898b9484df0e283e950df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__group__ble__common__api__definitions.html#ga63f6be7f53f5ad7d82c394e4cdfa619e">cy_en_ble_api_result_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group__ble__common__api__functions.html#ga3728fcc4889898b9484df0e283e950df">Cy_BLE_GetBatteryLevel</a> (void)</td></tr>
-<tr class="memdesc:ga3728fcc4889898b9484df0e283e950df"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function allows the application to read the current supply voltage of the BLE radio (VDDR).  <a href="#ga3728fcc4889898b9484df0e283e950df">More...</a><br /></td></tr>
+<tr class="memdesc:ga3728fcc4889898b9484df0e283e950df"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function allows the application to read the current supply voltage of the BLE radio (VDDR_HVL).  <a href="#ga3728fcc4889898b9484df0e283e950df">More...</a><br /></td></tr>
 <tr class="separator:ga3728fcc4889898b9484df0e283e950df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -974,7 +974,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr>
 <td>CY_BLE_CONN_STATE_CLIENT_DISCOVERED </td><td>Server is discovered </td></tr>
 </table>
-<dl class="section user"><dt>Function Usage</dt><dd><div class="fragment"><div class="line"><span class="comment">/* Allocate the connection handle array. Macro CY_BLE_CONN_COUNT indicates the MAX number of supported connection. */</span></div><div class="line"><a class="code" href="structcy__stc__ble__conn__handle__t.html">cy_stc_ble_conn_handle_t</a> appConnHandle[CY_BLE_CONN_COUNT] = { {<a class="code" href="group__group__ble__common__api__macros.html#ga4f351ae5e87a246f8bfe7ab72f19299f">CY_BLE_INVALID_CONN_HANDLE_VALUE</a>} };</div><div class="line"></div><div class="line"><span class="comment">/* ... */</span></div><div class="line">uint32_t i;</div><div class="line"><span class="keywordflow">for</span> (i = 0; i &lt; CY_BLE_CONN_COUNT; i++)</div><div class="line">{</div><div class="line">    <span class="keywordflow">if</span>(<a class="code" href="group__group__ble__common__api__functions.html#gaa8b78b1e8bba23c0916c7d889096fbbd">Cy_BLE_GetConnectionState</a>(appConnHandle[i]) &gt;= <a class="code" href="group__group__ble__common__api__gap__definitions.html#ggad0312d72df4feae7292ab7a18944d4b5aa06bd189c8ddb0370e563b2f8e488f10">CY_BLE_CONN_STATE_CONNECTED</a>)</div><div class="line">    {</div><div class="line">     <span class="comment">/* Do some action */</span></div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="comment">/* ... */</span></div></div><!-- fragment --></dd></dl>
+<dl class="section user"><dt>Function Usage</dt><dd><div class="fragment"><div class="line"><span class="comment">/* Allocate the connection handle array. Macro CY_BLE_CONN_COUNT indicates the MAX number of supported connection. */</span></div><div class="line"><a class="code" href="structcy__stc__ble__conn__handle__t.html">cy_stc_ble_conn_handle_t</a> appConnHandle[CY_BLE_CONN_COUNT] = { {.<a class="code" href="structcy__stc__ble__conn__handle__t.html#a5b7b8e26c680094b51360e4245a252c5">attId</a> = <a class="code" href="group__group__ble__common__api__macros.html#ga4f351ae5e87a246f8bfe7ab72f19299f">CY_BLE_INVALID_CONN_HANDLE_VALUE</a>} };</div><div class="line"></div><div class="line"><span class="comment">/* ... */</span></div><div class="line">uint32_t i;</div><div class="line"><span class="keywordflow">for</span> (i = 0; i &lt; CY_BLE_CONN_COUNT; i++)</div><div class="line">{</div><div class="line">    <span class="keywordflow">if</span>(<a class="code" href="group__group__ble__common__api__functions.html#gaa8b78b1e8bba23c0916c7d889096fbbd">Cy_BLE_GetConnectionState</a>(appConnHandle[i]) &gt;= <a class="code" href="group__group__ble__common__api__gap__definitions.html#ggad0312d72df4feae7292ab7a18944d4b5aa06bd189c8ddb0370e563b2f8e488f10">CY_BLE_CONN_STATE_CONNECTED</a>)</div><div class="line">    {</div><div class="line">     <span class="comment">/* Do some action */</span></div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="comment">/* ... */</span></div></div><!-- fragment --></dd></dl>
 
 </div>
 </div>
@@ -1770,7 +1770,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
       </table>
 </div><div class="memdoc">
 
-<p>This function allows the application to read the current supply voltage of the BLE radio (VDDR). </p>
+<p>This function allows the application to read the current supply voltage of the BLE radio (VDDR_HVL). </p>
 <p>This is a non-blocking function. Voltage value is informed through 'CY_BLE_EVT_RADIO_VOLTAGE_LEVEL' event in milliVolts.</p>
 <dl class="section return"><dt>Returns</dt><dd>cy_en_ble_api_result_t : Return value indicates whether the function succeeded or failed. Following are the possible error codes.</dd></dl>
 <table class="doxtable">
@@ -1792,7 +1792,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <div id="nav-path" class="navpath">
     <ul>
         <li class="footer">
-            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20</b> by <b>Cypress Semiconductor Corporation</b>.
+            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30</b> by <b>Cypress Semiconductor Corporation</b>.
             All rights reserved.
         </li>
     </ul>

@@ -1,6 +1,6 @@
 /*******************************************************************************
 * \file cy_ble_stack_gap_peripheral.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains declarations of public BLE APIs of Generic Access Profile.
@@ -63,7 +63,7 @@ typedef enum
     /** Connectable undirected advertising */
     CY_BLE_GAPP_CONNECTABLE_UNDIRECTED_ADV = 0x00u,
 
-    /** Connectable high-duty cycle directed advertising */
+    /** Connectable high duty cycle directed advertising */
     CY_BLE_GAPP_CONNECTABLE_HIGH_DC_DIRECTED_ADV,
 
     /** Scannable undirected advertising */
@@ -103,7 +103,7 @@ typedef struct
 
     /** Type of advertisement
         - Connectable undirected advertising (0x00)
-        - Connectable high-duty cycle directed advertising (0x01)
+        - Connectable high duty cycle directed advertising (0x01)
         - Scannable undirected advertising (0x02)
         - Non connectable undirected advertising (0x03)
         - Connectable low duty cycle directed advertising (0x04)

@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file CY_BLE_ips.c
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  Contains the source code for Indoor Positioning service.

@@ -1,6 +1,6 @@
 /*******************************************************************************
 * \file cy_ble_stack_gatt.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains declarations of generic public BLE APIs of Generic Attribute Profile.

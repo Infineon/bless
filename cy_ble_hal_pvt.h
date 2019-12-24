@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_hal_pvt.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  Contains the function prototypes and constants for the HAL section
@@ -61,7 +61,7 @@ extern "C" {
 
 #define CY_BLE_SFLASH_BLE_RADIO_CALL_ADDRESS                            ((uint32_t)SFLASH_BLE_DEVICE_ADDRESS + sizeof(cy_stc_ble_gap_bd_addr_t))
 
-/* Flash blocking mode(define for mode in Cy_BLE_HAL_NvramWrite function )*/
+/* Flash blocking mode(define for mode in Cy_BLE_HAL_NvramWrite function ) */
 #define CY_BLE_FLASH_BLOCKING_MODE                                      (1u)
 
 /* Flash non blocking mode(define for mode in Cy_BLE_HAL_NvramWrite function )*/
@@ -88,6 +88,9 @@ extern "C" {
 #define CY_BLE_PACKAGE_QFN                                              (0u)
 #define CY_BLE_PACKAGE_BGA                                              (1u)
 #define CY_BLE_PACKAGE_CSP                                              (2u)
+
+/* Package HW Block */
+#define CY_BLE_PACKAGE_HW_BLOCK_USB                                     (0x01UL << 1u)
 
 /* Constants for PILO */
 /* Target frequency */
@@ -123,8 +126,7 @@ typedef enum
     CY_BLE_IC_PACKAGE_TYPE_BGA_116 = 0ul,
     CY_BLE_IC_PACKAGE_TYPE_CSP_104,
     CY_BLE_IC_PACKAGE_TYPE_BGA_124,
-    CY_BLE_IC_PACKAGE_TYPE_FQN_56,
-    CY_BLE_IC_PACKAGE_TYPE_FQN_68,
+    CY_BLE_IC_PACKAGE_TYPE_QFN_68,
 }cy_en_ble_ic_package_type_t;
 /** \endcond */
 

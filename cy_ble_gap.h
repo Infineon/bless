@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_gap.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  Contains the prototypes and constants used in the BLE GAP profile.
@@ -34,6 +34,25 @@
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
+
+
+#if !defined(COMPONENT_BLESS_CONTROLLER_IPC) && !defined(COMPONENT_BLESS_HOST_IPC) && \
+    !defined(COMPONENT_BLESS_CONTROLLER) && !defined(COMPONENT_BLESS_HOST)
+        
+    #define CY_BLE_WARNING_NO_SELECTED_BLESS_COMPONENTS
+    
+    /* The BLE Stack components are not defined in Makefile. 
+     * Use COMPONENTS variable in Makefileto select BLE Stack component. 
+     * The following COMPONENTS define patricular BLE Stack modes:
+     *  'COMPONENTS+=BLESS_HOST_IPC CM0_BLESS'    - to operate in dual CPU mode, 
+     *  'COMPONENTS+=BLESS_CONTROLLER BLESS_HOST' - to operate in single CPU mode,
+     *  'COMPONENTS+=BLESS_CONTROLLER'            - to operate in controller only (HCI) mode. */
+     
+    /* Set defauld configuration (only to make code visible in IDE) */ 
+    #define COMPONENT_BLESS_CONTROLLER
+    #define COMPONENT_BLESS_HOST
+	
+#endif /* ( !defined(COMPONENT_BLESS_CONTROLLER_IPC) && !defined(COMPONENT_BLESS_HOST_IPC) ... */
 
 
 /*******************************************************************************

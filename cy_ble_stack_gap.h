@@ -1,6 +1,7 @@
 /*******************************************************************************
 * \file cy_ble_stack_gap.h
-* \version 3.20
+
+* \version 3.30
 *
 * \brief
 *  This file contains declarations of public BLE APIs of the Generic Access Profile.

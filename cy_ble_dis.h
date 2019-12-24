@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_dis.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  Contains the function prototypes and constants for Device Information
@@ -19,7 +19,7 @@
 
 #include "cy_ble.h"
 
-#if defined(CY_IP_MXBLESS)
+#if defined(CY_IP_MXBLESS) 
 
 /* C binding of definitions if building with C++ compiler */
 #ifdef __cplusplus
@@ -138,6 +138,7 @@ extern const cy_stc_ble_disc_config_t *cy_ble_discConfigPtr;
 * Macro Functions
 *******************************************************************************/
 
+#if CY_BLE_LIB_HOST_CORE
 /******************************************************************************
 * Function Name: Cy_BLE_DISC_GetCharacteristicValueHandle
 ***************************************************************************//**
@@ -158,7 +159,7 @@ __STATIC_INLINE cy_ble_gatt_db_attr_handle_t Cy_BLE_DISC_GetCharacteristicValueH
 {
     cy_ble_gatt_db_attr_handle_t locAttrHandle = CY_BLE_GATT_INVALID_ATTR_HANDLE_VALUE;
 
-#if CY_BLE_LIB_HOST_CORE
+
     uint32_t discIdx = Cy_BLE_GetDiscoveryIdx(connHandle);
 
     if((discIdx < cy_ble_configPtr->params->maxClientCount) && ((charIndex) < CY_BLE_DIS_CHAR_COUNT))
@@ -169,10 +170,12 @@ __STATIC_INLINE cy_ble_gatt_db_attr_handle_t Cy_BLE_DISC_GetCharacteristicValueH
         /* Get attribute handles */
         locAttrHandle = discPtr[discIdx].charInfo[charIndex].valueHandle;
     }
-#endif /* CY_BLE_LIB_HOST_CORE */
 
     return (locAttrHandle);
 }
+#endif /* CY_BLE_LIB_HOST_CORE */
+
+
 /** \endcond */
 
 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20: Configuration Considerations</title>
+<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30: Configuration Considerations</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><a href="http://www.cypress.com/"><img alt="Logo" src="cypress_logo.png"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20</div>
+   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30</div>
   </td>
  </tr>
  </tbody>
@@ -121,250 +121,240 @@ BLE Stack Components and CM0+ Pre-built Images</h1>
 <p>The BLE stack components and the pre-compiled image for the CM0+ BLE Sub-system (BLESS) controller are parts of the PSoC 6 BLE Middleware that include different variants of pre-built BLE stack libraries.</p>
 <p>The user may specify the BLE stack components and CM0+ pre-built image via the COMPONENTS variable in the application level Makefile. The following table describes all the BLE stack components, pre-built images, and the relationship between them in different BLE operating modes:</p>
 <p> 
-  <table class="doxtable" width="90%" border="1" align="center" cellpadding="3" cellspacing="0" 
-         style="width: 100%; font-size: 14px;">
-      <tr bgcolor="#D7EFEE">
-        <td rowspan="3" valign="center" style="text-align: center;">
-          <b>Components</b><br>(libraries / pre-built images) 
-        </td>
-        <td rowspan="3" valign="center" style="text-align: center; font-weight: bold;">
-          Description
-        </td>
-        <td colspan="3" align="center" style="text-align: center; font-weight: bold;">
-          BLE Operation Modes
-        </td>
-      </tr>
-      <tr bgcolor="#D7EFEE">
-        <td colspan="2" style="text-align: center;">
-          Complete BLE Protocol</td>
-        <td rowspan="2" valign="center" nowrap="nowrap" style="text-align: center;">
-          BLE HCI<br>(over Software API)
-        </td>
-      </tr>
-      <tr bgcolor="#D7EFEE">
-        <td valign="center" nowrap="nowrap" style="text-align: center;">
-          BLE Dual<br>CPU Mode<br>(Host part)
-        </td>
-        <td valign="center" nowrap="nowrap" style="text-align: center;">
-          BLE Single<br>CPU Mode
-        </td>
-      </tr>
-      <tr>
-        <td colspan="1">BLESS_HOST_IPC</td>
-        <td colspan="1">
-          BLE stack host (over IPC) pre-built libraries that run on the CM4 core in BLE Dual CPU 
-          mode. Must be complemented with the CM0+ BLESS controller pre-compiled image (CM0P_BLESS).
-          There are soft FP and hard FP variants.
-        </td>
-        <td colspan="1" style="text-align: center;"><strong>Y</strong></td>
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td colspan="1">BLESS_HOST</td>
-        <td colspan="1">
-          BLE stack host (over software transport interface) pre-built libraries that run on the 
-          CM4 core in BLE Single CPU mode. Must be complemented with the BLE Stack controller (over 
-          software transport interface) component (BLESS CONTROLLER). There are soft FP and hard FP 
-          variants.
-        </td>
-        <td> </td>
-        <td colspan="1" style="text-align: center;"><strong>Y</strong></td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td colspan="1">BLESS_CONTROLLER</td>
-        <td colspan="1">
-          BLE stack controller (over software transport interface) pre-built libraries that run on 
-          the CM4 core in BLE Single CPU or Host Controller Interface (HCI) modes. There are soft 
-          FP and hard FP variants.
-        </td>
-        <td> </td>
-        <td colspan="1" style="text-align: center;"><strong>Y</strong></td>
-        <td colspan="1" style="text-align: center;"><strong>Y</strong></td>
-      </tr>
-      <tr bgcolor="#F4F4EF">
-        <td colspan="1">CM0P_BLESS</td>
-        <td colspan="1">
-          This image has the BLE controller implementation. It starts the CM4 core at 
-          CY_CORTEX_M4_APPL_ADDR=0x10020000. It then goes into a while loop where it processes BLE 
-          controller events and puts the CM0+ core into CPU deep sleep.
-        </td>
-        <td colspan="1" style="text-align: center;"><strong>Y</strong></td>
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr bgcolor="#F4F4EF">
-        <td colspan="1">CM0P_SLEEP</td>
-        <td colspan="1">
-          This image starts the CM4 core at CY_CORTEX_M4_APPL_ADDR=0x10002000 and puts the CM0+ 
-          core into CPU deep sleep.
-        </td>
-        <td> </td>
-        <td colspan="1" style="text-align: center;"><strong>(Y)</strong></td>
-        <td colspan="1" style="text-align: center;"><strong>(Y)</strong></td>
-      </tr>
-      <tr bgcolor="#F4F4EF">
-        <td colspan="1">Other CM0+ images</td>
-        <td colspan="1">
-          Pre-compiled application images executed on the Cortex M0+ core of the PSoC 6 Dual-core 
-          MCU. The images are provided as C arrays ready to be compiled as part of the Cortex M4 
-          application. The Cortex M0+ application code is placed in internal flash by the Cortex M4 
-          linker script.
-        </td>
-        <td> </td>
-        <td colspan="1" style="text-align: center;"><strong>(Y)</strong></td>
-        <td colspan="1" style="text-align: center;"><strong>(Y)</strong></td>
-      </tr>
-  </table>
-  </p>
+ <table class="doxtable" width="90%" border="1" align="center" cellpadding="3" cellspacing="0" 
+        style="width: 100%; font-size: 14px;">
+     <tr bgcolor="#D7EFEE">
+       <td rowspan="3" valign="center" style="text-align: center;">
+         <b>Components</b><br>(libraries / pre-built images) 
+       </td>
+       <td rowspan="3" valign="center" style="text-align: center; font-weight: bold;">
+         Description
+       </td>
+       <td colspan="3" align="center" style="text-align: center; font-weight: bold;">
+         BLE Operation Modes
+       </td>
+     </tr>
+     <tr bgcolor="#D7EFEE">
+       <td colspan="2" style="text-align: center;">
+         Complete BLE Protocol</td>
+       <td rowspan="2" valign="center" nowrap="nowrap" style="text-align: center;">
+         BLE HCI<br>(over Software API)
+       </td>
+     </tr>
+     <tr bgcolor="#D7EFEE">
+       <td valign="center" nowrap="nowrap" style="text-align: center;">
+         BLE Dual<br>CPU Mode<br>(Host part)
+       </td>
+       <td valign="center" nowrap="nowrap" style="text-align: center;">
+         BLE Single<br>CPU Mode
+       </td>
+     </tr>
+     <tr>
+       <td colspan="1">BLESS_HOST_IPC</td>
+       <td colspan="1">
+         BLE stack host (over IPC) pre-built libraries that run on the CM4 core in BLE Dual CPU 
+         mode. Must be complemented with the CM0+ BLESS controller pre-compiled image (CM0P_BLESS).
+         There are soft FP and hard FP variants.
+       </td>
+       <td colspan="1" style="text-align: center;"><strong>Y</strong></td>
+       <td> </td>
+       <td> </td>
+     </tr>
+     <tr>
+       <td colspan="1">BLESS_HOST</td>
+       <td colspan="1">
+         BLE stack host (over software transport interface) pre-built libraries that run on the 
+         CM4 core in BLE Single CPU mode. Must be complemented with the BLE Stack controller (over 
+         software transport interface) component (BLESS CONTROLLER). There are soft FP and hard FP 
+         variants.
+       </td>
+       <td> </td>
+       <td colspan="1" style="text-align: center;"><strong>Y</strong></td>
+       <td> </td>
+     </tr>
+     <tr>
+       <td colspan="1">BLESS_CONTROLLER</td>
+       <td colspan="1">
+         BLE stack controller (over software transport interface) pre-built libraries that run on 
+         the CM4 core in BLE Single CPU or Host Controller Interface (HCI) modes. There are soft 
+         FP and hard FP variants.
+       </td>
+       <td> </td>
+       <td colspan="1" style="text-align: center;"><strong>Y</strong></td>
+       <td colspan="1" style="text-align: center;"><strong>Y</strong></td>
+     </tr>
+     <tr bgcolor="#F4F4EF">
+       <td colspan="1">CM0P_BLESS</td>
+       <td colspan="1">
+         This image has the BLE controller implementation. It starts the CM4 core at 
+         CY_CORTEX_M4_APPL_ADDR=0x10020000. It then goes into a while loop where it processes BLE 
+         controller events and puts the CM0+ core into CPU deep sleep.
+       </td>
+       <td colspan="1" style="text-align: center;"><strong>Y</strong></td>
+       <td> </td>
+       <td> </td>
+     </tr>
+     <tr bgcolor="#F4F4EF">
+       <td colspan="1">CM0P_SLEEP</td>
+       <td colspan="1">
+         This image starts the CM4 core at CY_CORTEX_M4_APPL_ADDR=0x10002000 and puts the CM0+ 
+         core into CPU deep sleep.
+       </td>
+       <td> </td>
+       <td colspan="1" style="text-align: center;"><strong>(Y)</strong></td>
+       <td colspan="1" style="text-align: center;"><strong>(Y)</strong></td>
+     </tr>
+     <tr bgcolor="#F4F4EF">
+       <td colspan="1">Other CM0+ images</td>
+       <td colspan="1">
+         Pre-compiled application images executed on the Cortex M0+ core of the PSoC 6 Dual-core 
+         MCU. The images are provided as C arrays ready to be compiled as part of the Cortex M4 
+         application. The Cortex M0+ application code is placed in internal flash by the Cortex M4 
+         linker script.
+       </td>
+       <td> </td>
+       <td colspan="1" style="text-align: center;"><strong>(Y)</strong></td>
+       <td colspan="1" style="text-align: center;"><strong>(Y)</strong></td>
+     </tr>
+ </table>
+ </p>
 <p>The following fragments of the application level Makefile show how to enable different BLE modes.  
-  <table class="doxtable" width="90%" border="1" align="center" cellpadding="3" cellspacing="0" style="width: 100%; font-size: 14px;">
-      <tr bgcolor="#D7EFEE" >
-        <td style="text-align: center; font-weight: bold;">Dual CPU mode</td>
-        <td style="text-align: center; font-weight: bold;">Single CPU mode</td>
-        <td style="text-align: center; font-weight: bold;">HCI mode</td>
-      </tr>
-      <tr bgcolor="#FFFFFF" valign="top">
-        <td># Basic Configuration<br>
-            APPNAME=BLE_APP_DUAL_CORE<br>
-            <br>
-            # Advanced Configuration<br>
-            COMPONENTS=BLESS_HOST_IPC CM0_BLESS<br>
-            <br>          
-            # NOTE: CM0_BLESS - is a pre-built image with<br>
-            # BLESS controller<br>
-        </td>
-        <td># Basic Configuration<br>
-            APPNAME=BLE_APP_SINGLE_CORE<br>
-            <br>
-            # Advanced Configuration<br>
-            COMPONENTS=BLESS_HOST, BLESS_CONTROLLER<br>
-        </td>
-        <td># Basic Configuration<br>
-            APPNAME=BLE_HCI_APP<br>
-            <br>
-            # Advanced Configuration<br>
-            COMPONENTS=BLESS_CONTROLLER<br>
-        </td>
-      </tr> 
-  </table>
-  </p>
+ <table class="doxtable" width="90%" border="1" align="center" cellpadding="3" cellspacing="0" style="width: 100%; font-size: 14px;">
+     <tr bgcolor="#D7EFEE" >
+       <td style="text-align: center; font-weight: bold;">Dual CPU mode</td>
+       <td style="text-align: center; font-weight: bold;">Single CPU mode</td>
+       <td style="text-align: center; font-weight: bold;">HCI mode</td>
+     </tr>
+     <tr bgcolor="#FFFFFF" valign="top">
+       <td>APPNAME=BLE_APP_DUAL_CORE<br>
+           COMPONENTS=BLESS_HOST_IPC CM0_BLESS<br>         
+           # NOTE: CM0_BLESS - is a pre-built image with<br>
+           # BLESS controller<br>
+       </td>
+       <td>APPNAME=BLE_APP_SINGLE_CORE<br>
+           COMPONENTS=BLESS_HOST BLESS_CONTROLLER<br>
+       </td>
+       <td>APPNAME=BLE_HCI_APP<br>
+           COMPONENTS=BLESS_CONTROLLER<br>
+       </td>
+     </tr> 
+ </table>
+ </p>
 <h2><a class="anchor" id="group_ble_subsection_conf_cons_libraries"></a>
 BLE Stack Libraries</h2>
 <p>The BLE stack libraries are compliant with the Arm Embedded Application Binary Interface (EABI). They are compiled with the Arm compiler version 5.03. The following table shows the mapping between the BLE stack libraries and the user-configured COMPONENT:</p>
 <p> 
-  <table class="doxtable" width="90%" border="1" align="center" cellpadding="3" cellspacing="0" style="width: 100%; font-size: 14px;">
-      <tr bgcolor="#D7EFEE" style="text-align: center; font-weight: bold;">
-        <td>COMPONENT Name</td>
-        <td>Library Name/Path in PSoC 6 BLE Middleware</td>
-        <td>Used for<br>Toolchains<br>(WCHAR)</td>
-        <td>SOFT/HARD<br>Floating<br>Point</td>
-      </tr>
-      <tr>
-        <td rowspan="6" align="center">BLESS_HOST_IPC</td>
-        <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_SOFTFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_host.a</td>
-        <td rowspan="2" align="center">GCC<br>(WCHAR 32)</td>
-        <td align="center">SOFTFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_HARDFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_host.a</td>
-        <td align="center">HARDFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_SOFTFP/TOOLCHAIN_IAR/cy_ble_stack_host.a</td>
-        <td rowspan="2" align="center">IAR<br>(WCHAR 32)</td>
-        <td align="center">SOFTFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_HARDFP/TOOLCHAIN_IAR/cy_ble_stack_host.a</td>
-        <td align="center">HARDFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_SOFTFP/TOOLCHAIN_ARM/cy_ble_stack_host.ar</td>
-        <td rowspan="2" align="center">Arm<br>Compiler 6<br>(WCHAR 16)</td>
-        <td align="center">SOFTFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_HARDFP/TOOLCHAIN_ARM/cy_ble_stack_host.ar</td>
-        <td align="center">HARDFP</td>
-      </tr>
-      <tr>
-        <td rowspan="6" align="center">BLESS_HOST</td>
-        <td>COMPONENT_BLESS_HOST/COMPONENT_SOFTFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_host.a</td>
-        <td rowspan="2" align="center">GCC<br>(WCHAR 32)</td>
-        <td align="center">SOFTFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_HOST/COMPONENT_HARDFP/TOOLCHAIN_GCC_ARM/ cy_ble_stack_host.a</td>
-        <td align="center">HARDFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_HOST/COMPONENT_SOFTFP/TOOLCHAIN_IAR/ cy_ble_stack_host.a</td>
-        <td rowspan="2" align="center">IAR<br>(WCHAR 32)</td>
-        <td align="center">SOFTFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_HOST/COMPONENT_HARDFP/TOOLCHAIN_IAR/cy_ble_stack_host.a</td>
-        <td align="center">HARDFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_HOST/COMPONENT_SOFTFP/TOOLCHAIN_ARM/cy_ble_stack_host.ar</td>
-        <td rowspan="2" align="center">Arm<br>Compiler 6<br>(WCHAR 16)</td>
-        <td align="center">SOFTFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_HOST/COMPONENT_HARDFP/TOOLCHAIN_ARM/cy_ble_stack_host.ar</td>
-        <td align="center">HARDFP</td>
-      </tr>
-      <tr>
-        <td rowspan="12" align="center">BLESS_CONTROLLER</td>
-        <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_controller.a</td>
-        <td rowspan="4" align="center">GCC<br>(WCHAR 32)</td>
-        <td rowspan="2" align="center">SOFTFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_manager.a</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_HARDFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_controller.a</td>
-        <td rowspan="2" align="center">HARDFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_HARDFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_manager.a</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_IAR/cy_ble_stack_controller.a</td>
-        <td rowspan="4" align="center">IAR<br>(WCHAR 32)</td>
-        <td rowspan="2" align="center">SOFTFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_IAR/cy_ble_stack_manager.a</td>
-      </tr>
-      <tr>
-        <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_HARDFP/TOOLCHAIN_IAR/cy_ble_stack_controller.a</td>
-        <td rowspan="2" align="center">HARDFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_HARDFP/TOOLCHAIN_IAR/cy_ble_stack_manager.a</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_ARM/cy_ble_stack_controller.ar</td>
-        <td rowspan="4" align="center">Arm<br>Compiler 6<br>(WCHAR 16)</td>
-        <td rowspan="2" align="center">SOFTFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_ARM/cy_ble_stack_manager.ar</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_HARDFP/TOOLCHAIN_ARM/cy_ble_stack_controller.ar</td>
-        <td rowspan="2" align="center">HARDFP</td>
-      </tr>
-      <tr>     
-        <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_HARDFP/TOOLCHAIN_ARM/cy_ble_stack_manager.ar</td>
-      </tr>
-  </table>
-  </p>
+ <table class="doxtable" width="90%" border="1" align="center" cellpadding="3" cellspacing="0" style="width: 100%; font-size: 14px;">
+     <tr bgcolor="#D7EFEE" style="text-align: center; font-weight: bold;">
+       <td>COMPONENT Name</td>
+       <td>Library Name/Path in PSoC 6 BLE Middleware</td>
+       <td>Used for<br>Toolchains<br>(WCHAR)</td>
+       <td>SOFT/HARD<br>Floating<br>Point</td>
+     </tr>
+     <tr>
+       <td rowspan="6" align="center">BLESS_HOST_IPC</td>
+       <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_SOFTFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_host.a</td>
+       <td rowspan="2" align="center">GCC<br>(WCHAR 32)</td>
+       <td align="center">SOFTFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_HARDFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_host.a</td>
+       <td align="center">HARDFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_SOFTFP/TOOLCHAIN_IAR/cy_ble_stack_host.a</td>
+       <td rowspan="2" align="center">IAR<br>(WCHAR 32)</td>
+       <td align="center">SOFTFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_HARDFP/TOOLCHAIN_IAR/cy_ble_stack_host.a</td>
+       <td align="center">HARDFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_SOFTFP/TOOLCHAIN_ARM/cy_ble_stack_host.ar</td>
+       <td rowspan="2" align="center">Arm<br>Compiler 6<br>(WCHAR 16)</td>
+       <td align="center">SOFTFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_HARDFP/TOOLCHAIN_ARM/cy_ble_stack_host.ar</td>
+       <td align="center">HARDFP</td>
+     </tr>
+     <tr>
+       <td rowspan="6" align="center">BLESS_HOST</td>
+       <td>COMPONENT_BLESS_HOST/COMPONENT_SOFTFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_host.a</td>
+       <td rowspan="2" align="center">GCC<br>(WCHAR 32)</td>
+       <td align="center">SOFTFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_HOST/COMPONENT_HARDFP/TOOLCHAIN_GCC_ARM/ cy_ble_stack_host.a</td>
+       <td align="center">HARDFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_HOST/COMPONENT_SOFTFP/TOOLCHAIN_IAR/ cy_ble_stack_host.a</td>
+       <td rowspan="2" align="center">IAR<br>(WCHAR 32)</td>
+       <td align="center">SOFTFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_HOST/COMPONENT_HARDFP/TOOLCHAIN_IAR/cy_ble_stack_host.a</td>
+       <td align="center">HARDFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_HOST/COMPONENT_SOFTFP/TOOLCHAIN_ARM/cy_ble_stack_host.ar</td>
+       <td rowspan="2" align="center">Arm<br>Compiler 6<br>(WCHAR 16)</td>
+       <td align="center">SOFTFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_HOST/COMPONENT_HARDFP/TOOLCHAIN_ARM/cy_ble_stack_host.ar</td>
+       <td align="center">HARDFP</td>
+     </tr>
+     <tr>
+       <td rowspan="12" align="center">BLESS_CONTROLLER</td>
+       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_controller.a</td>
+       <td rowspan="4" align="center">GCC<br>(WCHAR 32)</td>
+       <td rowspan="2" align="center">SOFTFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_manager.a</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_HARDFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_controller.a</td>
+       <td rowspan="2" align="center">HARDFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_HARDFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_manager.a</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_IAR/cy_ble_stack_controller.a</td>
+       <td rowspan="4" align="center">IAR<br>(WCHAR 32)</td>
+       <td rowspan="2" align="center">SOFTFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_IAR/cy_ble_stack_manager.a</td>
+     </tr>
+     <tr>
+       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_HARDFP/TOOLCHAIN_IAR/cy_ble_stack_controller.a</td>
+       <td rowspan="2" align="center">HARDFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_HARDFP/TOOLCHAIN_IAR/cy_ble_stack_manager.a</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_ARM/cy_ble_stack_controller.ar</td>
+       <td rowspan="4" align="center">Arm<br>Compiler 6<br>(WCHAR 16)</td>
+       <td rowspan="2" align="center">SOFTFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_ARM/cy_ble_stack_manager.ar</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_HARDFP/TOOLCHAIN_ARM/cy_ble_stack_controller.ar</td>
+       <td rowspan="2" align="center">HARDFP</td>
+     </tr>
+     <tr>     
+       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_HARDFP/TOOLCHAIN_ARM/cy_ble_stack_manager.ar</td>
+     </tr>
+ </table>
+ </p>
 <h2><a class="anchor" id="group_ble_subsection_conf_cons_precompiled"></a>
 CM0+ BLESS Controller Pre-compiled Image</h2>
 <p>Pre-compiled BLESS controller image executed on the Cortex M0+ core of the PSoC 6 dual- core MCU. The image is provided as C arrays ready to be compiled as part of the Cortex M4 application. The Cortex M0+ application code is placed in internal flash by the Cortex M4 linker script. This image is used only in BLE Dual CPU mode. In this mode, the BLE functionality is split between CM0+ (controller) and CM4 (host). It uses IPC for communication between two CPU cores where both the controller and host run.</p>
@@ -381,35 +371,35 @@ Configure BLESS Interrupt</h1>
 <p>The interrupt is mandatory for PSoC 6 BLE Middleware operation. The BLESS hardware block provides interrupt sources. To configure interrupts, the <a class="el" href="group__group__ble__common__api__functions.html#gaf973ee7f4097d25ee569fd8bd3172265" title="Process interrupt events generated by the BLE sub-system. ">Cy_BLE_BlessIsrHandler()</a> function is called in the interrupt handler to process interrupt events generated by BLESS.</p>
 <p>The BLESS interrupt is configured on the core where the BLE controller is running. The following table shows details of interrupt configuration depending on the BLE core modes.</p>
 <p> 
-  <table class="doxtable" width="90%" border="1" align="center" cellpadding="3"
-         cellspacing="0" style="width: 100%; font-size: 14px;">
-      <tr bgcolor="#D7EFEE" >
-        <td style="text-align: center; font-weight: bold;">BLE Core mode</td>
-        <td style="text-align: center; font-weight: bold;">BLE Controller core</td>
-        <td style="text-align: center; font-weight: bold;">BLESS Interrupt configuration</td>
-      </tr>
-      <tr bgcolor="#FFFFFF" valign="top">
-        <td style="text-align: center;">Dual CPU mode</td>
-        <td style="text-align: center;">CM0+</td>
-        <td>    The BLESS interrupt is configured in the CM0+ BLESS controller pre-built image.</td>
-      </tr>
-      <tr bgcolor="#FFFFFF">
-        <td valign="center" style="text-align: center;">Single CPU mode</td>
-        <td valign="center" style="text-align: center;">CM4</td>
-        <td>
-             cy_stc_sysint_t blessIsrCfg =             <br>
-             {                                         <br>&nbsp; &nbsp; &nbsp; &nbsp;      
-                  /* The BLESS interrupt */            <br>&nbsp; &nbsp; &nbsp; &nbsp;
-                  .intrSrc = bless_interrupt_IRQn,     <br>&nbsp; &nbsp; &nbsp; &nbsp;
-                                                       <br>&nbsp; &nbsp; &nbsp; &nbsp;
-                  /* The interrupt priority number */  <br>&nbsp; &nbsp; &nbsp; &nbsp;
-                  .intrPriority = 1u                   <br>
-             };<br>                     
-         <b>Note.</b> Priority level (intrPriority ) must have the highest value in system.</td>
-      </tr>
-      
-  </table>
-  </p>
+ <table class="doxtable" width="90%" border="1" align="center" cellpadding="3"
+        cellspacing="0" style="width: 100%; font-size: 14px;">
+     <tr bgcolor="#D7EFEE" >
+       <td style="text-align: center; font-weight: bold;">BLE Core mode</td>
+       <td style="text-align: center; font-weight: bold;">BLE Controller core</td>
+       <td style="text-align: center; font-weight: bold;">BLESS Interrupt configuration</td>
+     </tr>
+     <tr bgcolor="#FFFFFF" valign="top">
+       <td style="text-align: center;">Dual CPU mode</td>
+       <td style="text-align: center;">CM0+</td>
+       <td>    The BLESS interrupt is configured in the CM0+ BLESS controller pre-built image.</td>
+     </tr>
+     <tr bgcolor="#FFFFFF">
+       <td valign="center" style="text-align: center;">Single CPU mode</td>
+       <td valign="center" style="text-align: center;">CM4</td>
+       <td>
+            cy_stc_sysint_t blessIsrCfg =             <br>
+            {                                         <br>&nbsp; &nbsp; &nbsp; &nbsp;      
+                 /* The BLESS interrupt */            <br>&nbsp; &nbsp; &nbsp; &nbsp;
+                 .intrSrc = bless_interrupt_IRQn,     <br>&nbsp; &nbsp; &nbsp; &nbsp;
+                                                      <br>&nbsp; &nbsp; &nbsp; &nbsp;
+                 /* The interrupt priority number */  <br>&nbsp; &nbsp; &nbsp; &nbsp;
+                 .intrPriority = 1u                   <br>
+            };<br>                     
+        <b>Note.</b> Priority level (intrPriority ) must have the highest value in system.</td>
+     </tr>
+     
+ </table>
+ </p>
 <p>The following code shows how to implement the ISR handler for the BLESS interrupt service. The <a class="el" href="group__group__ble__common__api__functions.html#gaf973ee7f4097d25ee569fd8bd3172265" title="Process interrupt events generated by the BLE sub-system. ">Cy_BLE_BlessIsrHandler()</a> function is called from BLESS ISR to process interrupt events generated by BLESS: </p><div class="fragment"><div class="line"><span class="comment">/*******************************************************************************</span></div><div class="line"><span class="comment">* Function Name: BlessInterrupt</span></div><div class="line"><span class="comment">****************************************************************************/</span></div><div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> BlessInterrupt(<span class="keywordtype">void</span>)</div><div class="line">{</div><div class="line">    <span class="comment">/* Call interrupt processing */</span></div><div class="line">    <a class="code" href="group__group__ble__common__api__functions.html#gaf973ee7f4097d25ee569fd8bd3172265">Cy_BLE_BlessIsrHandler</a>();</div><div class="line">}</div></div><!-- fragment --><p> Finally, the BLESS interrupt is configured and interrupt handler routines are hooked up to NVIC. The pointer to the BLESS interrupt configuration structure (blessIsrCfg) is stored in the BLE configuration structure ( cy_ble_config): </p><div class="fragment"><div class="line"><span class="comment">/* Assign BLESS interrupt number and priority */</span></div><div class="line"><span class="keyword">const</span> cy_stc_sysint_t blessIsrCfg =</div><div class="line">{</div><div class="line">     <span class="comment">/* The BLESS interrupt */</span></div><div class="line">     .intrSrc      = bless_interrupt_IRQn,</div><div class="line"></div><div class="line">     <span class="comment">/* The interrupt priority number */</span></div><div class="line">     .intrPriority = 1u</div><div class="line">};</div><div class="line"></div><div class="line"><span class="comment">/* Hook interrupt service routines for BLESS */</span></div><div class="line">(void) Cy_SysInt_Init(&amp;blessIsrCfg, &amp;BlessInterrupt);</div><div class="line"></div><div class="line"><span class="comment">/* Store pointer to blessIsrCfg in BLE configuration structure */</span></div><div class="line">cy_ble_config.hw-&gt;blessIsrConfig = &amp;blessIsrCfg;</div></div><!-- fragment --><h1><a class="anchor" id="group_ble_section_conf_cons_init_enable"></a>
 Initialize and Enable PSoC 6 BLE Middleware in Complete BLE Protocol Mode</h1>
 <p> <style>div.image img[src="ble_config_single_mode.png"]{width:864px; align:left;}</style> </p>
@@ -505,46 +495,46 @@ Call <a class="el" href="group__group__ble__common__api__functions.html#ga71930f
 Over-The-Air Bootloading with Code Sharing</h1>
 <p>This feature is used in the over-the-air (OTA) implementation. It allows sharing BLE component code between two component instances: one instance with profile-specific code and one with a stack. To configure OTA with code sharing, define CY_BLE_SHARING_MODE in the project. This parameter allows choosing between the following options:</p>
 <p> 
-  <table class="doxtable">
-      <tr align="center">
-          <th>Option</th>
-          <th>Value</th>
-          <th>Description</th>
-      </tr>
-      <tr>
-          <td align="center">Disabled</td>
-          <td align="center">0</td>
-          <td>OTA with code sharing feature is disabled.</td>
-      </tr>
-      <tr>
-          <td align="center">Stack and Profiles</td>
-          <td align="center">1</td>
-          <td>This option is used to isolate the stack and the application Profiles.<br>
-              Dynamically allocate memory for the BLE stack and pass the pointer to the memory heap into
-              BLE config structure (cy_ble_config.stackParam->memoryHeapPtr). 
-              The PSoC 6 BLE Middleware provides macro CY_BLE_STACK_RAM_SIZE which defines the ram size.
-  
-              The following code snippet shows how to dynamically allocate memory for BLE stack:<br>
-           </p><div class="fragment"><div class="line"><span class="comment">/* Allocate memory for BLE stack */</span></div><div class="line">cy_ble_config.stackParam-&gt;memoryHeapPtr = (uint8 *)malloc(<a class="code" href="group__group__ble__common__api__macros.html#ga009e2688edfe3dc77235947015b506a2">CY_BLE_STACK_RAM_SIZE</a>);</div><div class="line"></div><div class="line"><span class="keywordflow">if</span>(cy_ble_config.stackParam-&gt;memoryHeapPtr == NULL)</div><div class="line">{</div><div class="line">    Cy_SysLib_Halt(0x00u);</div><div class="line">}</div></div><!-- fragment --><p>  
-              <b>Note</b> This mode requires approximately 3024 additional bytes of heap memory. 
-              If there is not enough heap memory, the PSoC 6 BLE Middleware will not work. The Heap size can 
-              be modified by editing linker scripts.
-          </td>
-      </tr>
-      <tr>
-          <td align="center">Profile only</td>
-          <td align="center">2</td>
-          <td>This option makes the middleware only have the profile-specific code. Stack is excluded.</td>
-      </tr>
-  </table>
-   </p>
+ <table class="doxtable">
+     <tr align="center">
+         <th>Option</th>
+         <th>Value</th>
+         <th>Description</th>
+     </tr>
+     <tr>
+         <td align="center">Disabled</td>
+         <td align="center">0</td>
+         <td>OTA with code sharing feature is disabled.</td>
+     </tr>
+     <tr>
+         <td align="center">Stack and Profiles</td>
+         <td align="center">1</td>
+         <td>This option is used to isolate the stack and the application Profiles.<br>
+             Dynamically allocate memory for the BLE stack and pass the pointer to the memory heap into
+             BLE config structure (cy_ble_config.stackParam->memoryHeapPtr). 
+             The PSoC 6 BLE Middleware provides macro CY_BLE_STACK_RAM_SIZE which defines the ram size.
+ 
+             The following code snippet shows how to dynamically allocate memory for BLE stack:<br>
+          </p><div class="fragment"><div class="line"><span class="comment">/* Allocate memory for BLE stack */</span></div><div class="line">cy_ble_config.stackParam-&gt;memoryHeapPtr = (uint8 *)malloc(<a class="code" href="group__group__ble__common__api__macros.html#ga009e2688edfe3dc77235947015b506a2">CY_BLE_STACK_RAM_SIZE</a>);</div><div class="line"></div><div class="line"><span class="keywordflow">if</span>(cy_ble_config.stackParam-&gt;memoryHeapPtr == NULL)</div><div class="line">{</div><div class="line">    Cy_SysLib_Halt(0x00u);</div><div class="line">}</div></div><!-- fragment --><p>  
+             <b>Note</b> This mode requires approximately 3024 additional bytes of heap memory. 
+             If there is not enough heap memory, the PSoC 6 BLE Middleware will not work. The Heap size can 
+             be modified by editing linker scripts.
+         </td>
+     </tr>
+     <tr>
+         <td align="center">Profile only</td>
+         <td align="center">2</td>
+         <td>This option makes the middleware only have the profile-specific code. Stack is excluded.</td>
+     </tr>
+ </table>
+  </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part
 <div id="nav-path" class="navpath">
     <ul>
         <li class="footer">
-            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20</b> by <b>Cypress Semiconductor Corporation</b>.
+            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30</b> by <b>Cypress Semiconductor Corporation</b>.
             All rights reserved.
         </li>
     </ul>

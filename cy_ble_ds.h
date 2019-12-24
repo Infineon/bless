@@ -1,6 +1,6 @@
 /********************************************************************************************************************//**
 * \file cy_ble_ds.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  Contains the documentation data.
@@ -13,7 +13,7 @@
 * the software package with which this file was provided.
 ***********************************************************************************************************************
 *
-* \mainpage Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20
+* \mainpage Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30
 *
 * \copydetails page_ble_general
 * \copydetails page_group_ble_changelog
@@ -73,11 +73,10 @@
 ***************************************************************************      
 **\section group_ble_sig_adopted SIG adopted Profiles and Services
 **
-* BLE is used in very low-power network and Internet of Things (IoT) solutions using low-cost battery
-* operated devices that can quickly connect and form simple wireless links. Target applications include
-* HID, remote controls, sports and fitness monitors, portable medical devices and smart phone accessories,
-* among many others.
-* 
+* The BLE resource supports numerous SIG-adopted GATT-based Profiles and Services. Each of these can be configured for 
+* either a GATT Client or GATT Server. It generates all the necessary code for a particular Profile/Service operation,
+* as configured in the BLE Configurator. 
+*
 ***************************************************************************      
 **\section group_ble_custom_profile Custom Profiles
 **
@@ -178,7 +177,7 @@
 * - Pairing and Bonding
 *   - Pass Key and Out of Band bonding
 * - Key Generation for a device identity resolution, data signing, and encryption
-* - Pairing method selection based on the IO capability of the GAP central and GAP peripheral device
+* - Pairing method selection based on the IO capability of the GAP central and GAP peripheral device.
 *
 **\subsubsection subsubsection_ble_stack_5 Logical Link Control Adaptation Protocol (L2CAP)  
 *  
@@ -351,98 +350,7 @@
 * - Register service-specific event handlers (the example uses only the IAS event handler to handle Immediate 
 *   Alert Service related events). Refer to Cy_BLE_IAS_RegisterAttrCallback() function.
 *
-* \code
-* #include "cy_syslib.h"
-* #include "cy_sysint.h"
-* #include "cycfg.h"
-* #include "cycfg_ble.h"
-*   
-* 
-* /*******************************************************************************
-* * Global variables
-* *******************************************************************************/
-* /* The Alert Level value */
-* static uint8_t                  alertLevel = CY_BLE_NO_ALERT;
-*   
-* /* The variables to initialize the BLE stack timer to get a 1-second interval */
-* static cy_stc_ble_timer_info_t  timerParam = { .timeout = 1u /* second */ };
-* static uint8_t                  mainTimer = 1u;
-*   
-* /* BLESS interrupt configuration.
-* * It is used when PSoC 6 BLE Middleware operates in BLE Single CM4 Core mode. */
-* const cy_stc_sysint_t blessIsrCfg =
-* {
-*     /* The BLESS interrupt */
-*     .intrSrc      = bless_interrupt_IRQn,
-*   
-*     /* The interrupt priority number */
-*     .intrPriority = 1u
-* };
-* 
-* 
-* /*******************************************************************************
-* * Private Function Prototypes
-* *******************************************************************************/
-* void AppCallBack(uint32_t event, void *eventParam);
-* void IasEventHandler(uint32_t event, void *eventParam);
-* void LowPowerImplementation(void);
-* 
-* 
-* /*******************************************************************************
-* * Function Name: BlessInterrupt
-* ********************************************************************************
-* * BLESS ISR
-* * It is used used when PSoC 6 BLE Middleware operates in BLE single CM4
-* *
-* *******************************************************************************/
-* /* BLESS ISR */
-* void BlessInterrupt(void)
-* {
-*     /* Call interrupt processing */
-*     Cy_BLE_BlessIsrHandler();
-* }
-* 
-* 
-* /*******************************************************************************
-* * Function Name: main()
-* ********************************************************************************
-* * Summary:
-* *  Main function for the BLE project.
-* *
-* *******************************************************************************/
-* int main(void)
-* {
-*     /* Enable interrupts */
-*     __enable_irq();
-*       
-*     /* Initialize all peripherals and system resources */
-*     init_cycfg_all();
-*       
-*     /* Initialize the BLESS interrupt */
-*     cy_ble_config.hw->blessIsrConfig = &blessIsrCfg;
-*     Cy_SysInt_Init(cy_ble_config.hw->blessIsrConfig, BlessInterrupt);
-*       
-*     /* Register the generic event handler */
-*     Cy_BLE_RegisterEventCallback(AppCallBack);
-*       
-*     /* Initialize the BLE */
-*     Cy_BLE_Init(&cy_ble_config);
-*   
-*     /* Enable BLE Low-power Mode (LPM) */
-*     Cy_BLE_EnableLowPowerMode();
-*   
-*     /* Enable BLE */
-*     Cy_BLE_Enable();
-*   
-*     /* Register the IAS CallBack */
-*     Cy_BLE_IAS_RegisterAttrCallback(IasEventHandler);
-*   
-*     /* Main loop implementation
-*       .... 
-*     */
-* }
-* \endcode
-* 
+* \snippet ble/sut_quick_start_guide/main.c BLE Quick Start Guide: System and PSoC 6 BLE Middleware Initialization
 * 
 ***************************************************************************      
 **\section group_ble_quick_start3 Main Loop Implementation
@@ -452,52 +360,7 @@
 * - restarts the BLE stack timer to get a 1-second interval to blink the LED
 * - the application goes into Low-power mode by call to the LowPowerImplementation() function.
 *
-* \code
-* /* Main loop implementation */
-* while(1)
-* {
-*     /* Cy_BLE_ProcessEvents() allows the BLE stack to process pending events */
-*     Cy_BLE_ProcessEvents();
-*      
-*     /**
-*      * Here can be code for processing a received alert level (alertLevel)
-*      * Currently, according to alertLevel, the LED behaviour is the following:
-*      *  LED9 (red) is off when there is No alert level
-*      *  LED9 (red) blinks when there is the Mild alert level.
-*      *  LED9 (red) is off when there is the High alert level.
-*      **/
-*     switch (alertLevel)
-*     {
-*     case CY_BLE_NO_ALERT :
-*         Cy_GPIO_Write(LED9_PORT, LED9_PIN, 1u); /* LED_OFF */
-*         break ;
-*  
-*     case CY_BLE_MILD_ALERT :
-*         if(mainTimer)
-*         {
-*             /* Toggle the alert LED after a timeout */
-*             Cy_GPIO_Inv(LED9_PORT, LED9_PIN);
-*         }
-*         break ;
-*  
-*     case CY_BLE_HIGH_ALERT :
-*         Cy_GPIO_Write(LED9_PORT, LED9_PIN, 0u); /* LED_ON */
-*         break ;
-*     }
-*  
-*     /* Restart the BLE stack timer. Used to get a 1-second interval to
-*      * blink the LED */
-*     if(mainTimer)
-*     {
-*         mainTimer= 0u;
-*         Cy_BLE_StartTimer(&timerParam);
-*     }
-*  
-*     /* Enter deep-sleep to achieve low power in the device */
-*     LowPowerImplementation();
-* }
-* 
-* \endcode
+* \snippet ble/sut_quick_start_guide/main.c BLE Quick Start Guide: Main Loop Implementation
 * 
 ***************************************************************************      
 **\section group_ble_quick_start4 Stack Event Handler
@@ -536,148 +399,45 @@
 * {
 *     switch(event)
 *     {
-* 	  /* Generic events (e.g CY_BLE_EVT_STACK_ON, CY_BLE_EVT_STACK_BUSY_STATUS, etc) */
-* 	  . . .
-* 	
-* 	  /* GAP Events (e.g CY_BLE_EVT_GAP_AUTH_REQ, CY_BLE_EVT_GAP_AUTH_COMPLETE, CY_BLE_EVT_GAP_DEVICE_CONNECTED, etc) */
-* 	   . . .
-* 	 
-* 	  /* GATT Events (e.g CY_BLE_EVT_GATT_CONNECT_IND, CY_BLE_EVT_GATT_DISCONNECT_IND, etc) */
-* 	   . . .
+*       /* Generic events (e.g CY_BLE_EVT_STACK_ON, CY_BLE_EVT_STACK_BUSY_STATUS, etc) */
+*       . . .
+*     
+*       /* GAP Events (e.g CY_BLE_EVT_GAP_AUTH_REQ, CY_BLE_EVT_GAP_AUTH_COMPLETE, CY_BLE_EVT_GAP_DEVICE_CONNECTED, etc) */
+*        . . .
+*      
+*       /* GATT Events (e.g CY_BLE_EVT_GATT_CONNECT_IND, CY_BLE_EVT_GATT_DISCONNECT_IND, etc) */
+*        . . .
 * 
-* 	  /* Other Events */
-* 	   . . .
-* 	  }
+*       /* Other Events */
+*        . . .
+*     }
 * }
 * \endcode
 * 
 * In this snippet, the handler starts advertising in response to the CY_BLE_EVT_STACK_ON event.
-*
-* \code
-* /* This event is received when the BLE stack is initialized and turned ON
-*  * by invoking the Cy_BLE_StackInit() function */
-* case CY_BLE_EVT_STACK_ON:
-*    /* Enter into discoverable mode so that remote can find it */
-*    Cy_BLE_GAPP_StartAdvertisement(CY_BLE_ADVERTISING_FAST,
-*                                   CY_BLE_PERIPHERAL_CONFIGURATION_0_INDEX);
-*    break;
-* \endcode
+* \snippet ble/sut_quick_start_guide/main.c BLE Quick Start Guide: CY_BLE_EVT_STACK_ON
 * 
 * In this snippet, the handler responds to the "advertisement start/stop" event. The code toggles the LEDs 
 * appropriately. If advertising has started, the advertisement LED turns on. The disconnect LED turns off, 
 * because the device started advertising and is ready for connection. If advertising stops, the code sets the 
 * LEDs appropriately, and sets a flag to enter Hibernate mode.
-*
-* \code
-* /* This event indicates the peripheral device has started/stopped advertising */ 
-* case  CY_BLE_EVT_GAPP_ADVERTISEMENT_START_STOP:
-*     if (Cy_BLE_GetAdvertisementState() == CY_BLE_ADV_STATE_STOPPED)
-*     {  
-*         /* The fast and slow advertising period is complete, go to Low-power 
-*         * mode (Hibernate) and wait for an external user event to wake up 
-*         * the device again */
-*         Cy_BLE_Disable();
-*         
-*         Cy_GPIO_Write(LED8_PORT, LED8_PIN, 1u); /* LED_OFF */
-*         Cy_GPIO_Write(LED9_PORT, LED9_PIN, 1u); /* LED_OFF */
-*     }
-*     break;  
-* \endcode
+* \snippet ble/sut_quick_start_guide/main.c BLE Quick Start Guide: CY_BLE_EVT_GAPP_ADVERTISEMENT_START_STOP
 *
 * In this snippet, the handler responds to the "disconnected" event. It starts advertising and sets the
 * LEDs correctly.
-* 
-* \code
-* /* This event is generated when disconnected from a remote device or failed 
-*  * to establish connection */
-* case CY_BLE_EVT_GAP_DEVICE_DISCONNECTED:
-*    /* Start BLE advertising for 30 seconds and update the link status on the LEDs */
-*    Cy_BLE_GAPP_StartAdvertisement(CY_BLE_ADVERTISING_FAST,
-*                                   CY_BLE_PERIPHERAL_CONFIGURATION_0_INDEX);
-* 
-*    /* Set default value for alert level (CY_BLE_NO_ALERT) */
-*    alertLevel = CY_BLE_NO_ALERT;
-* 
-*    Cy_GPIO_Write(LED8_PORT, LED8_PIN, 0u); /* LED_ON */
-*    Cy_GPIO_Write(LED9_PORT, LED9_PIN, 1u); /* LED_OFF */
-*    break;
-* \endcode
+* \snippet ble/sut_quick_start_guide/main.c BLE Quick Start Guide: CY_BLE_EVT_GAP_DEVICE_DISCONNECTED
 *
 * In this snippet, the handler receives a timeout from BLE stack timer. In this example the BLE stack timer is 
 * used to get a 1-second interval to  blink the LED.
-* 
-* \code
-* /* This event is received when there is a timeout and the application
-*  * must handle the event */
-* case CY_BLE_EVT_TIMEOUT:
-*    if( (((cy_stc_ble_timeout_param_t *)eventParam)->reasonCode == 
-*            CY_BLE_GENERIC_APP_TO) &&
-*        (((cy_stc_ble_timeout_param_t *)eventParam)->timerHandle == 
-*            timerParam.timerHandle) )
-*    {
-*        /* Indicate that the timer is raised to the main loop */
-*        mainTimer++;
-*            
-*        /* Update the LED state */
-*        if(Cy_BLE_GetAdvertisementState() == CY_BLE_ADV_STATE_ADVERTISING)
-*        {
-*            /* Advertising state */
-*            Cy_GPIO_Inv(LED8_PORT, LED8_PIN);
-*            Cy_GPIO_Write(LED9_PORT, LED9_PIN, 1u); /* LED_OFF */
-*        }
-*        else if(Cy_BLE_GetNumOfActiveConn() == 0u)
-*        {
-*            /* Disconnected state */
-*            Cy_GPIO_Write(LED8_PORT, LED8_PIN, 0u); /* LED_ON */
-*            Cy_GPIO_Write(LED9_PORT, LED9_PIN, 1u); /* LED_OFF */
-*        }
-*        else
-*        {
-*            /* Connected state: update the alert level value LED8 */
-*        Cy_GPIO_Write(LED8_PORT, LED8_PIN, 1u); /* LED_OFF */
-*        }  
-*    }
-*    break;
-* \endcode
+* \snippet ble/sut_quick_start_guide/main.c BLE Quick Start Guide: CY_BLE_EVT_TIMEOUT
 *
 * In this snippet, the handler puts the device into Hibernate mode in response to the 
 * CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE event.
-* 
-* \code
-* /* This event is used to inform the application that BLE Stack shutdown
-*  * is complete */
-* case CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE:
-*    /* Set the device into Hibernate mode */
-*    Cy_SysPm_SystemEnterHibernate();
-*    break;
-* \endcode
+* \snippet ble/sut_quick_start_guide/main.c BLE Quick Start Guide: CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE
 *
 * In this snippet, the handler responds to the authentication request from the Central device. The peripheral 
 * device must call Cy_BLE_GAPP_AuthReqReply() to reply to the authentication request from the Central.
-* 
-* \code
-* /* This event can be received by a device in Peripheral or Central role. 
-*  * When it is received by a device in a Peripheral role, it must call 
-*  * Cy_BLE_GAPP_AuthReqReply() to reply to the authentication request from Central */
-* case CY_BLE_EVT_GAP_AUTH_REQ:
-*    if(cy_ble_config.authInfo[CY_BLE_SECURITY_CONFIGURATION_0_INDEX].security ==
-*        (CY_BLE_GAP_SEC_MODE_1 | CY_BLE_GAP_SEC_LEVEL_1))
-*    {
-*        cy_ble_config.authInfo[CY_BLE_SECURITY_CONFIGURATION_0_INDEX].authErr =
-*            CY_BLE_GAP_AUTH_ERROR_PAIRING_NOT_SUPPORTED;
-*    }   
-* 
-*    cy_ble_config.authInfo[CY_BLE_SECURITY_CONFIGURATION_0_INDEX].bdHandle =
-*        ((cy_stc_ble_gap_auth_info_t *)eventParam)->bdHandle;
-* 
-*    if (Cy_BLE_GAPP_AuthReqReply(&cy_ble_config.authInfo[CY_BLE_SECURITY_CONFIGURATION_0_INDEX]) !=
-*            CY_BLE_SUCCESS)           
-*    {
-*        Cy_BLE_GAP_RemoveOldestDeviceFromBondedList();
-*        Cy_BLE_GAPP_AuthReqReply(&cy_ble_config.authInfo[CY_BLE_SECURITY_CONFIGURATION_0_INDEX]);           
-*    }
-*    break;
-* \endcode
+* \snippet ble/sut_quick_start_guide/main.c BLE Quick Start Guide: CY_BLE_EVT_GAP_AUTH_REQ
 * 
 ***************************************************************************      
 **\section group_ble_quick_start5 Service-specific Event Handler
@@ -688,41 +448,14 @@
 * stores it in the variable alertLevel. The main loop toggles the alert LED based on the current alert level. 
 * 
 * The code snippet shows how the firmware accomplishes this task.
-* 
-* \code
-* void IasEventHandler(uint32_t event, void *eventParam)
-* {
-*     /* Alert Level Characteristic write event */
-*     if(event == CY_BLE_EVT_IASS_WRITE_CHAR_CMD)
-*     {
-*         /* Read the updated Alert Level value from the GATT database */
-*         Cy_BLE_IASS_GetCharacteristicValue(CY_BLE_IAS_ALERT_LEVEL, sizeof(alertLevel), &alertLevel);
-*     }
-* }
-* \endcode
+* \snippet ble/sut_quick_start_guide/main.c BLE Quick Start Guide: IAS Event Handler
 *
 ***************************************************************************      
 **\section group_ble_quick_start6 Implement Low-power Performance
 * 
 * In the application process, the CPU processes the pending BLE events. If there are no events pending, the CPU 
 * enters the deep sleep power mode.
-* 
-* \code
-* /******************************************************
-* * Function Name: LowPowerImplementation
-* *******************************************************
-* *
-* * Theory:
-* * The function tries to enter CPU deep sleep as much as possible - whenever the
-* * BLE is idle.
-* *
-* *******************************************************/
-* void LowPowerImplementation(void)
-* {
-*     /* Entering Deep Sleep */
-*     Cy_SysPm_DeepSleep(CY_SYSPM_WAIT_FOR_INTERRUPT);
-* }
-* \endcode
+* \snippet ble/sut_quick_start_guide/main.c BLE Quick Start Guide: Low Power Implementation
 *
 * 
 ***********************************************************************************************************************
@@ -880,25 +613,15 @@
 *       <td style="text-align: center; font-weight: bold;">HCI mode</td>
 *     </tr>
 *     <tr bgcolor="#FFFFFF" valign="top">
-*       <td># Basic Configuration<br>
-*           APPNAME=BLE_APP_DUAL_CORE<br>
-*           <br>
-*           # Advanced Configuration<br>
-*           COMPONENTS=BLESS_HOST_IPC CM0_BLESS<br>
-*           <br>          
+*       <td>APPNAME=BLE_APP_DUAL_CORE<br>
+*           COMPONENTS=BLESS_HOST_IPC CM0_BLESS<br>         
 *           # NOTE: CM0_BLESS - is a pre-built image with<br>
 *           # BLESS controller<br>
 *       </td>
-*       <td># Basic Configuration<br>
-*           APPNAME=BLE_APP_SINGLE_CORE<br>
-*           <br>
-*           # Advanced Configuration<br>
-*           COMPONENTS=BLESS_HOST, BLESS_CONTROLLER<br>
+*       <td>APPNAME=BLE_APP_SINGLE_CORE<br>
+*           COMPONENTS=BLESS_HOST BLESS_CONTROLLER<br>
 *       </td>
-*       <td># Basic Configuration<br>
-*           APPNAME=BLE_HCI_APP<br>
-*           <br>
-*           # Advanced Configuration<br>
+*       <td>APPNAME=BLE_HCI_APP<br>
 *           COMPONENTS=BLESS_CONTROLLER<br>
 *       </td>
 *     </tr> 
@@ -1109,7 +832,7 @@
 *     <tr bgcolor="#FFFFFF" valign="top">
 *       <td style="text-align: center;">Dual CPU mode</td>
 *       <td style="text-align: center;">CM0+</td>
-*       <td>	The BLESS interrupt is configured in the CM0+ BLESS controller pre-built image.</td>
+*       <td>    The BLESS interrupt is configured in the CM0+ BLESS controller pre-built image.</td>
 *     </tr>
 *     <tr bgcolor="#FFFFFF">
 *       <td valign="center" style="text-align: center;">Single CPU mode</td>
@@ -1814,6 +1537,28 @@
 * 
 * <table class="doxtable">
 *     <tr><th><b>Version</b></th><th><b>Changes</b></th><th><b>Reason for Change</b></th></tr> 
+*
+*     <tr>
+*         <td rowspan="4">3.30</td>
+*         <td>Updated the procedure of processing events to clear the cy_ble_pair_Status flags on
+*            CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE and CY_BLE_EVT_SOFT_RESET_COMPLETE events.</td>
+*         <td>Cy_BLE_IsDevicePaired() falsely returned True prior to authentication after a radio reset.</td>
+*     </tr>
+*     <tr>
+*         <td>Fixed the setting of a device address in handling the CY_BLE_EVT_STACK_ON event,
+*            if the BLE middleware is configured to operate only in the Broadcaster GAP role.</td>
+*         <td>With the BLE configured only as a broadcaster, the configuration for a BD address 
+*            in the BLE customizer was not effective.</td>
+*     </tr>
+*     <tr>
+*         <td>Documentation updates.</td>
+*         <td>"Enable LE 2 Mbps" feature does not work if it selects in BT Confirurator.</td>
+*     </tr>   
+*     <tr>
+*         <td>Updated the BLE Stack to version 5.0.6.161.</td>
+*         <td>Refer to \ref section_group_ble_changelog_BLE_Stack_Changes.</td>
+*     </tr>
+*
 *     <tr>
 *         <td rowspan="6">3.20</td>
 *         <td>Added support ARM Compiler 6.<br>
@@ -2032,7 +1777,22 @@
 * 
 * <table class="doxtable">
 *     <tr><th><b>Version</b></th><th><b>Changes</b></th><th><b>Reason for Change</b></th></tr>
-*     
+*
+*     <tr>
+*         <td rowspan="3">5.0.6.161</td>
+*         <td>Updated the radio configuration.</td>
+*         <td>To support the new packages: QFN68 and BGA124.</td>
+*     </tr>
+*     <tr>
+*         <td>Added checks for Malformed LL PDUs.</td>
+*         <td>LL PDUs with the incorrect length must be replied with LL_UNKNOWN_RSP per latest BLE spec. 
+*            Also, this prevents against any unknown behavior triggered due to malicious LL PDUs.</td>
+*     </tr>
+*     <tr>
+*         <td>Documentation update.</td>
+*         <td>Updated the documentation for the CY_BLE_EVT_RADIO_TEMPERATURE and CY_BLE_EVT_RADIO_VOLTAGE_LEVEL events.</td>
+*     </tr>
+* 
 *     <tr>
 *         <td rowspan="7">5.0.5.110</td>
 *         <td>Optimized the ACL TX path for a better throughput.</td>

@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_hal_pvt.c
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains the source code for the HAL section of the PSoC 6 BLE Middleware.
@@ -190,14 +190,12 @@ uint8_t Cy_BLE_HAL_BlockCalcCRC8(uint8_t data[], uint32_t length, uint8_t crcSee
 *   0 - BGA_116 package
 *   1 - CSP_104 package
 *   2 - BGA_124 package
-*   3 - QFN_56 package
-*   4 - QFN_68 package
+*   3 - QFN_68 package
 *
 *******************************************************************************/
 uint32_t Cy_BLE_HAL_GetIcPackageType(void)
 {
     /* Constants used in this function */
-    const uint8_t PACKAGE_56_PINS  = 56u;
     const uint8_t PACKAGE_68_PINS  = 68u;
     const uint8_t PACKAGE_116_PINS = 116u;
     const uint8_t PACKAGE_104_PINS = 104u;
@@ -227,13 +225,9 @@ uint32_t Cy_BLE_HAL_GetIcPackageType(void)
     {
         ret = CY_BLE_IC_PACKAGE_TYPE_BGA_124;
     }
-    else if((pType == CY_BLE_PACKAGE_QFN) && (pinCount == PACKAGE_56_PINS))
-    {
-        ret = CY_BLE_IC_PACKAGE_TYPE_FQN_56;
-    }
     else if((pType == CY_BLE_PACKAGE_QFN) && (pinCount == PACKAGE_68_PINS))
     {
-        ret = CY_BLE_IC_PACKAGE_TYPE_FQN_68;
+        ret = CY_BLE_IC_PACKAGE_TYPE_QFN_68;
     }
     else
     {

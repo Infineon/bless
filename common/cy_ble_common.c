@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_common.c
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains the source code for the API of the BLE PSoC 6 BLE Middleware.
@@ -13,10 +13,16 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
+#if defined(COMPONENT_BLESS_CONTROLLER_IPC) || defined(COMPONENT_BLESS_HOST_IPC) || \
+    defined(COMPONENT_BLESS_CONTROLLER) || defined(COMPONENT_BLESS_HOST)
 #include "cycfg_ble.h"
+#endif /* defined(COMPONENT_BLESS_CONTROLLER_IPC) || defined(COMPONENT_BLESS_HOST_IPC) ... */
+
+#include "cy_ble_cfg_common.h"
 #include "cy_ble_hal_pvt.h"
 
 #if defined(CY_IP_MXBLESS) 
+
 
 /******************************************************************************
 * Function Name: Cy_BLE_Init
@@ -161,7 +167,7 @@ cy_en_ble_api_result_t Cy_BLE_Enable(void)
     
 #elif (CY_BLE_MODE_HCI)
     /* Start the Controller portion of the BLE (HCI mode) */
-    apiResult = Cy_BLE_EnableHCIModeController();	
+    apiResult = Cy_BLE_EnableHCIModeController();    
 
 #else
     /* Enable BLE host portion of the BLE (single CPU mode) */
@@ -606,6 +612,10 @@ void Cy_BLE_HAL_EccHeapInit(uint8_t *heapMem, uint8_t numOfConn)
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         Cy_BLE_HAL_MappingEccHeapInit(heapMem, numOfConn);
     #endif /* CY_BLE_SECURE_CONN_FEATURE_ENABLED */
+
+    /* Suppress unused variable warning */
+    (void) heapMem;
+    (void) numOfConn;
 }
 
 void Cy_BLE_HAL_EccHeapDeInit(void)
@@ -617,6 +627,9 @@ void Cy_BLE_HAL_EccHeapDeInit(void)
 
 uint16_t Cy_BLE_HAL_EccGetFeatureHeapReq(uint8_t numOfConn)
 {
+    /* Suppress unused variable warning */
+    (void) numOfConn;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingEccGetFeatureHeapReq(numOfConn));
     #else
@@ -628,6 +641,11 @@ cy_en_ble_api_result_t Cy_BLE_HAL_EccGenerateSecurityKeypair(uint8_t p_publicKey
                                                              uint8_t p_privateKey[],
                                                              uint8_t randomData[])
 {
+    /* Suppress unused variable warning */
+    (void) p_publicKey;
+    (void) p_privateKey;
+    (void) randomData;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingEccGenerateSecurityKeypair(p_publicKey, p_privateKey, randomData));
     #else
@@ -639,6 +657,12 @@ cy_en_ble_api_result_t Cy_BLE_HAL_EccGenerateDHKey(const uint8_t p_publicKey[],
                                                    const uint8_t p_privateKey[],
                                                    uint8_t p_secret[], uint8_t ci)
 {
+    /* Suppress unused variable warning */
+    (void) p_publicKey;
+    (void) p_privateKey;
+    (void) p_secret;
+    (void) ci;
+    
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingEccGenerateDHKey(p_publicKey, p_privateKey, p_secret, ci));
     #else
@@ -648,6 +672,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_EccGenerateDHKey(const uint8_t p_publicKey[],
 
 cy_en_ble_api_result_t Cy_BLE_HAL_EccValidPublicKey(const uint8_t p_publicKey[])
 {
+    /* Suppress unused variable warning */
+    (void) p_publicKey;
+    
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingEccValidPublicKey(p_publicKey));
     #else
@@ -657,6 +684,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_EccValidPublicKey(const uint8_t p_publicKey[])
 
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingLocalPublicKeyHandler(void *param)
 {
+    /* Suppress unused variable warning */
+    (void) param;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingPairingLocalPublicKeyHandler(param));
     #else
@@ -666,6 +696,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_PairingLocalPublicKeyHandler(void *param)
 
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingRemoteKeyHandler(void *param)
 {
+    /* Suppress unused variable warning */
+    (void) param;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingPairingRemoteKeyHandler(param));
     #else
@@ -675,6 +708,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_PairingRemoteKeyHandler(void *param)
 
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingDhkeyHandler(void *param)
 {
+    /* Suppress unused variable warning */
+    (void) param;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingPairingDhkeyHandler(param));
     #else
@@ -684,6 +720,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_PairingDhkeyHandler(void *param)
 
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingDhkeyCheckHandler(void *param)
 {
+    /* Suppress unused variable warning */
+    (void) param;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingPairingDhkeyCheckHandler(param));
     #else
@@ -693,6 +732,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_PairingDhkeyCheckHandler(void *param)
 
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingKeypressNotificationHandler(void *param)
 {
+    /* Suppress unused variable warning */
+    (void) param;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingPairingKeypressNotificationHandler(param));
     #else
@@ -702,6 +744,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_PairingKeypressNotificationHandler(void *param
 
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingRandHandler(void *param)
 {
+    /* Suppress unused variable warning */
+    (void) param;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingPairingRandHandler(param));
     #else
@@ -711,6 +756,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_PairingRandHandler(void *param)
 
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingConfirmHandler(void *param)
 {
+    /* Suppress unused variable warning */
+    (void) param;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingPairingConfirmHandler(param));
     #else
@@ -720,6 +768,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_PairingConfirmHandler(void *param)
 
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingLrConfirmingHandler(void *param)
 {
+    /* Suppress unused variable warning */
+    (void) param;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingPairingLrConfirmingHandler(param));
     #else
@@ -729,6 +780,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_PairingLrConfirmingHandler(void *param)
 
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingScTbxDhkeyGenerateComplete(void *param)
 {
+    /* Suppress unused variable warning */
+    (void) param;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         Cy_BLE_HAL_MappingTbxDhkeyGenerateComplete(param);
     #endif /* CY_BLE_SECURE_CONN_FEATURE_ENABLED */
@@ -738,6 +792,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_PairingScTbxDhkeyGenerateComplete(void *param)
 
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingScTbxLocalPubkeyGenerateComplete(void *param)
 {
+    /* Suppress unused variable warning */
+    (void) param;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         Cy_BLE_HAL_MappingTbxLocalPubkeyGenerateComplete(param);
     #endif /* CY_BLE_SECURE_CONN_FEATURE_ENABLED */
@@ -747,6 +804,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_PairingScTbxLocalPubkeyGenerateComplete(void *
 
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingScTbxGenerateLocalP256PublicKey(uint8_t param)
 {
+    /* Suppress unused variable warning */
+    (void) param;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingTbxGenerateLocalP256PublicKey(param));
     #else
@@ -756,6 +816,11 @@ cy_en_ble_api_result_t Cy_BLE_HAL_PairingScTbxGenerateLocalP256PublicKey(uint8_t
 
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingScTbxGenerateDHkey(void  *param1, void  *param2, uint8_t param3)
 {
+    /* Suppress unused variable warning */
+    (void) param1;
+    (void) param2;
+    (void) param3;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingTbxGenerateDHkey(param1, param2, param3));
     #else
@@ -765,6 +830,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_PairingScTbxGenerateDHkey(void  *param1, void 
 
 void Cy_BLE_HAL_SmpScCmacComplete(uint8_t param)
 {
+    /* Suppress unused variable warning */
+    (void) param;
+    
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         Cy_BLE_HAL_MappingSmpScCmacComplete(param);
     #endif /* CY_BLE_SECURE_CONN_FEATURE_ENABLED */
@@ -773,6 +841,10 @@ void Cy_BLE_HAL_SmpScCmacComplete(uint8_t param)
 cy_en_ble_api_result_t Cy_BLE_HAL_SeSmpScUserPasskeyHandler(void *param1,
                                                             void *param2)
 {
+    /* Suppress unused variable warning */
+    (void) param1;
+    (void) param2;
+
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         return(Cy_BLE_HAL_MappingSeSmpScUserPasskeyHandler(param1, param2));
     #else
@@ -782,6 +854,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_SeSmpScUserPasskeyHandler(void *param1,
 
 void Cy_BLE_HAL_EccPointMult(uint8_t param)
 {
+    /* Suppress unused variable warning */
+    (void) param;
+    
     #if (CY_BLE_SECURE_CONN_FEATURE_ENABLED)
         Cy_BLE_HAL_MappingEccPointMult(param);
     #endif /* CY_BLE_SECURE_CONN_FEATURE_ENABLED */
@@ -790,6 +865,9 @@ void Cy_BLE_HAL_EccPointMult(uint8_t param)
 /* Controller stack functions */
 cy_en_ble_api_result_t Cy_BLE_MappingIsControllerActive(cy_en_ble_controller_sleep_mode_t checkForMode)
 {
+    /* Suppress unused variable warning */
+    (void) checkForMode;
+    
     #if CY_BLE_STACK_CONTR_CORE
         return(Cy_BLE_IsControllerActive(checkForMode));
     #else
@@ -816,6 +894,9 @@ void Cy_BLE_MappingLlIsrExitLowPowerMode(void)
 
 void Cy_BLE_HAL_MappingUartRxDataHandler(uint8_t byte)
 {
+    /* Suppress unused variable warning */
+    (void) byte;
+    
     #if (CY_BLE_STACK_CONTR_CORE) && (CY_BLE_MODE_HCI) && (CY_BLE_MODE_HCI_LEGACY)
         Cy_BLE_HAL_UartRxDataHandler(byte);
     #endif /* CY_BLE_STACK_CONTR_CORE */
@@ -830,6 +911,9 @@ void Cy_BLE_HAL_MappingUartTxCompltHandler(void)
 
 void Cy_BLE_HAL_MappingSoftHciHostReceiveControllerPkt(cy_stc_ble_hci_tx_packet_info_t *hciPkt)
 {
+    /* Suppress unused variable warning */
+    (void) hciPkt;
+
     #if (CY_BLE_MODE_PROFILE) && (CY_BLE_STACK_MODE_SOC)
         Cy_BLE_HAL_SoftHciHostReceiveControllerPkt(hciPkt);
     #endif /* (CY_BLE_MODE_PROFILE) && (CY_BLE_STACK_MODE_SOC) */
@@ -837,6 +921,9 @@ void Cy_BLE_HAL_MappingSoftHciHostReceiveControllerPkt(cy_stc_ble_hci_tx_packet_
 
 cy_en_ble_api_result_t Cy_BLE_HAL_MappingSoftHciControllerReceiveHostPkt(cy_stc_ble_hci_tx_packet_info_t *hciPkt)
 {
+    /* Suppress unused variable warning */
+    (void) hciPkt;
+    
     #if (CY_BLE_MODE_PROFILE) && (CY_BLE_STACK_MODE_SOC)
         return(Cy_BLE_HAL_SoftHciControllerReceiveHostPkt(hciPkt));
     #else
@@ -846,6 +933,9 @@ cy_en_ble_api_result_t Cy_BLE_HAL_MappingSoftHciControllerReceiveHostPkt(cy_stc_
 
 cy_en_ble_lp_mode_t Cy_BLE_MappingStackEnterLPM(cy_en_ble_lp_mode_t pwrMode)
 {
+    /* Suppress unused variable warning */
+    (void) pwrMode;
+    
     #if ( (CY_BLE_STACK_IPC_CONTR_CORE) || (CY_BLE_MODE_PROFILE) ||\
           ((CY_BLE_STACK_CONTR_CORE) && (CY_BLE_MODE_HCI) && (CY_BLE_MODE_HCI_LEGACY)) )
         return(Cy_BLE_StackEnterLPM(pwrMode));
@@ -853,6 +943,7 @@ cy_en_ble_lp_mode_t Cy_BLE_MappingStackEnterLPM(cy_en_ble_lp_mode_t pwrMode)
         return(Cy_BLE_ControllerEnterLPM(pwrMode));    
     #endif /* (CY_BLE_MODE_PROFILE) && (CY_BLE_STACK_MODE_IPC) */
 }
+
 
 #endif /* defined(CY_IP_MXBLESS) */
 

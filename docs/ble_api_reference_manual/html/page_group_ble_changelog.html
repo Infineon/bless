@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20: Changelog</title>
+<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30: Changelog</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><a href="http://www.cypress.com/"><img alt="Logo" src="cypress_logo.png"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20</div>
+   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30</div>
   </td>
  </tr>
  </tbody>
@@ -89,7 +89,19 @@ PSoC 6 BLE Middleware Changes</h1>
 <p>This section lists changes made to the PSoC 6 BLE Middleware.</p>
 <table class="doxtable">
 <tr>
-<th><b>Version</b></th><th><b>Changes</b></th><th><b>Reason for Change</b> </th></tr>
+<th><b>Version</b></th><th><b>Changes</b></th><th><p class="starttd"><b>Reason for Change</b></p>
+<p class="endtd"></p>
+</th></tr>
+<tr>
+<td rowspan="4">3.30 </td><td>Updated the procedure of processing events to clear the cy_ble_pair_Status flags on CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE and CY_BLE_EVT_SOFT_RESET_COMPLETE events. </td><td><a class="el" href="group__group__ble__common__api__functions.html#gaf33761a3b24ccf96b4b659b251ef19f0" title="The function is used to get the device pairing state. ">Cy_BLE_IsDevicePaired()</a> falsely returned True prior to authentication after a radio reset.  </td></tr>
+<tr>
+<td>Fixed the setting of a device address in handling the CY_BLE_EVT_STACK_ON event, if the BLE middleware is configured to operate only in the Broadcaster GAP role. </td><td>With the BLE configured only as a broadcaster, the configuration for a BD address in the BLE customizer was not effective.  </td></tr>
+<tr>
+<td>Documentation updates. </td><td>"Enable LE 2 Mbps" feature does not work if it selects in BT Confirurator.  </td></tr>
+<tr>
+<td>Updated the BLE Stack to version 5.0.6.161. </td><td><p class="starttd">Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a>. </p>
+<p class="endtd"></p>
+</td></tr>
 <tr>
 <td rowspan="6">3.20 </td><td>Added support ARM Compiler 6.<br />
  The BLE libraries are built with the following options to be compatible with ModusToolbox:<br />
@@ -243,6 +255,14 @@ BLE Stack Changes</h1>
 <p class="endtd"></p>
 </th></tr>
 <tr>
+<td rowspan="3">5.0.6.161 </td><td>Updated the radio configuration. </td><td>To support the new packages: QFN68 and BGA124.  </td></tr>
+<tr>
+<td>Added checks for Malformed LL PDUs. </td><td>LL PDUs with the incorrect length must be replied with LL_UNKNOWN_RSP per latest BLE spec. Also, this prevents against any unknown behavior triggered due to malicious LL PDUs.  </td></tr>
+<tr>
+<td>Documentation update. </td><td><p class="starttd">Updated the documentation for the CY_BLE_EVT_RADIO_TEMPERATURE and CY_BLE_EVT_RADIO_VOLTAGE_LEVEL events. </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
 <td rowspan="7">5.0.5.110 </td><td>Optimized the ACL TX path for a better throughput. </td><td>The throughput was observed to be low when the stack libraries were linked with MDK libraries.  </td></tr>
 <tr>
 <td>Added support for autonomous feature exchange on connection complete. </td><td>Few mobile phone (eg. Droid Turbo) negotiate DLE with TX octets &gt; 27 bytes but do not actually support the DLE feature. This leads to interoperability issues with such phones. An autonomous feature exchange will be triggered when the PSoC 6 device is in master role, and the DLE and PHY update negotiations will be triggered only if the peer supports DLE/PHY update feature. In case PSoC 6 is in a slave role, DLE/PHY update negotiations will not be triggered till the peer initiates a feature exchange procedure and hence exchanges it's feature set.  </td></tr>
@@ -331,7 +351,7 @@ BLE Stack Changes</h1>
 <div id="nav-path" class="navpath">
     <ul>
         <li class="footer">
-            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20</b> by <b>Cypress Semiconductor Corporation</b>.
+            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30</b> by <b>Cypress Semiconductor Corporation</b>.
             All rights reserved.
         </li>
     </ul>

@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_cts.c
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains the source code for the Current Time service.

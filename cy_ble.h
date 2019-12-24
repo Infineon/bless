@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  Contains the prototypes and constants used in the PSoC 6 BLE Middleware.
@@ -14,6 +14,7 @@
 *******************************************************************************/
 #ifndef CY_BLE_H
 #define CY_BLE_H
+
 
 #include <string.h>
 #include <stdint.h>
@@ -76,14 +77,6 @@ extern "C" {
 #define CY_BLE_PACKAGE_PIN_NUM_MASK          (0xFF00u)
 #define CY_BLE_PACKAGE_PIN_NUM_OFFSET        (8u)
 
-
-#if !defined(COMPONENT_BLESS_CONTROLLER_IPC) && !defined(COMPONENT_BLESS_HOST_IPC) && \
-    !defined(COMPONENT_BLESS_CONTROLLER) && !defined(COMPONENT_BLESS_HOST)
-#warning The BLE Stack components are not selected. The following defines must be available: \
- - COMPONENT_BLESS_HOST_IPC to operate in dual CPU mode \
- - COMPONENT_BLESS_CONTROLLER and COMPONENT_BLESS_HOST to operate in single CPU mode \
- - COMPONENT_BLESS_CONTROLLER to operate in controller only (HCI) mode
-#endif /* ( !defined(COMPONENT_BLESS_CONTROLLER_IPC) && !defined(COMPONENT_BLESS_HOST_IPC) ... */
 
 /* Support Host side only on CM4 core */
 #if !defined(CY_BLE_LIB_HOST_CORE)

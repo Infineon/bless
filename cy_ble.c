@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble.c
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains the source code for the API of the PSoC 6 BLE Middleware.
@@ -21,6 +21,16 @@
 #include "cy_ble_stack_pvt.h"
 
 #if defined(CY_IP_MXBLESS)
+
+#ifdef CY_BLE_WARNING_NO_SELECTED_BLESS_COMPONENTS
+#warning The BLE Stack components are not defined in Makefile. Use COMPONENTS variable in Makefile   \
+         to select BLE Stack component. The following COMPONENTS define patricular BLE Stack modes:  \
+          'COMPONENTS+=BLESS_HOST_IPC CM0_BLESS'    - to operate in dual CPU mode,                   \
+          'COMPONENTS+=BLESS_CONTROLLER BLESS_HOST' - to operate in single CPU mode,                 \
+          'COMPONENTS+=BLESS_CONTROLLER'            - to operate in controller only (HCI) mode.      \
+/* For more details refer to the following documentation:
+ * https://cypresssemiconductorco.github.io/bless/ble_api_reference_manual/html/page_ble_section_configuration_considerations.html#group_ble_section_conf_cons_prebuild  */
+#endif /* ifdef WARNING_NO_SELECTED_BLESS_COMPONENT */
 
 /*******************************************************************************
 * Private Function Prototypes
@@ -165,6 +175,9 @@ cy_en_ble_api_result_t Cy_BLE_InitHost(const cy_stc_ble_config_t *config)
         (void)memset(cy_ble_peerBonding, (int8_t)CY_BLE_GAP_BONDING_NONE, sizeof(cy_ble_peerBonding));
 
     }
+#else
+    /* Suppress unused variable warning */
+    (void) config;
 #endif /* CY_BLE_LIB_HOST_CORE */
     return(apiResult);
 }
@@ -870,11 +883,15 @@ static void Cy_BLE_UnregisterHostPmCallbacksDual(void)
 static cy_en_syspm_status_t Cy_BLE_DeepSleepCallbackSingleCore(cy_stc_syspm_callback_params_t *callbackParams,
                                                         cy_en_syspm_callback_mode_t mode)
 {
+    /* Suppress unused variable warning */
+    (void) callbackParams;
+    (void) mode;
+
 #if defined(COMPONENT_BLESS_HOST)    
     cy_en_syspm_status_t retVal;
     static uint32_t interruptState = 0u;
     cy_en_ble_bless_state_t blessState;
-
+    
     /* Local variable to store the status of BLESS Hardware block */
     cy_en_ble_lp_mode_t sleepMode;
 
@@ -1001,8 +1018,12 @@ static cy_en_syspm_status_t Cy_BLE_DeepSleepCallbackSingleCore(cy_stc_syspm_call
 *
 *******************************************************************************/
 static cy_en_syspm_status_t Cy_BLE_DeepSleepCallbackDualCore(cy_stc_syspm_callback_params_t *callbackParams,
-                                                      cy_en_syspm_callback_mode_t mode)
+                                                             cy_en_syspm_callback_mode_t mode)
 {
+    /* Suppress unused variable warning */
+    (void) callbackParams;
+    (void) mode;
+    
 #if defined(COMPONENT_BLESS_HOST_IPC)    
     cy_en_syspm_status_t retVal;
     static uint32_t interruptState = 0u;
@@ -1105,14 +1126,19 @@ static cy_en_syspm_status_t Cy_BLE_DeepSleepCallbackDualCore(cy_stc_syspm_callba
 *
 *******************************************************************************/
 static cy_en_syspm_status_t Cy_BLE_SleepCallbackDualCore(cy_stc_syspm_callback_params_t *callbackParams,
-                                                  cy_en_syspm_callback_mode_t mode)
+                                                         cy_en_syspm_callback_mode_t mode)
 {
+    /* Suppress unused variable warning */
+    (void) callbackParams;
+    (void) mode;
+
 #if defined(COMPONENT_BLESS_HOST_IPC) 
     cy_en_syspm_status_t retVal;
     static uint32_t interruptState = 0u;
+    
     /* Local variable to store the status of BLESS Hardware block */
     cy_en_ble_lp_mode_t sleepMode;
-
+    
     switch(mode)
     {
         case (CY_SYSPM_CHECK_READY):

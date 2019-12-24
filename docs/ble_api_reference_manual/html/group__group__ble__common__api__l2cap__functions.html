@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20: L2CAP Functions</title>
+<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30: L2CAP Functions</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><a href="http://www.cypress.com/"><img alt="Logo" src="cypress_logo.png"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20</div>
+   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30</div>
   </td>
  </tr>
  </tbody>
@@ -355,7 +355,7 @@ Functions</h2></td></tr>
 <p>This function is used to send a data packet on the L2CAP CBFC channel. </p>
 <p>This is a blocking function. This function should be used after successful creation of L2CAP CBFC channel.</p>
 <p>This function generates a 'CY_BLE_EVT_L2CAP_CBFC_DATA_WRITE_IND' event that is kept for backward compatibility with previous Cypress' applications and the user should handle cy_en_ble_api_result_t to determine whether the last data packet was sent properly.</p>
-<p>If the peer device is PSoC 6 device, the CY_BLE_EVT_L2CAP_CBFC_DATA_READ event is used to inform the application about the data received over the L2CAP CBFC channel.</p>
+<p>If the peer device is PSoC6 device, the CY_BLE_EVT_L2CAP_CBFC_DATA_READ event is used to inform the application about the data received over the L2CAP CBFC channel.</p>
 <p>Refer to Bluetooth 5.0 core specification, Volume 3, Part A, section 3.4 for more details about this operation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -443,7 +443,7 @@ Functions</h2></td></tr>
 
 <p>This function enables an application to send Connection Parameter Update Request packet. </p>
 <p>This function should be used only in LE Peripheral role. This function is used to request the peer Central device to update the connection parameters.</p>
-<p>This is a non-blocking function. If the peer Central device is PSoC 6 device, then this function results in a CY_BLE_EVT_L2CAP_CONN_PARAM_UPDATE_REQ event at the Peer's end.</p>
+<p>This is a non-blocking function. If the peer Central device is PSoC6 device, then this function results in a CY_BLE_EVT_L2CAP_CONN_PARAM_UPDATE_REQ event at the Peer's end.</p>
 <p>If peer Central device accepts and sends Connection Parameter Update Response, then CY_BLE_EVT_L2CAP_CONN_PARAM_UPDATE_RSP event is generated at Peripheral side.</p>
 <p>To update the connection parameters from the Central side use the <a class="el" href="group__group__ble__common__api__gap__central__functions.html#ga6cb851d11763ced036a1e41cd0a4b707" title="This function is used by GAP Central application to initiate the Connection Parameter Update Procedur...">Cy_BLE_GAPC_ConnectionParamUpdateRequest()</a> function.</p>
 <p>Refer to Bluetooth 5.0 core specification, Volume 3, Part A, section 4.20 for more details about this operation.</p>
@@ -492,7 +492,7 @@ Functions</h2></td></tr>
 
 <p>This function is used to send Connection Parameter Update Response packet. </p>
 <p>This function should be used in LE Central role. Application should call this function on receiving the Connection Parameter Update Request through CY_BLE_EVT_L2CAP_CONN_PARAM_UPDATE_REQ event. This is a non-blocking function.</p>
-<p>If the peer Peripheral device is PSoC 6 device, this function results in CY_BLE_EVT_L2CAP_CONN_PARAM_UPDATE_RSP event at the Peripheral side.</p>
+<p>If the peer Peripheral device is PSoC6 device, this function results in CY_BLE_EVT_L2CAP_CONN_PARAM_UPDATE_RSP event at the Peripheral side.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">param</td><td>Parameter is of type '<a class="el" href="structcy__stc__ble__l2cap__conn__update__param__rsp__info__t.html" title="Connection parameter update response parameter. ">cy_stc_ble_l2cap_conn_update_param_rsp_info_t</a>'.</td></tr>
@@ -566,7 +566,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath">
     <ul>
         <li class="footer">
-            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.20</b> by <b>Cypress Semiconductor Corporation</b>.
+            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30</b> by <b>Cypress Semiconductor Corporation</b>.
             All rights reserved.
         </li>
     </ul>

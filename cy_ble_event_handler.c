@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_event_handler.c
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  This file contains the source code for the event Handler State Machine
@@ -316,66 +316,69 @@ void Cy_BLE_EventHandler(cy_en_ble_event_t event, void *evParam)
         break;
 
         case CY_BLE_EVT_STACK_ON:
-            if((cy_ble_configPtr->params->gattRole & (CY_BLE_GATT_SERVER | CY_BLE_GATT_CLIENT)) != 0u)
+
+            /* Initializes internal state variables */
+            cy_ble_scanningIntervalType = CY_BLE_SCANNING_FAST;
+            cy_ble_advertisingIntervalType = CY_BLE_ADVERTISING_FAST;
+            (void)memset((uint8_t*)&cy_ble_busyStatus, 0, sizeof(cy_ble_busyStatus));
+            (void)memset(&cy_ble_connState, 0, sizeof(cy_ble_connState));
+            cy_ble_cmdStatus = 0u;
+
+            /* Set a device address  */
+            if(Cy_BLE_IsDeviceAddressValid(cy_ble_sflashDeviceAddress) != 0u)
             {
-                /* Initializes internal state variables */
-                cy_ble_scanningIntervalType = CY_BLE_SCANNING_FAST;
-                cy_ble_advertisingIntervalType = CY_BLE_ADVERTISING_FAST;
-                (void)memset((uint8_t*)&cy_ble_busyStatus, 0, sizeof(cy_ble_busyStatus));
-                (void)memset(&cy_ble_connState, 0, sizeof(cy_ble_connState));
-                cy_ble_cmdStatus = 0u;
+                (void)Cy_BLE_GAP_SetBdAddress(cy_ble_sflashDeviceAddress);
 
-                /* Set a device address  */
-                if(Cy_BLE_IsDeviceAddressValid(cy_ble_sflashDeviceAddress) != 0u)
+                if((cy_ble_configPtr->params->gapRole & (CY_BLE_GAP_PERIPHERAL | CY_BLE_GAP_BROADCASTER)) != 0u)
                 {
-                    (void)Cy_BLE_GAP_SetBdAddress(cy_ble_sflashDeviceAddress);
-
-                    if((cy_ble_configPtr->params->gapRole & (CY_BLE_GAP_PERIPHERAL | CY_BLE_GAP_BROADCASTER)) != 0u)
-                    {
-                        Cy_BLE_ChangeAdDeviceAddress(cy_ble_sflashDeviceAddress, 0u);
-                        Cy_BLE_ChangeAdDeviceAddress(cy_ble_sflashDeviceAddress, 1u);
-                    }
-                }
-                else
-                {
-                    if(cy_ble_configPtr->params->siliconDeviceAddressEn)
-                    {
-                        uint32_t bdAddrLoc;
-                        bdAddrLoc = ((uint32_t)SFLASH_DIE_X & (uint32_t)CY_BLE_SFLASH_DIE_X_MASK) |
-                                    ((uint32_t)(((uint32_t)SFLASH_DIE_Y) & ((uint32_t)CY_BLE_SFLASH_DIE_Y_MASK)) <<
-                                     CY_BLE_SFLASH_DIE_X_BITS) |
-                                    ((uint32_t)(((uint32_t)SFLASH_DIE_WAFER) & ((uint32_t)CY_BLE_SFLASH_DIE_WAFER_MASK)) <<
-                                     CY_BLE_SFLASH_DIE_XY_BITS) |
-                                    ((uint32_t)(((uint32_t)SFLASH_DIE_LOT(0)) & ((uint32_t)CY_BLE_SFLASH_DIE_LOT_MASK)) <<
-                                     CY_BLE_SFLASH_DIE_XYWAFER_BITS);
-
-                        cy_ble_configPtr->deviceAddress->bdAddr[0] = (uint8_t)bdAddrLoc;
-                        cy_ble_configPtr->deviceAddress->bdAddr[1] = (uint8_t)(bdAddrLoc >> 8u);
-                        cy_ble_configPtr->deviceAddress->bdAddr[2] = (uint8_t)(bdAddrLoc >> 16u);
-                    }
-                    (void)Cy_BLE_GAP_SetBdAddress(cy_ble_configPtr->deviceAddress);
-
-                    if((cy_ble_configPtr->params->gapRole & (CY_BLE_GAP_PERIPHERAL | CY_BLE_GAP_BROADCASTER)) != 0u)
-                    {
-                        Cy_BLE_ChangeAdDeviceAddress(cy_ble_configPtr->deviceAddress, 0u);
-                        Cy_BLE_ChangeAdDeviceAddress(cy_ble_configPtr->deviceAddress, 1u);
-                    }
-                }
-
-                /* Set the device IO Capability  */
-                (void)Cy_BLE_GAP_SetIoCap((cy_en_ble_gap_iocap_t*)&cy_ble_configPtr->params->securityIoCapability);
-
-                /* Enable all 4.1 events and configured 4.2 events */
-                {
-                    uint8_t leMask[CY_BLE_LE_MASK_LENGTH] = {CY_LO8(CY_BLE_LE_MASK),
-                                                               CY_HI8(CY_BLE_LE_MASK), 0u, 0u, 0u, 0u, 0u, 0u };
-                    (void)Cy_BLE_SetLeEventMask(leMask);
+                    Cy_BLE_ChangeAdDeviceAddress(cy_ble_sflashDeviceAddress, 0u);
+                    Cy_BLE_ChangeAdDeviceAddress(cy_ble_sflashDeviceAddress, 1u);
                 }
             }
+            else
+            {
+                if(cy_ble_configPtr->params->siliconDeviceAddressEn)
+                {
+                    uint32_t bdAddrLoc;
+                    bdAddrLoc = ((uint32_t)SFLASH_DIE_X & (uint32_t)CY_BLE_SFLASH_DIE_X_MASK) |
+                                ((uint32_t)(((uint32_t)SFLASH_DIE_Y) & ((uint32_t)CY_BLE_SFLASH_DIE_Y_MASK)) <<
+                                    CY_BLE_SFLASH_DIE_X_BITS) |
+                                ((uint32_t)(((uint32_t)SFLASH_DIE_WAFER) & ((uint32_t)CY_BLE_SFLASH_DIE_WAFER_MASK)) <<
+                                    CY_BLE_SFLASH_DIE_XY_BITS) |
+                                ((uint32_t)(((uint32_t)SFLASH_DIE_LOT(0)) & ((uint32_t)CY_BLE_SFLASH_DIE_LOT_MASK)) <<
+                                    CY_BLE_SFLASH_DIE_XYWAFER_BITS);
+
+                    cy_ble_configPtr->deviceAddress->bdAddr[0] = (uint8_t)bdAddrLoc;
+                    cy_ble_configPtr->deviceAddress->bdAddr[1] = (uint8_t)(bdAddrLoc >> 8u);
+                    cy_ble_configPtr->deviceAddress->bdAddr[2] = (uint8_t)(bdAddrLoc >> 16u);
+                }
+                (void)Cy_BLE_GAP_SetBdAddress(cy_ble_configPtr->deviceAddress);
+
+                if((cy_ble_configPtr->params->gapRole & (CY_BLE_GAP_PERIPHERAL | CY_BLE_GAP_BROADCASTER)) != 0u)
+                {
+                    Cy_BLE_ChangeAdDeviceAddress(cy_ble_configPtr->deviceAddress, 0u);
+                    Cy_BLE_ChangeAdDeviceAddress(cy_ble_configPtr->deviceAddress, 1u);
+                }
+            }
+
+            /* Set the device IO Capability  */
+            (void)Cy_BLE_GAP_SetIoCap((cy_en_ble_gap_iocap_t*)&cy_ble_configPtr->params->securityIoCapability);
+
+            /* Enable all 4.1 events and configured 4.2 events */
+            {
+                uint8_t leMask[CY_BLE_LE_MASK_LENGTH] = {CY_LO8(CY_BLE_LE_MASK),
+                                                         CY_HI8(CY_BLE_LE_MASK), 0u, 0u, 0u, 0u, 0u, 0u };
+                (void)Cy_BLE_SetLeEventMask(leMask);
+            }
+
+            /* Update BLE state  */
             Cy_BLE_SetState(CY_BLE_STATE_ON);
         break;
-
+        
+        case CY_BLE_EVT_SOFT_RESET_COMPLETE:
         case CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE:
+
+            /* Update BLE / Adv. / Scan states  */
             Cy_BLE_SetState(CY_BLE_STATE_STOPPED);
 
             if((cy_ble_configPtr->params->gapRole & (CY_BLE_GAP_PERIPHERAL | CY_BLE_GAP_BROADCASTER)) != 0u)
@@ -388,19 +391,26 @@ void Cy_BLE_EventHandler(cy_en_ble_event_t event, void *evParam)
                 Cy_BLE_SetScanState(CY_BLE_SCAN_STATE_STOPPED);
             }
 
-            /**
-             * Adding a delay of 5ms to ensure that the controller is completely
-             * shut-down before generating the event to the application.
-             * Controller generates CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE event immediately
-             * after accepting the shut-down command (before resetting the controller),
-             * once this behavior is fixed, this delay will no longer be required
-             */
-             Cy_SysLib_Delay(4u);
-
-            /* Unregister BLE SysPm callback for deep sleep/sleep */
-            if (Cy_BLE_UnregisterPmCallbacksPtr != NULL)
+            /* Clean pair status */
+            if((cy_ble_configPtr->params->gapRole & (CY_BLE_GAP_PERIPHERAL | CY_BLE_GAP_CENTRAL)) != 0u)
             {
-                Cy_BLE_UnregisterPmCallbacksPtr();
+                (void)memset((uint8_t*)cy_ble_pairStatus, 0, sizeof(cy_ble_pairStatus));
+            }
+
+            if ( event == CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE)
+            {
+                #if defined(COMPONENT_BLESS_HOST_IPC)
+                /* Adding a delay of 10ms to ensure that the controller is completely 
+                 * shut-down before generating the event to the application.
+                 * Refer to CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE event documentation. */
+                Cy_SysLib_Delay(10u);
+                #endif /* defined(COMPONENT_BLESS_HOST_IPC) */
+
+                /* Unregister BLE SysPm callback for deep sleep/sleep */
+                if (Cy_BLE_UnregisterPmCallbacksPtr != NULL)
+                {
+                    Cy_BLE_UnregisterPmCallbacksPtr();
+                }
             }
         break;
 

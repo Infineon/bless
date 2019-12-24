@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file CY_BLE_aios.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  Contains the function prototypes and constants for the Automation Input

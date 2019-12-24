@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_bts.h
-* \version 3.20
+* \version 3.30
 *
 * \brief
 *  Contains the function prototypes and constants for the Bootloader service.
