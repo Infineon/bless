@@ -63,7 +63,6 @@ cy_en_ble_api_result_t Cy_BLE_HAL_PairingKeypressNotificationHandler(void *param
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingRandHandler(void *param);
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingConfirmHandler(void *param);
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingLrConfirmingHandler(void *param);
-cy_en_ble_api_result_t Cy_BLE_HAL_PairingLrConfirmingHandler(void *param);
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingScTbxDhkeyGenerateComplete(void* param);
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingScTbxGenerateLocalP256PublicKey(uint8_t param);
 cy_en_ble_api_result_t Cy_BLE_HAL_SeSmpScUserPasskeyHandler(void *param1, void *param2);

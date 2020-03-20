@@ -251,7 +251,6 @@ cy_en_ipc_pipe_status_t Cy_BLE_IPC_SendMessageToController(uint32_t *msg,
                                                            cy_ipc_pipe_relcallback_ptr_t hostIpcRelCallBack,
                                                            cy_ipc_pipe_relcallback_ptr_t hostPollCallBack);
 
-void Cy_BLE_HAL_IntrNotifyIpcHandler(void);
 extern cy_ble_intr_callback_t Cy_BLE_InterruptCallback;
 extern cy_stc_ble_intr_notify_t *intrNotifyPtr;
 

@@ -47,9 +47,6 @@ static void Cy_BLE_BLSC_ReadResponseEventHandler(cy_stc_ble_gattc_read_rsp_param
 static void Cy_BLE_BLSC_WriteResponseEventHandler(const cy_stc_ble_conn_handle_t *eventParam);
 static void Cy_BLE_BLSC_ErrorResponseEventHandler(const cy_stc_ble_gatt_err_param_t *eventParam);
 
-static cy_en_ble_gatt_err_code_t Cy_BLE_BLS_EventHandler(uint32_t eventCode, void *eventParam);
-
-
 /*******************************************************************************
 * Global Variables
 *******************************************************************************/

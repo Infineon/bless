@@ -17,26 +17,6 @@
 
 #if CY_BLE_LIB_HOST_CORE
 
-
-/*******************************************************************************
-* Private Function Prototypes
-*******************************************************************************/
-
-static cy_en_ble_gatt_err_code_t Cy_BLE_BAS_EventHandler(uint32_t eventCode, void *eventParam);
-static cy_en_ble_gatt_err_code_t Cy_BLE_BASS_EventHandler(uint32_t eventCode, void *eventParam);
-static cy_en_ble_gatt_err_code_t Cy_BLE_BASC_EventHandler(uint32_t eventCode, void *eventParam);
-
-static cy_en_ble_gatt_err_code_t Cy_BLE_BASS_WriteEventHandler(const cy_stc_ble_gatts_write_cmd_req_param_t *eventParam);
-
-static void Cy_BLE_BASC_DiscoverCharacteristicsEventHandler(cy_stc_ble_disc_char_info_t *discCharInfo);
-static void Cy_BLE_BASC_DiscoverCharDescriptorsEventHandler(cy_stc_ble_disc_descr_info_t *discDescrInfo);
-static void Cy_BLE_BASC_GetCharRange(cy_stc_ble_disc_range_info_t *charRangeInfo);
-static void Cy_BLE_BASC_NotificationEventHandler(cy_stc_ble_gattc_handle_value_ntf_param_t *eventParam);
-static void Cy_BLE_BASC_ReadResponseEventHandler(cy_stc_ble_gattc_read_rsp_param_t *eventParam);
-static void Cy_BLE_BASC_WriteResponseEventHandler(const cy_stc_ble_conn_handle_t *eventParam);
-static void Cy_BLE_BASC_ErrorResponseEventHandler(const cy_stc_ble_gatt_err_param_t *eventParam);
-
-
 /*******************************************************************************
 * Global Variables
 *******************************************************************************/

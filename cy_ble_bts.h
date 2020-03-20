@@ -97,8 +97,6 @@ cy_en_ble_api_result_t Cy_BLE_BTSS_Init(const cy_stc_ble_btss_config_t *config);
 
 void Cy_BLE_BTS_RegisterAttrCallback(cy_ble_callback_t callbackFunc);
 
-cy_en_ble_api_result_t Cy_BLE_BTSS_Init(const cy_stc_ble_btss_config_t *config);
-
 cy_en_ble_api_result_t Cy_BLE_BTSS_SendNotification(cy_stc_ble_conn_handle_t connHandle,
                                                     cy_en_ble_bts_char_index_t charIndex, uint32_t attrSize, const
                                                     uint8_t *attrValue);
