@@ -1,4 +1,4 @@
-﻿# Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30
+﻿# Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.40
 
 ### What's Included?
 Please refer to the [README.md](./README.md) and the [API Reference Guide](https://cypresssemiconductorco.github.io/bless/ble_api_reference_manual/html/index.html) for a complete description of the PSoC 6 BLE Middleware.
@@ -6,12 +6,10 @@ Please refer to the [README.md](./README.md) and the [API Reference Guide](https
 The revision history of the PSoC 6 BLE Middleware is also available on the [API Reference Guide Changelog](https://cypresssemiconductorco.github.io/bless/ble_api_reference_manual/html/page_group_ble_changelog.html).
 
 ### New in this release:
-* Added support QFN68 and BGA124 packages.
+* Added support BLE Single CPU mode on CM0+ core. 
 
 ### Defect Fixes
-* Updated the procedure of processing events to clear the cy_ble_pair_Status flags on CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE and CY_BLE_EVT_SOFT_RESET_COMPLETE events
-* Fixed the setting of a device address in handling the CY_BLE_EVT_STACK_ON event, if the BLE middleware is configured to operate only in the Broadcaster GAP role
-* Added checks for Malformed LL PDUs. 
+* Addressed [CVE-2019-16336](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16336) and [CVE-2019-17061](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-17061) Vulnerabilities.
 
 Refer to section [Changelog of PSoC 6 BLE Middleware API Reference Guide](https://cypresssemiconductorco.github.io/bless/ble_api_reference_manual/html/page_group_ble_changelog.html) for details.
 
@@ -25,7 +23,6 @@ The [Quick Start section of the PSoC 6 BLE Middleware API Reference Guide](https
 ### Known Issues
 | Problem                                                  | Workaround |
 | :---                                                     | :----  |
-| Peers in Active scan mode may not receive SCAN_RSP from PSoC 6 BLE if the peer address is Private Resolvable Type. Even after adding a peer to its resolving list, the PSoC 6 BLE device may not respond to SCAN_REQ from the peer.  | No workaround. This issue will be fixed in the subsequent releases. |
 | The CY_BLE_EVT_STACK_BUSY_STATUS event may not return a CY_BLE_STACK_STATE_FREE state, if the application initiates an active connection (Peripheral/Central GAP role) along with Scan activity (GAP Observer) with a high duty cycle (scan window value is close to scan interval). | Increase the scan interval and reduce the scan window values to have a  ratio of at least 1/2. |
 
 
@@ -57,4 +54,4 @@ The following resources contain more information:
 * [PSoC 63 with BLE Datasheet Programmable System-on-Chip](http://www.cypress.com/ds218787)
 * [Cypress Semiconductor](http://www.cypress.com)
 ---
-© Cypress Semiconductor Corporation, 2019.
+© Cypress Semiconductor Corporation, 2020.

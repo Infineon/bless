@@ -1,19 +1,19 @@
 /********************************************************************************************************************//**
 * \file cy_ble_ds.h
-* \version 3.30
+* \version 3.40
 *
 * \brief
 *  Contains the documentation data.
 *
 ***********************************************************************************************************************
 * \copyright
-* Copyright 2016-2019, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2016-2020, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
 ***********************************************************************************************************************
 *
-* \mainpage Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30
+* \mainpage Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.40
 *
 * \copydetails page_ble_general
 * \copydetails page_group_ble_changelog
@@ -1539,6 +1539,21 @@
 *     <tr><th><b>Version</b></th><th><b>Changes</b></th><th><b>Reason for Change</b></th></tr> 
 *
 *     <tr>
+*         <td rowspan="3">3.40</td>
+*         <td>Added BLE Stack libraries for CM0+ core. </td>
+*         <td>Support BLE CM0+ Single CPU mode.</td>
+*     </tr>
+      <tr>
+*       <td>Updated the procedure of processing events to wait 10 ms on CY_BLE_EVT_SOFT_RESET_COMPLETE events.</td>
+        <td>Ensure that the controller is completely reset before generating the event to the application.
+            Refer to CY_BLE_EVT_SOFT_RESET_COMPLETE event documentation.</td>
+*     </tr>
+*     <tr>
+*         <td>Updated the BLE Stack to version 5.0.7.196</td>
+*         <td>Refer to \ref section_group_ble_changelog_BLE_Stack_Changes.</td>
+*     </tr>
+*
+*     <tr>
 *         <td rowspan="4">3.30</td>
 *         <td>Updated the procedure of processing events to clear the cy_ble_pair_Status flags on
 *            CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE and CY_BLE_EVT_SOFT_RESET_COMPLETE events.</td>
@@ -1552,7 +1567,7 @@
 *     </tr>
 *     <tr>
 *         <td>Documentation updates.</td>
-*         <td>"Enable LE 2 Mbps" feature does not work if it selects in BT Confirurator.</td>
+*         <td>Documentation update and clarification.</td>
 *     </tr>   
 *     <tr>
 *         <td>Updated the BLE Stack to version 5.0.6.161.</td>
@@ -1777,6 +1792,24 @@
 * 
 * <table class="doxtable">
 *     <tr><th><b>Version</b></th><th><b>Changes</b></th><th><b>Reason for Change</b></th></tr>
+*     <tr>
+*         <td rowspan="3">5.0.7.196</td>
+*         <td>Updated the APIs to handle the interrupt locking.</td>
+*         <td>A better locking mechanism to avoid potential timing-sensitive bugs.</td>
+*     </tr>
+*     <tr>
+*         <td>Re-factored the radio initialization sequence.</td>
+*         <td>It was observed that on customer boards, re-factoring the radio initialization sequence provided
+*     	 	 an improved stability to the reset sequence.</td>
+*     </tr>
+*     <tr>
+*        <td>Fix for CVE-2019-16336.</td>
+*        <td>Enforced the length check on incoming LL PDUs to protect against buffer overflows caused by
+*            malicious packets. Malformed Data packets will be dropped in the LL.
+*            Malformed Control packets will be replied with LL_UNKNOWN_RSP. 
+*            For detail, refer to the [CVE-2019-16336](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16336) vulnerability page.
+*	  	 </td>
+*     </tr>
 *
 *     <tr>
 *         <td rowspan="3">5.0.6.161</td>
@@ -1833,7 +1866,11 @@
 *     </tr>
 *     
 *     <tr>
-*         <td rowspan="3">5.0.4.946</td>
+*         <td rowspan="4">5.0.4.946</td>
+*         <td>Fix for CVE-2019-17061.</td>
+*         <td>Updated the handling of LL PDU with LLID 0 to prevent corruption in subsequently received LL PDUs. Such packets will be dropped in the LL, but the peer will be acked for the packet. For detail, refer to the [CVE-2019-17061](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-17061) vulnerability page.</td>
+*     </tr>
+*     <tr>
 *         <td>Enabled the RSSI reading after the CRC has been received.</td>
 *         <td>The RSSI value was not being updated if deep sleep was enabled in the controller.</td>
 *     </tr>

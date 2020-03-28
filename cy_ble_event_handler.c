@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_event_handler.c
-* \version 3.30
+* \version 3.40
 *
 * \brief
 *  This file contains the source code for the event Handler State Machine
@@ -8,7 +8,7 @@
 *
 ********************************************************************************
 * \copyright
-* Copyright 2017-2019, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2017-2020, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -397,15 +397,15 @@ void Cy_BLE_EventHandler(cy_en_ble_event_t event, void *evParam)
                 (void)memset((uint8_t*)cy_ble_pairStatus, 0, sizeof(cy_ble_pairStatus));
             }
 
+            #if defined(COMPONENT_BLESS_HOST_IPC)
+            /* Adding a delay of 10ms to ensure that the controller is completely 
+             * shut-down before generating the event to the application.
+             * Refer to CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE event documentation. */
+            Cy_SysLib_Delay(10u);
+            #endif /* defined(COMPONENT_BLESS_HOST_IPC) */
+
             if ( event == CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE)
             {
-                #if defined(COMPONENT_BLESS_HOST_IPC)
-                /* Adding a delay of 10ms to ensure that the controller is completely 
-                 * shut-down before generating the event to the application.
-                 * Refer to CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE event documentation. */
-                Cy_SysLib_Delay(10u);
-                #endif /* defined(COMPONENT_BLESS_HOST_IPC) */
-
                 /* Unregister BLE SysPm callback for deep sleep/sleep */
                 if (Cy_BLE_UnregisterPmCallbacksPtr != NULL)
                 {

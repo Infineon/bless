@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_hal_pvt.h
-* \version 3.30
+* \version 3.40
 *
 * \brief
 *  Contains the function prototypes and constants for the HAL section
@@ -8,7 +8,7 @@
 *
 ********************************************************************************
 * \copyright
-* Copyright 2017-2019, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2017-2020, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -186,7 +186,6 @@ cy_en_ble_api_result_t Cy_BLE_HAL_RadioCalibrationWrite(const void *data, uint32
 void Cy_BLE_HAL_RadioGetAbsVbat(const uint16_t *raw, uint16_t *vbat);
 void Cy_BLE_HAL_RadioGetAbsTemp(const uint16_t *raw, int16_t *temp);
 
-void Cy_BLE_HAL_IntrNotifyIpcHandler(void);
 void Cy_BLE_HAL_SetConfigStructure(const cy_stc_ble_config_t *configPtr);
 
 

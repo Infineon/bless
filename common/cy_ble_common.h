@@ -1,13 +1,13 @@
 /***************************************************************************//**
 * \file cy_ble_common.h
-* \version 3.30
+* \version 3.40
 *
 * \brief
 *  This file contains the source code for the API of the PSoC 6 BLE Middleware.
 *
 ********************************************************************************
 * \copyright
-* Copyright 2017-2019, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2017-2020, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -62,7 +62,6 @@ cy_en_ble_api_result_t Cy_BLE_HAL_PairingDhkeyCheckHandler(void *param);
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingKeypressNotificationHandler(void *param);
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingRandHandler(void *param);
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingConfirmHandler(void *param);
-cy_en_ble_api_result_t Cy_BLE_HAL_PairingLrConfirmingHandler(void *param);
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingLrConfirmingHandler(void *param);
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingScTbxDhkeyGenerateComplete(void* param);
 cy_en_ble_api_result_t Cy_BLE_HAL_PairingScTbxGenerateLocalP256PublicKey(uint8_t param);

@@ -1,13 +1,13 @@
 /*******************************************************************************
 * \file cy_ble_stack.h
-* \version 3.30
+* \version 3.40
 *
 * \brief
 * This file contains the BLE Stack, which will be updated on the Jenkins
 * build and the common structures, APIs.
 *
 *******************************************************************************
-* Copyright 2017-2019, Cypress Semiconductor Corporation. All rights reserved.
+* Copyright 2017-2020, Cypress Semiconductor Corporation. All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -43,10 +43,10 @@ extern "C" {
 #define CY_BLE_STACK_MINOR                                               (0u)
 
 /** Patch version number for device firmware. */
-#define CY_BLE_STACK_PATCH                                               (6u)
+#define CY_BLE_STACK_PATCH                                               (7u)
 
 /** Firmware build number. */
-#define CY_BLE_STACK_BUILD                                               (161u)
+#define CY_BLE_STACK_BUILD                                               (196u)
 
 /** BT Address Size */
 #define CY_BLE_BD_ADDR_SIZE                                              (0x06u)

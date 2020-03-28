@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30: Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30</title>
+<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.40: Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.40</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><a href="http://www.cypress.com/"><img alt="Logo" src="cypress_logo.png"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30</div>
+   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.40</div>
   </td>
  </tr>
  </tbody>
@@ -81,7 +81,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30 </div>  </div>
+<div class="title">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.40 </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>The Bluetooth Low Energy (BLE) middleware contains a comprehensive API to configure the BLE Stack and the underlying chip hardware.</p>
@@ -228,11 +228,19 @@ PSoC 6 BLE Middleware Changes</h1>
 <p class="endtd"></p>
 </th></tr>
 <tr>
+<td rowspan="3">3.40 </td><td>Added BLE Stack libraries for CM0+ core.  </td><td>Support BLE CM0+ Single CPU mode.  </td></tr>
+<tr>
+<td>Updated the procedure of processing events to wait 10 ms on CY_BLE_EVT_SOFT_RESET_COMPLETE events. </td><td>Ensure that the controller is completely reset before generating the event to the application. Refer to CY_BLE_EVT_SOFT_RESET_COMPLETE event documentation.  </td></tr>
+<tr>
+<td>Updated the BLE Stack to version 5.0.7.196 </td><td><p class="starttd">Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a>. </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
 <td rowspan="4">3.30 </td><td>Updated the procedure of processing events to clear the cy_ble_pair_Status flags on CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE and CY_BLE_EVT_SOFT_RESET_COMPLETE events. </td><td><a class="el" href="group__group__ble__common__api__functions.html#gaf33761a3b24ccf96b4b659b251ef19f0" title="The function is used to get the device pairing state. ">Cy_BLE_IsDevicePaired()</a> falsely returned True prior to authentication after a radio reset.  </td></tr>
 <tr>
 <td>Fixed the setting of a device address in handling the CY_BLE_EVT_STACK_ON event, if the BLE middleware is configured to operate only in the Broadcaster GAP role. </td><td>With the BLE configured only as a broadcaster, the configuration for a BD address in the BLE customizer was not effective.  </td></tr>
 <tr>
-<td>Documentation updates. </td><td>"Enable LE 2 Mbps" feature does not work if it selects in BT Confirurator.  </td></tr>
+<td>Documentation updates. </td><td>Documentation update and clarification.  </td></tr>
 <tr>
 <td>Updated the BLE Stack to version 5.0.6.161. </td><td><p class="starttd">Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a>. </p>
 <p class="endtd"></p>
@@ -386,9 +394,15 @@ BLE Stack Changes</h1>
 <p>This section lists changes made to the BLE Stack.</p>
 <table class="doxtable">
 <tr>
-<th><b>Version</b></th><th><b>Changes</b></th><th><p class="starttd"><b>Reason for Change</b></p>
+<th><b>Version</b></th><th><b>Changes</b></th><th><b>Reason for Change</b> </th></tr>
+<tr>
+<td rowspan="3">5.0.7.196 </td><td>Updated the APIs to handle the interrupt locking. </td><td>A better locking mechanism to avoid potential timing-sensitive bugs.  </td></tr>
+<tr>
+<td>Re-factored the radio initialization sequence. </td><td>It was observed that on customer boards, re-factoring the radio initialization sequence provided an improved stability to the reset sequence.  </td></tr>
+<tr>
+<td>Fix for CVE-2019-16336. </td><td><p class="starttd">Enforced the length check on incoming LL PDUs to protect against buffer overflows caused by malicious packets. Malformed Data packets will be dropped in the LL. Malformed Control packets will be replied with LL_UNKNOWN_RSP. For detail, refer to the <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16336">CVE-2019-16336</a> vulnerability page.  </p>
 <p class="endtd"></p>
-</th></tr>
+</td></tr>
 <tr>
 <td rowspan="3">5.0.6.161 </td><td>Updated the radio configuration. </td><td>To support the new packages: QFN68 and BGA124.  </td></tr>
 <tr>
@@ -414,7 +428,9 @@ BLE Stack Changes</h1>
 <p class="endtd"></p>
 </td></tr>
 <tr>
-<td rowspan="3">5.0.4.946 </td><td>Enabled the RSSI reading after the CRC has been received. </td><td>The RSSI value was not being updated if deep sleep was enabled in the controller.  </td></tr>
+<td rowspan="4">5.0.4.946 </td><td>Fix for CVE-2019-17061. </td><td>Updated the handling of LL PDU with LLID 0 to prevent corruption in subsequently received LL PDUs. Such packets will be dropped in the LL, but the peer will be acked for the packet. For detail, refer to the <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-17061">CVE-2019-17061</a> vulnerability page.  </td></tr>
+<tr>
+<td>Enabled the RSSI reading after the CRC has been received. </td><td>The RSSI value was not being updated if deep sleep was enabled in the controller.  </td></tr>
 <tr>
 <td>Optimized the ACL TX path for a better throughput. </td><td>In BLE dual CPU mode, with CM0p running at 25 MHz, the BLE throughput was observed to be sub-optimal.  </td></tr>
 <tr>
@@ -486,7 +502,7 @@ BLE Stack Changes</h1>
 <div id="nav-path" class="navpath">
     <ul>
         <li class="footer">
-            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.30</b> by <b>Cypress Semiconductor Corporation</b>.
+            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.40</b> by <b>Cypress Semiconductor Corporation</b>.
             All rights reserved.
         </li>
     </ul>

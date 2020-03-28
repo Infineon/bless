@@ -1,13 +1,13 @@
 /***************************************************************************//**
 * \file cy_ble_bls.c
-* \version 3.30
+* \version 3.40
 *
 * \brief
 *  This file contains the source code for the Blood Pressure service.
 *
 ********************************************************************************
 * \copyright
-* Copyright 2017-2019, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2017-2020, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -46,8 +46,6 @@ static void Cy_BLE_BLSC_IndicationEventHandler(cy_stc_ble_gattc_handle_value_ind
 static void Cy_BLE_BLSC_ReadResponseEventHandler(cy_stc_ble_gattc_read_rsp_param_t *eventParam);
 static void Cy_BLE_BLSC_WriteResponseEventHandler(const cy_stc_ble_conn_handle_t *eventParam);
 static void Cy_BLE_BLSC_ErrorResponseEventHandler(const cy_stc_ble_gatt_err_param_t *eventParam);
-
-static cy_en_ble_gatt_err_code_t Cy_BLE_BLS_EventHandler(uint32_t eventCode, void *eventParam);
 
 
 /*******************************************************************************

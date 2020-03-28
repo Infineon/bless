@@ -1,13 +1,13 @@
 /***************************************************************************//**
 * \file cy_ble_bts.h
-* \version 3.30
+* \version 3.40
 *
 * \brief
 *  Contains the function prototypes and constants for the Bootloader service.
 *
 ********************************************************************************
 * \copyright
-* Copyright 2017-2019, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2017-2020, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -96,8 +96,6 @@ typedef struct
 cy_en_ble_api_result_t Cy_BLE_BTSS_Init(const cy_stc_ble_btss_config_t *config);
 
 void Cy_BLE_BTS_RegisterAttrCallback(cy_ble_callback_t callbackFunc);
-
-cy_en_ble_api_result_t Cy_BLE_BTSS_Init(const cy_stc_ble_btss_config_t *config);
 
 cy_en_ble_api_result_t Cy_BLE_BTSS_SendNotification(cy_stc_ble_conn_handle_t connHandle,
                                                     cy_en_ble_bts_char_index_t charIndex, uint32_t attrSize, const

@@ -1,13 +1,13 @@
 /***************************************************************************//**
 * \file cy_ble_ndcs.c
-* \version 3.30
+* \version 3.40
 *
 * \brief
 *  Contains the source code for Next DST Change service.
 *
 ********************************************************************************
 * \copyright
-* Copyright 2017-2019, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2017-2020, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
