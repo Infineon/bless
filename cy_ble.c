@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the API of the PSoC 6 BLE Middleware.
@@ -871,9 +871,11 @@ static void Cy_BLE_UnregisterHostPmCallbacksDual(void)
 *  Cy_BLE_EnableLPM).
 *
 *  \param
-*  callbackParams  pointer to the structure with the syspm callback parameters
-*                  callbackParams->mode - the callback mode. See description
-*                  of the cy_en_syspm_callback_mode_t type.
+*  callbackParams  Pointer to the structure with the syspm callback parameters.
+*
+*  \param
+*  mode            The associated syspm callback mode. See description of the
+*                  cy_en_syspm_callback_mode_t type.
 *
 *  \return
 *  * CY_SYSPM_SUCCESS  - Entered and exited from BLESS deep sleep.
@@ -1008,9 +1010,11 @@ static cy_en_syspm_status_t Cy_BLE_DeepSleepCallbackSingleCore(cy_stc_syspm_call
 *  Cy_BLE_EnableLPM).
 *
 *  \param
-*  callbackParams  pointer to the structure with the syspm callback parameters
-*                  callbackParams->mode - the callback mode. See description
-*                  of the cy_en_syspm_callback_mode_t type.
+*  callbackParams  Pointer to the structure with the syspm callback parameters.
+*
+*  \param
+*  mode            The associated syspm callback mode. See description of the
+*                  cy_en_syspm_callback_mode_t type.
 *
 *  \return
 *  * CY_SYSPM_SUCCESS  - Entered and exited from BLESS deep sleep.
@@ -1116,9 +1120,11 @@ static cy_en_syspm_status_t Cy_BLE_DeepSleepCallbackDualCore(cy_stc_syspm_callba
 *  Cy_BLE_EnableLPM).
 *
 *  \param
-*  callbackParams  pointer to the structure with the syspm callback parameters
-*                  callbackParams->mode - the callback mode. See description
-*                  of the cy_en_syspm_callback_mode_t type.
+*  callbackParams  Pointer to the structure with the syspm callback parameters.
+*
+*  \param
+*  mode            The associated syspm callback mode. See description of the
+*                  cy_en_syspm_callback_mode_t type.
 *
 *  \return
 *  * CY_SYSPM_SUCCESS  - Entered and exited from CPU sleep.

@@ -1,4 +1,4 @@
-﻿# Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.40
+﻿# Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50
 
 ### What's Included?
 Please refer to the [README.md](./README.md) and the [API Reference Guide](https://cypresssemiconductorco.github.io/bless/ble_api_reference_manual/html/index.html) for a complete description of the PSoC 6 BLE Middleware.
@@ -6,10 +6,15 @@ Please refer to the [README.md](./README.md) and the [API Reference Guide](https
 The revision history of the PSoC 6 BLE Middleware is also available on the [API Reference Guide Changelog](https://cypresssemiconductorco.github.io/bless/ble_api_reference_manual/html/page_group_ble_changelog.html).
 
 ### New in this release:
-* Added support BLE Single CPU mode on CM0+ core. 
+* Added PILO support for the PSoC 64 Secure device
+* Added BLE Stack controller libraries with IPC communication (BLESS_CONTROLLER_IPC) for CM0+ 
+* Improved the handling of Cy_BLE_StackShutdown API to avoid timing-sensitive bugs
+* Improved the handling of the CY_BLE_EVT_GATTS_WRITE_REQ event to allow operation with a custom GATT database
+* Enhanced the BLE ISR to handle LL Channel Map in interrupt context for SoC mode. 
 
 ### Defect Fixes
-* Addressed [CVE-2019-16336](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16336) and [CVE-2019-17061](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-17061) Vulnerabilities.
+* Updated the CY_BLE_SFLASH_DIE_xxx macros (in cy_ble_gap.h) according to the PSoC 6 BLE production configuration. The silicon-generated “Company assigned” part of the device address had a high repetition rate of the generated MAC address
+* Updated Cy_BLE_ControllerEnterLPM API for handling a scenario where wake-up is initiated by the hardware.
 
 Refer to section [Changelog of PSoC 6 BLE Middleware API Reference Guide](https://cypresssemiconductorco.github.io/bless/ble_api_reference_manual/html/page_group_ble_changelog.html) for details.
 

@@ -1,6 +1,6 @@
 /********************************************************************************************************************//**
 * \file cy_ble_ds.h
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the documentation data.
@@ -13,7 +13,7 @@
 * the software package with which this file was provided.
 ***********************************************************************************************************************
 *
-* \mainpage Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.40
+* \mainpage Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50
 *
 * \copydetails page_ble_general
 * \copydetails page_group_ble_changelog
@@ -1205,16 +1205,17 @@
 *     - not supported for preproduction hardware.
 * 
 * Using the PILO as the LF clock source requires:
-*     - initial trimming and measuring the step size of the PILO trimming before BLE start
-*     - setting the clock configuration of the BLE sub-system after BLE start.
+*     - configure BLE ECO (AltHF) clock in ModusToolbox Device Configurator. The recommended frequency is 16 Mhz.
+*     - initial trimming (call Cy_SysClk_PiloInitialTrim() function) and measuring the step size of the PILO trimming
+*       (call Cy_SysClk_PiloUpdateTrimStep function) before BLE start.
 * 
 * Both actions must happen during every power-up to get closest to the target frequency.
 * 
-* The following code snippet shows the implementation: 
+* The following code snippet shows usage: 
 * \snippet ble/snippet/main.c LFCLK configuration: PILO calibration
 * 
-* \note Trimming functions PILO_InitialTrim and PILO_MeasureStepSize must be called before Cy_BLE_Start(), and must be called
-* on the CPU core running the BLE controller. 
+* \note Call trimming functions Cy_SysClk_PiloInitialTrim() and Cy_SysClk_PiloUpdateTrimStep() before Cy_BLE_Start(), 
+*       on the CPU core running the BLE controller. 
 * 
 ** 
 **\section group_ble_multiconnection_support Multi-Connection Support
@@ -1539,14 +1540,48 @@
 *     <tr><th><b>Version</b></th><th><b>Changes</b></th><th><b>Reason for Change</b></th></tr> 
 *
 *     <tr>
+*         <td rowspan="7">3.50</td>
+*         <td>Updated PILO part of BLESS MW HAL to be compatible with psoc6pdl 1.6.1.<br><br>
+*             Refer to section \ref group_ble_lfclk_Pilo_conf for details about the requirements for using the PILO as the LF clock source.</td>
+*         <td>To support PILO on the PSoC 64 Secure device.</td>
+*     </tr>
+*     <tr>
+*         <td>Added BLE Stack controller libraries with IPC communication (BLESS_CONTROLLER_IPC) for CM0+.</td>
+*         <td>Enable users to build their own CM0+ image with a BLE controller to operate in BLE Dual CPU mode.</td>
+*     </tr>
+*     <tr>
+*         <td>Updated the procedure of processing the CY_BLE_EVT_GATTS_WRITE_REQ event: an error response 
+*             (with reason INVALID_HANDLE) is sent, if the handle was processed neither by registered services nor an application BLE callback.</td>
+*         <td>Improved the handling of the CY_BLE_EVT_GATTS_WRITE_REQ event to allow operation with a custom GATT database.</td>
+*     </tr>   
+*     <tr>
+*         <td>Updated the CY_BLE_SFLASH_DIE_xxx macros (in cy_ble_gap.h) according to the PSoC 6 BLE production configuration.</td>
+*         <td>The silicon-generated "Company assigned" part of the device address has a high repetition rate of the generated MAC address.
+*             \note The silicon-generated "Company assigned" option does not guarantee a unique device address. For mass production, 
+*                   Cypress strongly suggests that the device address be programmed into the user area (Row 0) of the Sflash location via the SWD interface. 
+*                   Refer to section "Public device address" of [ModusToolbox BT Configurator Guide] (https://www.cypress.com/ModusToolboxBLEConfig) for details</td>
+*     </tr>
+*     <tr>
+*         <td>Added preprocessor expression to verify count of GATT database entries.</td>
+*         <td>BLE Stack supports maximum 512 entries of GATT database.</td>
+*     </tr>
+*     <tr>
+*         <td>Documentation updates.</td>
+*         <td>Changed the code snippet for initial PILO trimming and updating the trim step-size in section \ref group_ble_lfclk_Pilo_conf.</tr>
+*     <tr>
+*         <td>Updated the BLE Stack to version 5.0.8.220.</td>
+*         <td>Refer to \ref section_group_ble_changelog_BLE_Stack_Changes.</td>
+*     </tr>
+*
+*     <tr>
 *         <td rowspan="3">3.40</td>
 *         <td>Added BLE Stack libraries for CM0+ core. </td>
 *         <td>Support BLE CM0+ Single CPU mode.</td>
 *     </tr>
-      <tr>
+*     <tr>
 *       <td>Updated the procedure of processing events to wait 10 ms on CY_BLE_EVT_SOFT_RESET_COMPLETE events.</td>
-        <td>Ensure that the controller is completely reset before generating the event to the application.
-            Refer to CY_BLE_EVT_SOFT_RESET_COMPLETE event documentation.</td>
+*       <td>Ensure that the controller is completely reset before generating the event to the application.
+*           Refer to CY_BLE_EVT_SOFT_RESET_COMPLETE event documentation.</td>
 *     </tr>
 *     <tr>
 *         <td>Updated the BLE Stack to version 5.0.7.196</td>
@@ -1591,7 +1626,7 @@
 *     </tr>
 *     <tr>
 *         <td>Fixed CY_BLE_ENABLE_PHY_UPDATE macros  for enable "LE 2 Mbps" feature.</td>
-*         <td>"Enable LE 2 Mbps" feature does not work if it selects in BT Confirurator.</td>
+*         <td>"Enable LE 2 Mbps" feature does not work if it selects in BT Configurator.</td>
 *     </tr>   
 *     <tr>
 *         <td>The PSoC 6 BLE Middleware is re-organized for supporting MT2.0 make flow.</td>
@@ -1633,7 +1668,7 @@
 *         <td rowspan="6">3.0</td>
 *         <td>The PSoC 6 BLE Middleware is re-organized, so that it can be built as a device agnostic immutable library. <br>
 *             - The BLE configure structure and BLE service configure structures were updated.<br>
-*             - Changed the configuration flow. Refer to section "Configuration Considerations" to configuration details.<br>
+*             - Changed the configuration flow. Refer to section \ref page_ble_section_configuration_considerations to configuration details.<br>
 *             - Added the following functions:<br>
 *             \ref Cy_BLE_RegisterEventCallback(),<br>
 *             \ref Cy_BLE_EnableLowPowerMode()<br>
@@ -1661,7 +1696,7 @@
 *     </tr>
 *     <tr>
 *         <td>Updated the BLE Stack to version 5.0.3.935.</td>
-*         <td>Refer to \ref section_group_ble_changelog_BLE_Stack_Changes</td>
+*         <td>Refer to \ref section_group_ble_changelog_BLE_Stack_Changes.</td>
 *     </tr>
 * 
 *     <tr>
@@ -1690,7 +1725,7 @@
 *     </tr>
 *     <tr>
 *         <td>Updated the BLE Stack to version 5.0.2.917.</td>
-*         <td>Refer to \ref section_group_ble_changelog_BLE_Stack_Changes</td>
+*         <td>Refer to \ref section_group_ble_changelog_BLE_Stack_Changes.</td>
 *     </tr>
 * 
 *     <tr>
@@ -1741,7 +1776,7 @@
 *     </tr>
 *     <tr>
 *         <td>The BLE Stack was updated to version 5.0.0.898. </td>
-*         <td>Refer to \ref section_group_ble_changelog_BLE_Stack_Changes</td>
+*         <td>Refer to \ref section_group_ble_changelog_BLE_Stack_Changes.</td>
 *     </tr>
 *     
 *     <tr>
@@ -1756,7 +1791,7 @@
 *     </tr>
 *     <tr>
 *         <td>The BLE Stack was updated to version 5.0.0.855.</td>
-*         <td>Refer to \ref section_group_ble_changelog_BLE_Stack_Changes</td>
+*         <td>Refer to \ref section_group_ble_changelog_BLE_Stack_Changes.</td>
 *     </tr>
 *     
 *     <tr>
@@ -1777,7 +1812,7 @@
 *     </tr>
 *     <tr>
 *         <td>The BLE Stack was updated to version 5.0.0.785.</td>
-*         <td>Refer to \ref section_group_ble_changelog_BLE_Stack_Changes</td>
+*         <td>Refer to \ref section_group_ble_changelog_BLE_Stack_Changes.</td>
 *     </tr>
 *     
 *     <tr>
@@ -1792,6 +1827,21 @@
 * 
 * <table class="doxtable">
 *     <tr><th><b>Version</b></th><th><b>Changes</b></th><th><b>Reason for Change</b></th></tr>
+*
+*     <tr>
+*         <td rowspan="3">5.0.8.220</td>
+*         <td>Updated BLE ISR for SoC mode.</td>
+*         <td>Enhanced the BLE ISR to handle LL Channel Map in interrupt context for SoC mode.</td>
+*     </tr>
+*     <tr>
+*         <td>Updated low-power mode API.</td>
+*         <td>Updated Cy_BLE_ControllerEnterLPM API for handling a scenario where wake-up is initiated by the hardware.</td>
+*     </tr>
+*     <tr>
+*        <td>Re-factored Shutdown code for Dual CPU mode.</td>
+*        <td>Improved the handling of Cy_BLE_StackShutdown API to avoid timing-sensitive bugs.</td>
+*     </tr>
+*
 *     <tr>
 *         <td rowspan="3">5.0.7.196</td>
 *         <td>Updated the APIs to handle the interrupt locking.</td>
@@ -1800,7 +1850,7 @@
 *     <tr>
 *         <td>Re-factored the radio initialization sequence.</td>
 *         <td>It was observed that on customer boards, re-factoring the radio initialization sequence provided
-*     	 	 an improved stability to the reset sequence.</td>
+*             an improved stability to the reset sequence.</td>
 *     </tr>
 *     <tr>
 *        <td>Fix for CVE-2019-16336.</td>
@@ -1808,7 +1858,7 @@
 *            malicious packets. Malformed Data packets will be dropped in the LL.
 *            Malformed Control packets will be replied with LL_UNKNOWN_RSP. 
 *            For detail, refer to the [CVE-2019-16336](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16336) vulnerability page.
-*	  	 </td>
+*     </td>
 *     </tr>
 *
 *     <tr>

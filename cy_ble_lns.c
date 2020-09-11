@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_lns.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for Location and Navigation service.
@@ -1202,7 +1202,7 @@ static void Cy_BLE_LNSC_DiscoverCharacteristicsEventHandler(cy_stc_ble_disc_char
 *  event. Based on the service UUID, an appropriate data structure is populated
 *  using the data received as part of the callback.
 *
-*  \param discCharInfo: The pointer to the characteristic information structure.
+*  \param discDescrInfo: The pointer to a descriptor information structure.
 *
 ******************************************************************************/
 static void Cy_BLE_LNSC_DiscoverCharDescriptorsEventHandler(cy_stc_ble_disc_descr_info_t * discDescrInfo)

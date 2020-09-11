@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_ess.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the source code for the Environmental Sensing service.
@@ -359,6 +359,7 @@ cy_en_ble_gatt_err_code_t Cy_BLE_ESSS_CheckIfInRange(uint32_t min,
 *  Performs an extraction of the characteristic value ranges then compares it to
 *  the value received from the client and returns a result of the comparison.
 *
+*  \param connHandle: The connection handle.
 *  \param charIndex: The index of the service characteristic. Starts with zero.
 *  \param charInstance: The instance number of the characteristic specified by
 *                "charIndex".

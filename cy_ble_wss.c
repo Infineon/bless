@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_wss.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the source code for the Weight Scale service.
@@ -206,7 +206,7 @@ void Cy_BLE_WSS_RegisterAttrCallback(cy_ble_callback_t callbackFunc)
 *
 *  Handles Write Request event for Weight Scale service. 
 *
-*  \param void *eventParam: The pointer to the data structure specified by the event.
+*  \param eventParam: The pointer to the data structure specified by the event.
 *
 ******************************************************************************/
 static cy_en_ble_gatt_err_code_t Cy_BLE_WSSS_WriteEventHandler(const cy_stc_ble_gatts_write_cmd_req_param_t *eventParam)

@@ -1,6 +1,6 @@
 /***************************************************************************//**
-* \file CY_BLE_ips.c
-* \version 3.40
+* \file cy_ble_ips.c
+* \version 3.50
 *
 * \brief
 *  Contains the source code for Indoor Positioning service.
@@ -1825,7 +1825,7 @@ static void Cy_BLE_IPSC_DiscoverCharacteristicsEventHandler(cy_stc_ble_disc_char
 *  event. Based on the service UUID, an appropriate data structure is populated
 *  using the data received as part of the callback.
 *
-*  \param discCharInfo: The pointer to the characteristic information structure.
+*  \param discDescrInfo: The pointer to a descriptor information structure.
 *
 ******************************************************************************/
 static void Cy_BLE_IPSC_DiscoverCharDescriptorsEventHandler(cy_stc_ble_disc_descr_info_t *discDescrInfo)

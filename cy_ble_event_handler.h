@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_event_handler.h
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the prototypes and constants used in the event Handler State Machine

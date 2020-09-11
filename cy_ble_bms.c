@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_bms.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the Bond Management service.
@@ -525,9 +525,7 @@ static cy_en_ble_gatt_err_code_t Cy_BLE_BMSS_WriteEventHandler(cy_stc_ble_gatts_
 *
 *  Handles a Prepare Write Request event.
 *
-*  \param cy_stc_ble_gatts_prep_write_req_param_t *eventParam: The pointer to the data that
-*                                                  came with a Prepare Write
-*                                                  request.
+*  \param eventParam: The pointer to the data that came with a Prepare Write request.
 *
 ******************************************************************************/
 static void Cy_BLE_BMSS_PrepareWriteRequestEventHandler(cy_stc_ble_gatts_prep_write_req_param_t *eventParam)
@@ -563,8 +561,7 @@ static void Cy_BLE_BMSS_PrepareWriteRequestEventHandler(cy_stc_ble_gatts_prep_wr
 *
 *  Handles an Execute Write Request event.
 *
-*  \param cy_stc_ble_gatts_exec_write_req_t *eventParam: The pointer to the data that came
-*                                            with a Write Request.
+*  \param eventParam: The pointer to the data that came with a Write Request.
 *
 ******************************************************************************/
 static void Cy_BLE_BMSS_ExecuteWriteRequestEventHandler(cy_stc_ble_gatts_exec_write_req_t *eventParam)
@@ -1114,7 +1111,7 @@ static void Cy_BLE_BMSC_DiscoverCharacteristicsEventHandler(cy_stc_ble_disc_char
 *  event. Based on the service UUID, the appropriate data structure is populated
 *  using the data received as part of the callback.
 *
-*  \param discCharInfo: The pointer to a characteristic information structure.
+*  \param discDescrInfo: The pointer to a descriptor information structure.
 *
 ******************************************************************************/
 static void Cy_BLE_BMSC_DiscoverCharDescriptorsEventHandler(cy_stc_ble_disc_descr_info_t *discDescrInfo)

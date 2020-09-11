@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_cgms.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the Continuous Glucose Monitoring
@@ -1345,7 +1345,7 @@ static void Cy_BLE_CGMSC_DiscoverCharacteristicsEventHandler(cy_stc_ble_disc_cha
 *  event. Based on the service UUID, an appropriate data structure is populated
 *  using the data received as part of the callback.
 *
-*  \param discCharInfo: The pointer to a characteristic information structure.
+*  \param discDescrInfo: The pointer to a descriptor information structure.
 *
 ******************************************************************************/
 static void Cy_BLE_CGMSC_DiscoverCharDescriptorsEventHandler(cy_stc_ble_disc_descr_info_t *discDescrInfo)

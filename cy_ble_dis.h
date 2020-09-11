@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_dis.h
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the function prototypes and constants for Device Information
@@ -145,8 +145,8 @@ extern const cy_stc_ble_disc_config_t *cy_ble_discConfigPtr;
 *
 *  Returns the discovered peer device Characteristic value handle.
 *
-*  \param serviceIndex: The index of the service instance.
-*  \param charIndex: The index of a service Characteristic.
+*  \param connHandle: The connection handle.
+*  \param charIndex:  The index of a service Characteristic.
 *
 * \return
 *  Returns Characteristic value handle of type cy_ble_gatt_db_attr_handle_t.

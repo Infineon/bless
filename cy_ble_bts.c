@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_bts.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the source code for the Bootloader service.
@@ -121,11 +121,10 @@ void Cy_BLE_BTS_RegisterAttrCallback(cy_ble_callback_t callbackFunc)
 *
 *  Handles a Write Request event for the Bootloader service.
 *
-*  \param cy_stc_ble_gatts_write_cmd_req_param_t * eventParam: The pointer to data that came
-*                                              with a Write Request for BTS.
+*  \param eventParam: The pointer to data that came with a Write Request for BTS.
 *
-* \return
-*  Return a value of type cy_en_ble_gatt_err_code_t:
+*  \return
+*   Return a value of type cy_en_ble_gatt_err_code_t:
 *
 *   Error Codes                           | Description
 *   ------------                          | -----------
@@ -211,11 +210,10 @@ static cy_en_ble_gatt_err_code_t Cy_BLE_BTS_WriteEventHandler(cy_stc_ble_gatts_w
 *  Handles the Write Without Response Request event for the Bootloader service.
 *  service.
 *
-*  \param cy_stc_ble_gatts_write_cmd_req_param_t * eventParam: The pointer to a data structure
-*                                                    specified by the event.
+*  \param eventParam: The pointer to a data structure specified by the event.
 *
-* \return
-*  Return a value of type cy_en_ble_gatt_err_code_t:
+*  \return
+*   Return a value of type cy_en_ble_gatt_err_code_t:
 *
 *   Error Codes                           | Description
 *   ------------                          | -----------
@@ -293,10 +291,8 @@ static void Cy_BLE_BTSS_WriteCmdEventHandler(cy_stc_ble_gatts_write_cmd_req_para
 *
 *  Handles a Prepare Write Request event for the Bootloader service.
 *
-*  \param cy_stc_ble_gatts_prep_write_req_param_t *eventParam: The pointer to the data
-*                                                  received with a Prepare Write
-*                                                  Request event for the
-*                                                  Bootloader service.
+*  \param eventParam: The pointer to the data received with a Prepare Write
+*                     Request event for the Bootloader service.
 *
 ******************************************************************************/
 static void Cy_BLE_BTSS_PrepareWriteRequestEventHandler(cy_stc_ble_gatts_prep_write_req_param_t *eventParam)
@@ -320,9 +316,8 @@ static void Cy_BLE_BTSS_PrepareWriteRequestEventHandler(cy_stc_ble_gatts_prep_wr
 *
 *  Handles an Execute Write Request event for the Bootloader service.
 *
-*  \param cy_stc_ble_gatts_exec_write_req_t *eventParam: The pointer to the data that came
-*                                            with a Write Request for the
-*                                            Bootloader service.
+*  \param eventParam: The pointer to the data that came with a Write Request
+*                     for the Bootloader service.
 *
 ******************************************************************************/
 static void Cy_BLE_BTSS_ExecuteWriteRequestEventHandler(cy_stc_ble_gatts_exec_write_req_t *eventParam)
@@ -346,17 +341,16 @@ static void Cy_BLE_BTSS_ExecuteWriteRequestEventHandler(cy_stc_ble_gatts_exec_wr
 *  Sends a notification with the characteristic value, as specified by its 
 *  charIndex, to the client device.
 *
-*  \param connHandle: The BLE peer device connection handle
-*
+*  \param connHandle: The BLE peer device connection handle.
 *  \param charIndex:  The index of the service characteristic of 
-*                     type \ref cy_en_ble_bts_char_index_t. The valid value is
-*                     * \ref  CY_BLE_BTS_BT_SERVICE
+*                     type cy_en_ble_bts_char_index_t. The valid value is
+*                     * CY_BLE_BTS_BT_SERVICE
 *  \param attrSize:   The size of the characteristic value attribute.
 *  \param attrValue:  The pointer to the characteristic value data that should be
 *                     sent to the client device.
 *
-* \return
-*  A return value of type \ref cy_en_ble_api_result_t.
+*  \return
+*   A return value of type \ref cy_en_ble_api_result_t.
 *
 *   Error Codes                              | Description
 *   ------------                             | -----------

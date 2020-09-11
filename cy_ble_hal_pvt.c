@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_hal_pvt.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the HAL section of the PSoC 6 BLE Middleware.
@@ -15,6 +15,7 @@
 
 #include "cy_device.h"
 #include "cy_syspm.h"
+#include "cy_sysclk.h"
 #include "cy_ble_hal_pvt.h"
 
 #if defined(CY_IP_MXBLESS)
@@ -32,7 +33,10 @@ cy_ble_intr_callback_t Cy_BLE_InterruptCallback = NULL;
 cy_stc_ble_intr_notify_t *intrNotifyPtr = NULL;
 
 /* Nominal trim step size */
+#if ((CY_SYSCLK_DRV_VERSION_MAJOR == 2) && (CY_SYSCLK_DRV_VERSION_MINOR <= 10)) || \
+     (CY_SYSCLK_DRV_VERSION_MAJOR < 2)
 static uint32 piloTrimStepSize = CY_BLE_PILO_TRIM_STEP;
+#endif /* (CY_SYSCLK_DRV_VERSION_MAJOR == 2) && (CY_SYSCLK_DRV_VERSION_MINOR <= 10) */
 
 /* Pointer to BLE configuration structure (uses in hal only) */
 static cy_stc_ble_config_t *cy_ble_halConfigPtr = NULL;
@@ -663,14 +667,14 @@ uint8_t Cy_BLE_HAL_IsEcoCpuClockSrc(void)
 * Function Name: Cy_BLE_HAL_EcoGetFrequency
 ****************************************************************************//**
 *
-*  Reports the frequency of the output of a BLE ECO clock.
+*  Return the frequency of the output of a BLE ECO clock.
 *
 *  \return The frequency, in Hz.
 *
 *******************************************************************************/
 uint32_t Cy_BLE_HAL_EcoGetFrequency(void)
 {
-    return(cy_BleEcoClockFreqHz);
+    return (cy_BleEcoClockFreqHz);
 }
 
 
@@ -687,10 +691,7 @@ uint32_t Cy_BLE_HAL_EcoGetFrequency(void)
 *******************************************************************************/
 uint8_t Cy_BLE_HAL_IsWcoLfclkSrc(void)
 {
-    cy_en_clklf_in_sources_t lfclkSrs;
-
-    lfclkSrs = Cy_SysClk_ClkLfGetSource();
-
+    cy_en_clklf_in_sources_t lfclkSrs = Cy_SysClk_ClkLfGetSource();
     return(((lfclkSrs == CY_SYSCLK_CLKLF_IN_WCO) ||
             (lfclkSrs == CY_SYSCLK_CLKLF_IN_PILO)) ? 1U : 0U);
 }
@@ -755,6 +756,8 @@ uint32_t Cy_BLE_HAL_StartClkMeasurementCounters(cy_en_meas_clks_t clock1,
     return((uint32_t) retVal);
 }
 
+#if ((CY_SYSCLK_DRV_VERSION_MAJOR == 2) && (CY_SYSCLK_DRV_VERSION_MINOR <= 10)) || \
+     (CY_SYSCLK_DRV_VERSION_MAJOR < 2)
 
 /*******************************************************************************
 * Function Name: Cy_BLE_HAL_SetPiloTrimStep
@@ -778,11 +781,11 @@ void Cy_BLE_HAL_SetPiloTrimStep(uint32_t stepSize)
 *
 * Trims the PILO to be as close to 32,768 Hz as possible.
 *
-* \param piloFreq: current PILO frequency. Call \ref Cy_SysClk_StartClkMeasurementCounters
-*                  and other measurement functions to obtain the current frequency of
-*                  the PILO.
-* \param piloFreq: target frequency.
-* \param stepSize: nominal trim step size.
+* \param piloFreq:   current PILO frequency. Call Cy_SysClk_StartClkMeasurementCounters
+*                    and other measurement functions to obtain the current frequency of
+*                    the PILO.
+* \param targetFreq: target frequency.
+* \param stepSize:   nominal trim step size.
 *
 * \return Change in trim value; 0 if done, that is, no change in trim value.
 *
@@ -818,6 +821,7 @@ int32_t Cy_BLE_HAL_TryPiloTrim(uint32_t piloFreq, uint32_t targetFreq, uint32_t 
 
     return ((int32_t)curTrim -(int32_t) newTrim);
 }
+#endif /* (CY_SYSCLK_DRV_VERSION_MAJOR == 2) && (CY_SYSCLK_DRV_VERSION_MINOR <= 10) */
 
 
 /*******************************************************************************
@@ -829,9 +833,14 @@ int32_t Cy_BLE_HAL_TryPiloTrim(uint32_t piloFreq, uint32_t targetFreq, uint32_t 
 *******************************************************************************/
 int32_t Cy_BLE_HAL_PiloTrim(uint32_t piloFreq)
 {
-    return(Cy_BLE_HAL_TryPiloTrim(piloFreq, CY_BLE_PILO_TARGET_FREQ, piloTrimStepSize));
+#if ((CY_SYSCLK_DRV_VERSION_MAJOR == 2) && (CY_SYSCLK_DRV_VERSION_MINOR <= 10)) || \
+     (CY_SYSCLK_DRV_VERSION_MAJOR < 2)
+    return(Cy_BLE_HAL_TryPiloTrim(piloFreq, CY_BLE_PILO_TARGET_FREQ, 
+                                  piloTrimStepSize));
+#else
+    return(Cy_SysClk_PiloTrim(piloFreq));
+#endif /* (CY_SYSCLK_DRV_VERSION_MAJOR == 2) && (CY_SYSCLK_DRV_VERSION_MINOR <= 10) */
 }
-
 
 /*******************************************************************************
 * Function Name: Cy_BLE_HAL_EnableDefaultEco
@@ -856,7 +865,8 @@ cy_en_ble_api_result_t Cy_BLE_HAL_EnableDefaultEco(void)
                                          CY_BLE_DEFAULT_OSC_STARTUP_DELAY_LF, 
                                          CY_BLE_DEFAULT_CY_BLE_ECO_VOLTAGE_REG );
 
-        if ((ecoStatus != CY_BLE_ECO_SUCCESS) && (ecoStatus != CY_BLE_ECO_ALREADY_STARTED))
+        if ((ecoStatus != CY_BLE_ECO_SUCCESS) && 
+            (ecoStatus != CY_BLE_ECO_ALREADY_STARTED))
         {
             /* CY_BLE_ERROR_HARDWARE_FAILURE */
             apiResult = CY_BLE_ERROR_HARDWARE_FAILURE;
@@ -1671,8 +1681,8 @@ void Cy_BLE_HAL_UART_Stop(void)
 *  Sends the data to UART TX FIFO. The function handles data length up to the
 *  supported TX FIFO length of the UART hardware module.
 *
-*  \param data: Pointer to the data to send through the UART
-*  \param length: the length of data to transmit in bytes
+*  \param dataBuf: Pointer to the data to send through the UART
+*  \param length:  the length of data to transmit in bytes
 *
 *******************************************************************************/
 void Cy_BLE_HAL_UART_Transmit(uint8_t *dataBuf,

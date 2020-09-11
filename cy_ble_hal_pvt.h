@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_hal_pvt.h
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the function prototypes and constants for the HAL section
@@ -165,8 +165,11 @@ uint32_t Cy_BLE_HAL_ClkMeasurementCountersGetFreq(bool measuredClock, uint32_t r
 uint32_t Cy_BLE_HAL_StartClkMeasurementCounters(cy_en_meas_clks_t clock1, uint32_t count1, cy_en_meas_clks_t clock2);
 int32_t Cy_BLE_HAL_PiloTrim(uint32_t piloFreq);
 cy_en_clklf_in_sources_t Cy_BLE_HAL_LfClkGetSource(void);
+#if ((CY_SYSCLK_DRV_VERSION_MAJOR == 2) && (CY_SYSCLK_DRV_VERSION_MINOR <= 10)) || \
+     (CY_SYSCLK_DRV_VERSION_MAJOR < 2)
 void Cy_BLE_HAL_SetPiloTrimStep(uint32_t stepSize);
 int32_t Cy_BLE_HAL_TryPiloTrim(uint32_t piloFreq, uint32_t targetFreq, uint32_t stepSize);
+#endif /* (CY_SYSCLK_DRV_VERSION_MAJOR == 2) && (CY_SYSCLK_DRV_VERSION_MINOR <= 10) */
 cy_en_ble_api_result_t Cy_BLE_HAL_EnableDefaultEco(void);
 
 /* Stack Interface to flash */

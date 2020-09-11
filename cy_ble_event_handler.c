@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_event_handler.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the event Handler State Machine
@@ -814,9 +814,28 @@ void Cy_BLE_ServerEventHandler(cy_en_ble_event_t event, void *evParam)
         case CY_BLE_EVT_GATTS_WRITE_REQ:
         {
             cy_en_ble_gatt_err_code_t gattErr;
-            if((((cy_stc_ble_gatts_write_cmd_req_param_t*)evParam)->handleValPair.attrHandle >
-                    cy_ble_configPtr->params->gattDbIndexCount) ||
-               (((cy_stc_ble_gatts_write_cmd_req_param_t*)evParam)->handleValPair.attrHandle == 0u))
+            cy_ble_gatt_db_attr_handle_t attrHandle;
+
+            /* Process GATT service */
+            gattErr = Cy_BLE_GATTS_WriteEventHandler((cy_stc_ble_gatts_write_cmd_req_param_t*)evParam);
+            
+            /* Process all registered service */
+            if(gattErr == CY_BLE_GATT_ERR_NONE)
+            {
+                gattErr = Cy_BLE_InvokeServiceEventHandler((uint32_t)event, (void*)evParam);
+            }
+            Cy_BLE_SendWriteResponse((cy_stc_ble_gatts_write_cmd_req_param_t*)evParam, gattErr);
+
+            /* Call Cy_BLE_ApplCallback if event was not processed */
+            if((cy_ble_eventHandlerFlag & (CY_BLE_CALLBACK | CY_BLE_ENABLE_ALL_EVENTS)) != 0u)
+            {
+                Cy_BLE_ApplCallback((uint32_t)event, evParam);
+            }
+
+            /* Send Error response if unknown attr handle */
+            attrHandle = ((cy_stc_ble_gatts_write_cmd_req_param_t*)evParam)->handleValPair.attrHandle;
+            if( ((cy_ble_eventHandlerFlag & CY_BLE_CALLBACK) != 0u) && 
+                ((attrHandle > cy_ble_configPtr->params->gattDbIndexCount) || (attrHandle == 0u)))
             {
                 /* Processing unknown attr handle (send an Error Response) */
                 cy_stc_ble_gatt_err_param_t err_param;
@@ -827,15 +846,6 @@ void Cy_BLE_ServerEventHandler(cy_en_ble_event_t event, void *evParam)
 
                 (void)Cy_BLE_GATTS_ErrorRsp(&err_param);
                 cy_ble_eventHandlerFlag &= (uint8_t) ~CY_BLE_CALLBACK;
-            }
-            else
-            {
-                gattErr = Cy_BLE_GATTS_WriteEventHandler((cy_stc_ble_gatts_write_cmd_req_param_t*)evParam);
-                if(gattErr == CY_BLE_GATT_ERR_NONE)
-                {
-                    gattErr = Cy_BLE_InvokeServiceEventHandler((uint32_t)event, (void*)evParam);
-                }
-                Cy_BLE_SendWriteResponse((cy_stc_ble_gatts_write_cmd_req_param_t*)evParam, gattErr);
             }
         }
         break;
@@ -1143,7 +1153,6 @@ void Cy_BLE_NextInclDiscovery(cy_stc_ble_conn_handle_t connHandle,
 *  event. Based on the service UUID, an appropriate data structure is populated
 *  using the data received as part of the callback.
 *
-*  \param connHandle:    The connection handle.
 *  \param discCharInfo:  The pointer to the characteristic information structure.
 *
 ******************************************************************************/

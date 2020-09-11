@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.40: Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.40</title>
+<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50: Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -28,9 +28,9 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><a href="http://www.cypress.com/"><img alt="Logo" src="cypress_logo.png"/></a></td>
+  <td id="projectlogo"><a href="http://www.cypress.com/"><img alt="Logo" src="IFXCYP_one-line.png"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.40</div>
+   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50</div>
   </td>
  </tr>
  </tbody>
@@ -81,7 +81,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.40 </div>  </div>
+<div class="title">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50 </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>The Bluetooth Low Energy (BLE) middleware contains a comprehensive API to configure the BLE Stack and the underlying chip hardware.</p>
@@ -228,6 +228,25 @@ PSoC 6 BLE Middleware Changes</h1>
 <p class="endtd"></p>
 </th></tr>
 <tr>
+<td rowspan="7">3.50 </td><td>Updated PILO part of BLESS MW HAL to be compatible with psoc6pdl 1.6.1.<br />
+<br />
+ Refer to section <a class="el" href="page_ble_section_more_information.html#group_ble_lfclk_Pilo_conf">Configuring PILO for BLESS Deep Sleep Mode</a> for details about the requirements for using the PILO as the LF clock source. </td><td>To support PILO on the PSoC 64 Secure device.  </td></tr>
+<tr>
+<td>Added BLE Stack controller libraries with IPC communication (BLESS_CONTROLLER_IPC) for CM0+. </td><td>Enable users to build their own CM0+ image with a BLE controller to operate in BLE Dual CPU mode.  </td></tr>
+<tr>
+<td>Updated the procedure of processing the CY_BLE_EVT_GATTS_WRITE_REQ event: an error response (with reason INVALID_HANDLE) is sent, if the handle was processed neither by registered services nor an application BLE callback. </td><td>Improved the handling of the CY_BLE_EVT_GATTS_WRITE_REQ event to allow operation with a custom GATT database.  </td></tr>
+<tr>
+<td>Updated the CY_BLE_SFLASH_DIE_xxx macros (in cy_ble_gap.h) according to the PSoC 6 BLE production configuration. </td><td>The silicon-generated "Company assigned" part of the device address has a high repetition rate of the generated MAC address. <dl class="section note"><dt>Note</dt><dd>The silicon-generated "Company assigned" option does not guarantee a unique device address. For mass production, Cypress strongly suggests that the device address be programmed into the user area (Row 0) of the Sflash location via the SWD interface. Refer to section "Public device address" of <a href="https://www.cypress.com/ModusToolboxBLEConfig">ModusToolbox BT Configurator Guide</a> for details  </dd></dl>
+</td></tr>
+<tr>
+<td>Added preprocessor expression to verify count of GATT database entries. </td><td>BLE Stack supports maximum 512 entries of GATT database.  </td></tr>
+<tr>
+<td>Documentation updates. </td><td>Changed the code snippet for initial PILO trimming and updating the trim step-size in section <a class="el" href="page_ble_section_more_information.html#group_ble_lfclk_Pilo_conf">Configuring PILO for BLESS Deep Sleep Mode</a>. </td></tr>
+<tr>
+<td>Updated the BLE Stack to version 5.0.8.220. </td><td><p class="starttd">Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a>. </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
 <td rowspan="3">3.40 </td><td>Added BLE Stack libraries for CM0+ core.  </td><td>Support BLE CM0+ Single CPU mode.  </td></tr>
 <tr>
 <td>Updated the procedure of processing events to wait 10 ms on CY_BLE_EVT_SOFT_RESET_COMPLETE events. </td><td>Ensure that the controller is completely reset before generating the event to the application. Refer to CY_BLE_EVT_SOFT_RESET_COMPLETE event documentation.  </td></tr>
@@ -254,7 +273,7 @@ PSoC 6 BLE Middleware Changes</h1>
 <tr>
 <td>Added support for BLE dual CPU mode with pre-compiled CM0 image. </td><td>Pre-compiled application images executed on Cortex M0+ core of the PSoC 6 dual-core MCU. The images are provided as C arrays ready to be compiled as part of the Cortex M4 application. The Cortex M0+ application code is placed to internal flash by the Cortex M4 linker script. CM0P_BLESS image is used for BLE dual CPU mode.  </td></tr>
 <tr>
-<td>Fixed CY_BLE_ENABLE_PHY_UPDATE macros for enable "LE 2 Mbps" feature. </td><td>"Enable LE 2 Mbps" feature does not work if it selects in BT Confirurator.  </td></tr>
+<td>Fixed CY_BLE_ENABLE_PHY_UPDATE macros for enable "LE 2 Mbps" feature. </td><td>"Enable LE 2 Mbps" feature does not work if it selects in BT Configurator.  </td></tr>
 <tr>
 <td>The PSoC 6 BLE Middleware is re-organized for supporting MT2.0 make flow. </td><td>Support new make flow. Refer to section <a class="el" href="page_ble_section_configuration_considerations.html">Configuration Considerations</a> for details.   </td></tr>
 <tr>
@@ -286,7 +305,7 @@ PSoC 6 BLE Middleware Changes</h1>
 <ul>
 <li>The BLE configure structure and BLE service configure structures were updated.<br />
 </li>
-<li>Changed the configuration flow. Refer to section "Configuration Considerations" to configuration details.<br />
+<li>Changed the configuration flow. Refer to section <a class="el" href="page_ble_section_configuration_considerations.html">Configuration Considerations</a> to configuration details.<br />
 </li>
 <li>Added the following functions:<br />
  <a class="el" href="group__group__ble__common__api__functions.html#ga3d3e2bf00cc87f8dfc17fa0c68fd7506">Cy_BLE_RegisterEventCallback()</a>,<br />
@@ -306,7 +325,7 @@ PSoC 6 BLE Middleware Changes</h1>
 <tr>
 <td>Documentation updates.  </td><td>Documentation update and clarification.  </td></tr>
 <tr>
-<td>Updated the BLE Stack to version 5.0.3.935. </td><td><p class="starttd">Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a> </p>
+<td>Updated the BLE Stack to version 5.0.3.935. </td><td><p class="starttd">Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a>. </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -320,7 +339,7 @@ PSoC 6 BLE Middleware Changes</h1>
 <tr>
 <td>Documentation updates.  </td><td>Documentation update and clarification. Removed the Errata section.   </td></tr>
 <tr>
-<td>Updated the BLE Stack to version 5.0.2.917. </td><td><p class="starttd">Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a> </p>
+<td>Updated the BLE Stack to version 5.0.2.917. </td><td><p class="starttd">Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a>. </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -349,7 +368,7 @@ PSoC 6 BLE Middleware Changes</h1>
   </td><td>Deprecated not supported (debug) modes.<br />
  The defines CY_BLE_CONFIG_STACK_DEBUG and CY_BLE_CONFIG_STACK_RELEASE were renamed to have more meaningful name.   </td></tr>
 <tr>
-<td>The BLE Stack was updated to version 5.0.0.898.  </td><td><p class="starttd">Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a> </p>
+<td>The BLE Stack was updated to version 5.0.0.898.  </td><td><p class="starttd">Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a>. </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -369,7 +388,7 @@ PSoC 6 BLE Middleware Changes</h1>
  <a class="el" href="group__group__ble__common__api__gatt__server__functions.html#ga144da11ae3b06cec1d3d52b669ce7882" title="Replacement for Cy_BLE_GATTS_ErrorRsp() API. ">Cy_BLE_GATTS_SendErrorRsp()</a>,<br />
  <a class="el" href="group__group__ble__common__api__gatt__client__functions.html#gaba9c39370753dfc17b8aafed74881c35" title="Replacement for Cy_BLE_GATTC_Confirmation() API. ">Cy_BLE_GATTC_SendConfirmation()</a>.  </td><td>Improve usability  </td></tr>
 <tr>
-<td>The BLE Stack was updated to version 5.0.0.855. </td><td><p class="starttd">Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a> </p>
+<td>The BLE Stack was updated to version 5.0.0.855. </td><td><p class="starttd">Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a>. </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -383,7 +402,7 @@ PSoC 6 BLE Middleware Changes</h1>
 <tr>
 <td>Added new options for the CPU Core parameter. </td><td>Support of single-core devices.  </td></tr>
 <tr>
-<td>The BLE Stack was updated to version 5.0.0.785. </td><td><p class="starttd">Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a> </p>
+<td>The BLE Stack was updated to version 5.0.0.785. </td><td><p class="starttd">Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a>. </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -394,7 +413,17 @@ BLE Stack Changes</h1>
 <p>This section lists changes made to the BLE Stack.</p>
 <table class="doxtable">
 <tr>
-<th><b>Version</b></th><th><b>Changes</b></th><th><b>Reason for Change</b> </th></tr>
+<th><b>Version</b></th><th><b>Changes</b></th><th><p class="starttd"><b>Reason for Change</b></p>
+<p class="endtd"></p>
+</th></tr>
+<tr>
+<td rowspan="3">5.0.8.220 </td><td>Updated BLE ISR for SoC mode. </td><td>Enhanced the BLE ISR to handle LL Channel Map in interrupt context for SoC mode.  </td></tr>
+<tr>
+<td>Updated low-power mode API. </td><td>Updated Cy_BLE_ControllerEnterLPM API for handling a scenario where wake-up is initiated by the hardware.  </td></tr>
+<tr>
+<td>Re-factored Shutdown code for Dual CPU mode. </td><td><p class="starttd">Improved the handling of Cy_BLE_StackShutdown API to avoid timing-sensitive bugs. </p>
+<p class="endtd"></p>
+</td></tr>
 <tr>
 <td rowspan="3">5.0.7.196 </td><td>Updated the APIs to handle the interrupt locking. </td><td>A better locking mechanism to avoid potential timing-sensitive bugs.  </td></tr>
 <tr>
@@ -502,7 +531,7 @@ BLE Stack Changes</h1>
 <div id="nav-path" class="navpath">
     <ul>
         <li class="footer">
-            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.40</b> by <b>Cypress Semiconductor Corporation</b>.
+            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50</b> by <b>Cypress Semiconductor Corporation</b>.
             All rights reserved.
         </li>
     </ul>

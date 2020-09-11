@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_controller.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the API of the PSoC 6 BLE Middleware.
@@ -484,9 +484,11 @@ void Cy_BLE_EnableControllerLowPowerMode(void)
 *  Cy_BLE_EnableLowPowerMode() function).
 *
 *  \param
-*  callbackParams  pointer to the structure with the syspm callback parameters
-*                  callbackParams->mode - the callback mode, see description
-*                  of the cy_en_syspm_callback_mode_t type.
+*  callbackParams  Pointer to the structure with the syspm callback parameters.
+*
+*  \param
+*  mode            The associated syspm callback mode. See description of the
+*                  cy_en_syspm_callback_mode_t type.
 *
 *  \return
 *  * CY_SYSPM_SUCCESS  - Entered and exited from CPU deep sleep

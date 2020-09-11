@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_rscs.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the source code for Running Speed and Cadence service.
@@ -389,9 +389,8 @@ cy_en_ble_api_result_t Cy_BLE_RSCSS_GetCharacteristicDescriptor(cy_stc_ble_conn_
 *
 *  Handles the Write Request event for the Running Speed and Cadence service.
 *
-*  \param cy_stc_ble_gatts_write_cmd_req_param_t *eventParam: The pointer to the data that came
-*                                             with a Write Request for the
-*                                             Running Speed and Cadence service.
+*  \param eventParam: The pointer to the data that came with a Write Request
+                      for the Running Speed and Cadence service.
 *
 * \return
 *  Return a value of type cy_en_ble_gatt_err_code_t:
@@ -706,8 +705,7 @@ cy_en_ble_api_result_t Cy_BLE_RSCSS_SendIndication(cy_stc_ble_conn_handle_t conn
 *
 *  Handles the Value Confirmation request event from the BLE Stack.
 *
-*  \param cy_stc_ble_conn_handle_t *event_params: Pointer to a structure of type
-*                                     cy_stc_ble_conn_handle_t.
+*  \param eventParam: Pointer to a structure of type cy_stc_ble_conn_handle_t.
 *
 *******************************************************************************/
 static void Cy_BLE_RSCSS_ConfirmationEventHandler(const cy_stc_ble_conn_handle_t *eventParam)
@@ -813,10 +811,10 @@ static void Cy_BLE_RSCSC_DiscoverCharacteristicsEventHandler(cy_stc_ble_disc_cha
 *
 *  This function is called on receiving a #CY_BLE_EVT_GATTC_FIND_INFO_RSP event.
 *  This event is generated when a server successfully sends the data for
-*  #CY_BLE_EVT_GATTC_FIND_INFO_REQ. Based on the service UUID, an appropriate data
+*  #CY_BLE_GATT_FIND_INFO_REQ. Based on the service UUID, an appropriate data
 *  structure is populated to the service with a service callback.
 *
-*  \param * discCharInfo: The pointer to a characteristic information structure.
+*  \param  discDescrInfo: The pointer to descriptor information structure.
 *
 *******************************************************************************/
 static void Cy_BLE_RSCSC_DiscoverCharDescriptorsEventHandler(cy_stc_ble_disc_descr_info_t * discDescrInfo)
@@ -921,10 +919,8 @@ static void Cy_BLE_RSCSC_GetCharRange(cy_stc_ble_disc_range_info_t *charRangeInf
 *
 *  Handles the Notification event for the Running Speed and Cadence service.
 *
-*  \param cy_stc_ble_gattc_handle_value_ntf_param_t *eventParam: The pointer to the
-*                                                    cy_stc_ble_gattc_handle_value_ntf_param_t
-*                                                    data structure specified by
-*                                                    the event.
+*  \param eventParam: The pointer to the cy_stc_ble_gattc_handle_value_ntf_param_t
+*                     data structure specified by the event.
 *
 *******************************************************************************/
 static void Cy_BLE_RSCSC_NotificationEventHandler(cy_stc_ble_gattc_handle_value_ntf_param_t *eventParam)
@@ -959,9 +955,8 @@ static void Cy_BLE_RSCSC_NotificationEventHandler(cy_stc_ble_gattc_handle_value_
 *
 *  Handles the Indication event for the Running Speed and Cadence service.
 *
-*  \param cy_stc_ble_gattc_handle_value_ind_param_t *eventParam: The pointer to the
-*                                                    cy_stc_ble_gattc_handle_value_ntf_param_t
-*                                                    data structure specified by the event.
+*  \param eventParam: The pointer to the cy_stc_ble_gattc_handle_value_ntf_param_t
+*                     data structure specified by the event.
 *
 *******************************************************************************/
 static void Cy_BLE_RSCSC_IndicationEventHandler(cy_stc_ble_gattc_handle_value_ind_param_t *eventParam)
@@ -995,8 +990,7 @@ static void Cy_BLE_RSCSC_IndicationEventHandler(cy_stc_ble_gattc_handle_value_in
 *
 *  Handles the Read Response event for the Running Speed and Cadence service.
 *
-*  \param cy_stc_ble_gattc_read_rsp_param_t *eventParam: The pointer to the data that came
-*                                            with a read response for RSCS.
+*  \param eventParam: The pointer to the data that came with a read response for RSCS.
 *
 *******************************************************************************/
 static void Cy_BLE_RSCSC_ReadResponseEventHandler(cy_stc_ble_gattc_read_rsp_param_t *eventParam)
@@ -1083,8 +1077,7 @@ static void Cy_BLE_RSCSC_ReadResponseEventHandler(cy_stc_ble_gattc_read_rsp_para
 *
 *  Handles the Write Response event for the Running Speed and Cadence service.
 *
-*  \param cy_stc_ble_conn_handle_t *eventParam: The pointer to the cy_stc_ble_conn_handle_t data
-*                                   structure.
+*  \param eventParam: The pointer to the cy_stc_ble_conn_handle_t data structure.
 *
 *******************************************************************************/
 static void Cy_BLE_RSCSC_WriteResponseEventHandler(const cy_stc_ble_conn_handle_t *eventParam)

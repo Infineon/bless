@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_plxs.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the Pulse Oximeter service.

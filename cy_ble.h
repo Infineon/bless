@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble.h
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the prototypes and constants used in the PSoC 6 BLE Middleware.
@@ -61,7 +61,7 @@ extern "C" {
 #define CY_BLE_MW_VERSION_MAJOR              (3)
 
 /** Library minor version */
-#define CY_BLE_MW_VERSION_MINOR              (40)
+#define CY_BLE_MW_VERSION_MINOR              (50)
 
 #define CY_BLE_M0S8BLESS_VERSION             (4u)
 #define CY_BLE_SEMA                          (3u)

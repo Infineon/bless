@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_wss.h
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the function prototypes and constants for Weight Scale service.

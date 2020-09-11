@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_ias.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the Immediate Alert service.
@@ -218,8 +218,7 @@ static void Cy_BLE_IASS_DisconnectEventHandler(void)
 *  Handles the Write Without Response Request event for the Immediate Alert
 *  service.
 *
-*  \param cy_stc_ble_gatts_write_cmd_req_param_t * eventParam: The pointer to a data structure
-*                                                    specified by the event.
+*  \param eventParam: The pointer to a data structure specified by the event.
 *
 ******************************************************************************/
 static void Cy_BLE_IASS_WriteCmdEventHandler(cy_stc_ble_gatts_write_cmd_req_param_t *eventParam)

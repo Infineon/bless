@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_gap.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the GAP API of the PSoC 6 BLE Middleware.

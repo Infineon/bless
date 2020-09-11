@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_aios.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the source code for Automation Input Output service.
@@ -2193,7 +2193,6 @@ cy_en_ble_api_result_t Cy_BLE_AIOSC_SetCharacteristicValueWithoutResponse(cy_stc
 *  Returns the discovered peer device characteristic value handle.
 *
 *  \param connHandle:   The connection handle.
-*  \param serviceIndex: The index of the service instance.
 *  \param charIndex:    The index of a service characteristic.
 *  \param charInstance: The instance of characteristic
 *  \return
@@ -2223,7 +2222,6 @@ cy_ble_gatt_db_attr_handle_t Cy_BLE_AIOSC_GetCharacteristicValueHandle(cy_stc_bl
 *  Returns the discovered peer device characteristic descriptor handle.
 *
 *  \param connHandle:   The connection handle.
-*  \param serviceIndex: The index of the service instance.
 *  \param charIndex:    The index of a service characteristic.
 *  \param charInstance: The instance of characteristic
 *  \param descrIndex:   The index of the descriptor.

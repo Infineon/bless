@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_pass.h
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the function prototypes and constants used in

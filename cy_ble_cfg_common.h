@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_cfg_common.h
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the API of the PSoC 6 BLE Middleware.
@@ -434,6 +434,8 @@
 
 /** CRC size for stack flash */
 #define CY_BLE_STACK_FLASH_CRC_SIZE                 (2u)
+
+#define CY_BLE_GATT_DB_INDEX_COUNT_MAX              (512u)
 
 /**
  * \addtogroup group_ble_common_api_macros

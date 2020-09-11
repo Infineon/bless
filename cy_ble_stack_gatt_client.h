@@ -1,6 +1,6 @@
 /*******************************************************************************
 * \file cy_ble_stack_gatt_client.h
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains declarations of public BLE APIs of Generic Attribute Profile - Client Role.

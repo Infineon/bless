@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_ans.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the source code for the Alert Notification service.
@@ -637,10 +637,10 @@ static void Cy_BLE_ANSC_DiscoverCharacteristicsEventHandler(cy_stc_ble_disc_char
 *
 *  This function is called on receiving a #CY_BLE_EVT_GATTC_FIND_INFO_RSP event.
 *  This event is generated when a server successfully sends the data for
-*  #CY_BLE_EVT_GATTC_FIND_INFO_REQ. Based on the service UUID, an appropriate data
+*  #CY_BLE_GATT_FIND_INFO_REQ. Based on the service UUID, an appropriate data
 *  structure is populated to the service with a service callback.
 *
-*  \param *discCharInfo: The pointer to a characteristic information structure.
+*  \param  discDescrInfo: The pointer to descriptor information structure.
 *
 ******************************************************************************/
 static void Cy_BLE_ANSC_DiscoverCharDescriptorsEventHandler(cy_stc_ble_disc_descr_info_t * discDescrInfo)
@@ -781,8 +781,7 @@ static void Cy_BLE_ANSC_NotificationEventHandler(cy_stc_ble_gattc_handle_value_n
 *
 *  Handles Read Response event for Alert Notification service.
 *
-*  \param #cy_stc_ble_gattc_read_rsp_param_t *eventParam: The pointer to the data that came
-*                                            with a read response for ANS.
+*  \param eventParam: The pointer to the data that came with a read response for ANS.
 *
 ******************************************************************************/
 static void Cy_BLE_ANSC_ReadResponseEventHandler(cy_stc_ble_gattc_read_rsp_param_t *eventParam)
@@ -868,8 +867,7 @@ static void Cy_BLE_ANSC_ReadResponseEventHandler(cy_stc_ble_gattc_read_rsp_param
 *
 *  Handles Write Response event for Alert Notification service.
 *
-*  \param cy_stc_ble_conn_handle_t *eventParam: The pointer to the cy_stc_ble_conn_handle_t data
-*                                   structure.
+*  \param eventParam: The pointer to the cy_stc_ble_conn_handle_t data structure.
 *
 ******************************************************************************/
 static void Cy_BLE_ANSC_WriteResponseEventHandler(const cy_stc_ble_conn_handle_t *eventParam)
@@ -948,9 +946,7 @@ static void Cy_BLE_ANSC_WriteResponseEventHandler(const cy_stc_ble_conn_handle_t
 *
 *  Handles Error Response event for Alert Notification service.
 *
-*  \param cy_stc_ble_gatt_err_param_t *eventParam: The pointer to
-*                                           the cy_stc_ble_gatt_err_param_t
-*                                           structure.
+*  \param eventParam: The pointer to the cy_stc_ble_gatt_err_param_t structure.
 *
 ******************************************************************************/
 static void Cy_BLE_ANSC_ErrorResponseEventHandler(const cy_stc_ble_gatt_err_param_t *eventParam)

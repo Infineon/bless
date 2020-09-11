@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_bls.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the Blood Pressure service.
@@ -1051,7 +1051,7 @@ static void Cy_BLE_BLSC_DiscoverCharacteristicsEventHandler(cy_stc_ble_disc_char
 *  event. Based on the service UUID, the appropriate data structure is populated
 *  using the data received as part of the callback.
 *
-*  \param discCharInfo:  The pointer to a characteristic information structure.
+*  \param discDescrInfo: The pointer to a descriptor information structure.
 *
 ******************************************************************************/
 static void Cy_BLE_BLSC_DiscoverCharDescriptorsEventHandler(cy_stc_ble_disc_descr_info_t * discDescrInfo)
@@ -1199,7 +1199,7 @@ static void Cy_BLE_BLSC_IndicationEventHandler(cy_stc_ble_gattc_handle_value_ind
 *
 *  Handles a Read Response event.
 *
-*  \param cy_stc_ble_gattc_read_rsp_param_t *eventParam: The pointer to the data structure.
+*  \param eventParam: The pointer to the data structure specified by the event.
 *
 ******************************************************************************/
 static void Cy_BLE_BLSC_ReadResponseEventHandler(cy_stc_ble_gattc_read_rsp_param_t *eventParam)

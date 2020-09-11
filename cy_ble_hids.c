@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_hids.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the source code for the HID service.
@@ -959,8 +959,7 @@ static void Cy_BLE_HIDSS_OnDeviceConnected(void)
 *  Based on the service UUID, an appropriate data structure is populated using
 *  the data received as part of the callback.
 *
-*  \param discCharInfo: The pointer to a characteristic information structure.
-*  \param discoveryService: The index of the service instance.
+*  \param discInclInfo: The pointer to an included service information structure.
 *
 ******************************************************************************/
 static void Cy_BLE_HIDSC_InclDiscoveryEventHandler(const cy_stc_ble_disc_incl_info_t *discInclInfo)
@@ -1101,7 +1100,7 @@ static void Cy_BLE_HIDSC_DiscoverCharacteristicsEventHandler(cy_stc_ble_disc_cha
 *
 *  This function is called on receiving a #CY_BLE_EVT_GATTC_FIND_INFO_RSP event.
 *  This event is generated when the server successfully sends the data for
-*  #CY_BLE_EVT_GATTC_FIND_INFO_REQ. Based on the service UUID, an appropriate data
+*  #CY_BLE_GATT_FIND_INFO_REQ. Based on the service UUID, an appropriate data
 *  structure is populated to the service with a service callback.
 *
 *  \param discDescrInfo: The pointer to a descriptor information structure.

@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_gap.h
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the prototypes and constants used in the BLE GAP profile.
@@ -51,7 +51,7 @@ extern "C" {
     /* Set defauld configuration (only to make code visible in IDE) */ 
     #define COMPONENT_BLESS_CONTROLLER
     #define COMPONENT_BLESS_HOST
-	
+
 #endif /* ( !defined(COMPONENT_BLESS_CONTROLLER_IPC) && !defined(COMPONENT_BLESS_HOST_IPC) ... */
 
 
@@ -383,16 +383,16 @@ typedef struct
 #define CY_BLE_DISCOVERY_INIT                      (0x00u)
 #define CY_BLE_DISCOVERY_CONTINUE                  (0x01u)
 
-#define CY_BLE_SFLASH_DIE_X_MASK                   (0x3Fu)
-#define CY_BLE_SFLASH_DIE_X_BITS                   (6u)
-#define CY_BLE_SFLASH_DIE_Y_MASK                   (0x3Fu)
-#define CY_BLE_SFLASH_DIE_Y_BITS                   (6u)
+#define CY_BLE_SFLASH_DIE_X_MASK                   (0x7Fu)
+#define CY_BLE_SFLASH_DIE_X_BITS                   (7u)
+#define CY_BLE_SFLASH_DIE_Y_MASK                   (0x7Fu)
+#define CY_BLE_SFLASH_DIE_Y_BITS                   (7u)
 #define CY_BLE_SFLASH_DIE_XY_BITS                  (CY_BLE_SFLASH_DIE_X_BITS + CY_BLE_SFLASH_DIE_Y_BITS)
 #define CY_BLE_SFLASH_DIE_WAFER_MASK               (0x1Fu)
 #define CY_BLE_SFLASH_DIE_WAFER_BITS               (5u)
 #define CY_BLE_SFLASH_DIE_XYWAFER_BITS             (CY_BLE_SFLASH_DIE_XY_BITS + CY_BLE_SFLASH_DIE_WAFER_BITS)
-#define CY_BLE_SFLASH_DIE_LOT_MASK                 (0x7Fu)
-#define CY_BLE_SFLASH_DIE_LOT_BITS                 (7u)
+#define CY_BLE_SFLASH_DIE_LOT_MASK                 (0x1Fu)
+#define CY_BLE_SFLASH_DIE_LOT_BITS                 (5u)
 
 /* Device address stored by user in ROW4 of the SFLASH */
 #define CY_BLE_SFLASH_DEVICE_ADDRESS_PTR           ((cy_stc_ble_gap_bd_addr_t*)(SFLASH_BLE_DEVICE_ADDRESS))

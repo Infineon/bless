@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_bcs.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the source code for the Body Composition service.
@@ -469,7 +469,7 @@ cy_en_ble_api_result_t Cy_BLE_BCSS_GetCharacteristicDescriptor(cy_stc_ble_conn_h
 *
 *  Handles a Write Request event for the Body Composition service.
 *
-*  \param void *eventParam - The pointer to the data structure specified by the event.
+*  \param *eventParam - The pointer to the data structure specified by the event.
 *
 * \return
 *  A return value of type cy_en_ble_gatt_err_code_t.

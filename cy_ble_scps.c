@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_scps.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the source code for the Scan Parameter service.
@@ -653,10 +653,10 @@ static void Cy_BLE_SCPSC_DiscoverCharacteristicsEventHandler(cy_stc_ble_disc_cha
 *
 *  This function is called on receiving a #CY_BLE_EVT_GATTC_FIND_INFO_RSP event.
 *  This event is generated when the server successfully sends the data for
-*  #CY_BLE_EVT_GATTC_FIND_INFO_REQ. Based on the service UUID, an appropriate data
+*  #CY_BLE_GATT_FIND_INFO_REQ. Based on the service UUID, an appropriate data
 *  structure is populated to the service with a service callback.
 *
-*  \param discDescrInfo: The pointer to a descriptor information structure.
+*  \param  discDescrInfo: The pointer to descriptor information structure.
 *
 *******************************************************************************/
 static void Cy_BLE_SCPSC_DiscoverCharDescriptorsEventHandler(cy_stc_ble_disc_descr_info_t *discDescrInfo)

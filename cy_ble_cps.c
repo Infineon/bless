@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_cps.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the source code for Cycling Power service.
@@ -534,10 +534,10 @@ cy_en_ble_api_result_t Cy_BLE_CPSS_GetCharacteristicDescriptor(cy_stc_ble_conn_h
 *
 *  Handles Write Request event for CPS service.
 *
-*  \param void *eventParam: The pointer to the data structure specified by the event.
+*  \param eventParam: The pointer to the data structure specified by the event.
 *
-* \return
-*  A return value of type cy_en_ble_gatt_err_code_t.
+*  \return
+*   A return value of type cy_en_ble_gatt_err_code_t.
 *   * CY_BLE_GATT_ERR_NONE - write is successful
 *   * CY_BLE_GATT_ERR_PROCEDURE_ALREADY_IN_PROGRESS
 *   * CY_BLE_GATT_ERR_CCCD_IMPROPERLY_CONFIGURED
@@ -955,9 +955,7 @@ static void Cy_BLE_CPSS_ConfirmationEventHandler(const cy_stc_ble_conn_handle_t 
 *  Handles the L2CAP connection parameter response event from
 *  the BLE Stack.
 *
-*  \param uint16_t response:
-*      * Accepted = 0x0000
-*      * Rejected = 0x0001
+*  \param eventParam: The pointer to the data structure specified by the event.
 *
 ******************************************************************************/
 static void Cy_BLE_CPSS_ConnParamUpdateRspEventHandler(const cy_stc_ble_l2cap_conn_update_rsp_param_t *eventParam)
@@ -1253,7 +1251,6 @@ static void Cy_BLE_CPSC_DiscoverCharacteristicsEventHandler(cy_stc_ble_disc_char
 *  Based on the descriptor UUID, an appropriate data structure is populated using
 *  the data received as part of the callback.
 *
-*  \param discoveryCharIndex:  The characteristic index which is discovered.
 *  \param discDescrInfo:      The pointer to a descriptor information structure.
 *
 ******************************************************************************/

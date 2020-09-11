@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_cscs.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the source code for the Cycling Speed and Cadence service.
@@ -546,7 +546,7 @@ static cy_en_ble_gatt_err_code_t Cy_BLE_CSCSS_WriteEventHandler(cy_stc_ble_gatts
 *
 *  Handles the Value Confirmation request event from the BLE Stack.
 *
-*  \param event_params: Pointer to a structure of type 'cy_stc_ble_conn_handle_t'.
+*  \param eventParam: Pointer to a structure of type 'cy_stc_ble_conn_handle_t'.
 *
 ******************************************************************************/
 static void Cy_BLE_CSCSS_ConfirmationEventHandler(const cy_stc_ble_conn_handle_t *eventParam)
@@ -819,10 +819,10 @@ static void Cy_BLE_CSCSC_DiscoverCharacteristicsEventHandler(cy_stc_ble_disc_cha
 *
 *  This function is called on receiving a #CY_BLE_EVT_GATTC_FIND_INFO_RSP event.
 *  This event is generated when a server successfully sends the data for
-*  #CY_BLE_EVT_GATTC_FIND_INFO_REQ. Based on the service UUID, an appropriate data
+*  #CY_BLE_GATT_FIND_INFO_REQ. Based on the service UUID, an appropriate data
 *  structure is populated to the service with a service callback.
 *
-*  \param discCharInfo: The pointer to a characteristic information structure.
+*  \param  discDescrInfo: The pointer to descriptor information structure.
 *
 *******************************************************************************/
 static void Cy_BLE_CSCSC_DiscoverCharDescriptorsEventHandler(cy_stc_ble_disc_descr_info_t *discDescrInfo)

@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_gatt.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the GATT API of the PSoC 6 BLE Middleware.
@@ -142,7 +142,7 @@ cy_en_ble_api_result_t Cy_BLE_GATTC_Init(const cy_stc_ble_gattc_config_t *config
 *  Reinitializes the GATT database.
 *
 *  \return
-*  \ref cy_en_ble_api_result_t: A function result states if it succeeded or failed with
+*  \ref cy_en_ble_api_result_t : A function result states if it succeeded or failed with
 *  error codes:
 *
 *  Error Codes                          | Description
@@ -182,7 +182,7 @@ cy_en_ble_api_result_t Cy_BLE_GATTS_ReInitGattDb(void)
 *  \param eventParam: The pointer to the data structure specified by the event.
 *
 *  \return
-*  \ref cy_en_ble_gatt_err_code_t: A function returns one of the following status
+*  \ref cy_en_ble_gatt_err_code_t : A function returns one of the following status
 *  values.
 *
 ******************************************************************************/
@@ -1550,9 +1550,11 @@ cy_en_ble_api_result_t Cy_BLE_GATTC_RemoveConnHandle(cy_stc_ble_conn_handle_t co
 *
 *  This function returns the index of discovery structure according to connHandle.
 *
-* \return
-*  uint8_t: index of discovery structure
-*  #CY_BLE_GATTC_COUNT: index is not found for connHandle
+*  \param connHandle: The connection handle.
+*
+*  \return
+*   uint8_t: index of discovery structure
+*   CY_BLE_GATTC_COUNT: index is not found for connHandle
 *
 ******************************************************************************/
 uint32_t Cy_BLE_GetDiscoveryIdx(cy_stc_ble_conn_handle_t connHandle)

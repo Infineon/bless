@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_lls.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the Link Loss service.
@@ -407,7 +407,7 @@ static void Cy_BLE_LLSC_GetCharRange(cy_stc_ble_disc_range_info_t *charRangeInfo
 *
 *  Handles the Read Response event.
 *
-*  \param cy_stc_ble_gattc_read_rsp_param_t *eventParam: The pointer to the data structure.
+*  \param eventParam: The pointer to the data structure.
 *
 ******************************************************************************/
 static void Cy_BLE_LLSC_ReadResponseEventHandler(cy_stc_ble_gattc_read_rsp_param_t *eventParam)
@@ -436,7 +436,7 @@ static void Cy_BLE_LLSC_ReadResponseEventHandler(cy_stc_ble_gattc_read_rsp_param
 *
 *  Handles the Write Response event for the Link Loss service.
 *
-*  \param cy_stc_ble_conn_handle_t *eventParam: The pointer to the connection handle.
+*  \param eventParam: The pointer to the connection handle.
 *
 ******************************************************************************/
 static void Cy_BLE_LLSC_WriteResponseEventHandler(const cy_stc_ble_conn_handle_t *eventParam)

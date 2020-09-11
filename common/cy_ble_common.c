@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_common.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the API of the BLE PSoC 6 BLE Middleware.
@@ -13,7 +13,7 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#if defined(COMPONENT_BLESS_CONTROLLER_IPC) || defined(COMPONENT_BLESS_HOST_IPC) || \
+#if defined(COMPONENT_BLESS_HOST_IPC) || \
     defined(COMPONENT_BLESS_CONTROLLER) || defined(COMPONENT_BLESS_HOST)
 #include "cycfg_ble.h"
 #endif /* defined(COMPONENT_BLESS_CONTROLLER_IPC) || defined(COMPONENT_BLESS_HOST_IPC) ... */
@@ -22,6 +22,13 @@
 #include "cy_ble_hal_pvt.h"
 
 #if defined(CY_IP_MXBLESS) 
+
+
+#if ( (defined(CY_BLE_GATT_DB_INDEX_COUNT)) && \
+      (CY_BLE_GATT_DB_INDEX_COUNT > CY_BLE_GATT_DB_INDEX_COUNT_MAX) && \
+      (!defined(CY_BLE_ERROR_SUPPRESS)))
+    #error The BLE Stack does not support database of more than 512 entries.
+#endif /* if CY_BLE_GATT_DB_INDEX_COUNT > CY_BLE_GATT_DB_INDEX_COUNT_MAX */
 
 
 /******************************************************************************
@@ -887,7 +894,7 @@ bool Cy_BLE_HAL_MappingBlessInterruptHandler(void)
  
 void Cy_BLE_MappingLlIsrExitLowPowerMode(void)
 {
-    #if CY_BLE_STACK_CONTR_CORE
+    #if (CY_BLE_STACK_CONTR_CORE)
         Cy_BLE_LlIsrExitLowPowerMode();
     #endif /* CY_BLE_STACK_CONTR_CORE */
 }
@@ -897,14 +904,14 @@ void Cy_BLE_HAL_MappingUartRxDataHandler(uint8_t byte)
     /* Suppress unused variable warning */
     (void) byte;
     
-    #if (CY_BLE_STACK_CONTR_CORE) && (CY_BLE_MODE_HCI) && (CY_BLE_MODE_HCI_LEGACY)
+    #if ((CY_BLE_STACK_CONTR_CORE) && (CY_BLE_MODE_HCI) && (CY_BLE_MODE_HCI_LEGACY))
         Cy_BLE_HAL_UartRxDataHandler(byte);
     #endif /* CY_BLE_STACK_CONTR_CORE */
 }
 
 void Cy_BLE_HAL_MappingUartTxCompltHandler(void)
 {
-    #if (CY_BLE_STACK_CONTR_CORE) && (CY_BLE_MODE_HCI) && (CY_BLE_MODE_HCI_LEGACY)
+    #if ((CY_BLE_STACK_CONTR_CORE) && (CY_BLE_MODE_HCI) && (CY_BLE_MODE_HCI_LEGACY))
         Cy_BLE_HAL_UartTxCompltHandler();
     #endif /* CY_BLE_STACK_CONTR_CORE */
 }

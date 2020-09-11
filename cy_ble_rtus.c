@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_rtus.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the source code for Reference Time Update service.
@@ -338,8 +338,7 @@ cy_en_ble_api_result_t Cy_BLE_RTUSS_GetCharacteristicValue(cy_en_ble_rtus_char_i
 *  Handles the Write Without Response Request event for the Reference Time Update
 *  service.
 *
-*  \param cy_stc_ble_gatts_write_cmd_req_param_t * eventParam: The pointer to a data structure
-*                                                  specified by the event.
+*  \param eventParam: The pointer to a data structure specified by the event.
 *
 *
 *******************************************************************************/

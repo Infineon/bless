@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_cts.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains the source code for the Current Time service.
@@ -899,10 +899,10 @@ static void Cy_BLE_CTSC_DiscoverCharacteristicsEventHandler(cy_stc_ble_disc_char
 *
 *  This function is called on receiving a #CY_BLE_EVT_GATTC_FIND_INFO_RSP event.
 *  This event is generated when a server successfully sends the data for
-*  #CY_BLE_EVT_GATTC_FIND_INFO_REQ Based on the service UUID, an appropriate data
+*  #CY_BLE_GATT_FIND_INFO_REQ. Based on the service UUID, an appropriate data
 *  structure is populated to the service with a service callback.
 *
-*  \param discCharInfo: The pointer to a characteristic information structure.
+*  \param  discDescrInfo: The pointer to descriptor information structure.
 *
 ******************************************************************************/
 static void Cy_BLE_CTSC_DiscoverCharDescriptorsEventHandler(cy_stc_ble_disc_descr_info_t * discDescrInfo)

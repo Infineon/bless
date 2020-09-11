@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_dis.c
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  Contains the source code for the Device Information service.

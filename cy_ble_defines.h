@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_defines.h
-* \version 3.40
+* \version 3.50
 *
 * \brief
 *  This file contains common defines for the BLE.
