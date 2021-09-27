@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50: Common</title>
+<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.60: Common</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><a href="http://www.cypress.com/"><img alt="Logo" src="IFXCYP_one-line.png"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50</div>
+   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.60</div>
   </td>
  </tr>
  </tbody>
@@ -95,6 +95,10 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group__ble__common__api__macros.html#ga34124dadf7cecb00bc63b1859b17dd4b">CY_BLE_LL_CONTROLLER_HEAP_REQ_SOC</a>&#160;&#160;&#160;(0u)</td></tr>
 <tr class="memdesc:ga34124dadf7cecb00bc63b1859b17dd4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of RAM memory required for the Stack controller. <br /></td></tr>
 <tr class="separator:ga34124dadf7cecb00bc63b1859b17dd4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadb7153b83ed46772320cc1333471df85"><td class="memItemLeft" align="right" valign="top"><a id="gadb7153b83ed46772320cc1333471df85"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group__ble__common__api__macros.html#gadb7153b83ed46772320cc1333471df85">CY_BLE_GATT_DB_ATTR_BUFF_SIZE</a>&#160;&#160;&#160;(0u)</td></tr>
+<tr class="memdesc:gadb7153b83ed46772320cc1333471df85"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of RAM memory required for store attribute handle state (Enable/Disable) <br /></td></tr>
+<tr class="separator:gadb7153b83ed46772320cc1333471df85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga009e2688edfe3dc77235947015b506a2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group__ble__common__api__macros.html#ga009e2688edfe3dc77235947015b506a2">CY_BLE_STACK_RAM_SIZE</a></td></tr>
 <tr class="memdesc:ga009e2688edfe3dc77235947015b506a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of RAM memory required for the Stack host.  <a href="#ga009e2688edfe3dc77235947015b506a2">More...</a><br /></td></tr>
 <tr class="separator:ga009e2688edfe3dc77235947015b506a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -470,7 +474,8 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">(CY_BLE_ALIGN_TO_4(CY_BLE_DEFAULT_HOST_RAM_SIZE + <a class="code" href="group__group__ble__common__api__macros.html#ga34124dadf7cecb00bc63b1859b17dd4b">CY_BLE_LL_CONTROLLER_HEAP_REQ_SOC</a> +\</div><div class="line">                                                    CY_BLE_RAM_SECURE_CONNECTIONS_SIZE + CY_BLE_L2CAP_Q_HEAP +          \</div><div class="line">                                                    CY_BLE_STACK_BOND_RAM_SIZE +                                        \</div><div class="line">                                                    (CY_BLE_GATT_MTU_PLUS_L2CAP_MEM_EXT * CY_BLE_GATT_MTU_BUFF_COUNT) + \</div><div class="line">                                                    (CY_BLE_L2CAP_PSM_PLUS_L2CAP_MEM_EXT * CY_BLE_L2CAP_PSM_COUNT) +    \</div><div class="line">                                                    (CY_BLE_L2CAP_CBFC_PLUS_L2CAP_MEM_EXT * 2u *                        \</div><div class="line">                                                        CY_BLE_L2CAP_LOGICAL_CHANNEL_COUNT) +                           \</div><div class="line">                                                    (CY_BLE_L2CAP_MTU_PLUS_L2CAP_MEM_EXT * 2u *                         \</div><div class="line">                                                        CY_BLE_L2CAP_LOGICAL_CHANNEL_COUNT) +                           \</div><div class="line">                                                    (CY_BLE_STACK_BUFFER_MGR_UTIL_RAM_SZ * CY_BLE_STACK_APP_MIN_POOL) + \</div><div class="line">                                                    (CY_BLE_RAM_SIZE_HOST_SINGLE_CONN * CY_BLE_CONN_COUNT) +  \</div><div class="line">                                                    (CY_BLE_GATT_PREPARE_WRITE_BUFF_LEN))) <span class="comment">/* This buffer must always be the latest */</span></div><div class="ttc" id="group__group__ble__common__api__macros_html_ga34124dadf7cecb00bc63b1859b17dd4b"><div class="ttname"><a href="group__group__ble__common__api__macros.html#ga34124dadf7cecb00bc63b1859b17dd4b">CY_BLE_LL_CONTROLLER_HEAP_REQ_SOC</a></div><div class="ttdeci">#define CY_BLE_LL_CONTROLLER_HEAP_REQ_SOC</div><div class="ttdoc">The size of RAM memory required for the Stack controller. </div><div class="ttdef"><b>Definition:</b> cy_ble_cfg_common.h:452</div></div>
+<b>Value:</b><div class="fragment"><div class="line">(CY_BLE_ALIGN_TO_4(CY_BLE_DEFAULT_HOST_RAM_SIZE + <a class="code" href="group__group__ble__common__api__macros.html#ga34124dadf7cecb00bc63b1859b17dd4b">CY_BLE_LL_CONTROLLER_HEAP_REQ_SOC</a> +\</div><div class="line">                                                    CY_BLE_RAM_SECURE_CONNECTIONS_SIZE + CY_BLE_L2CAP_Q_HEAP +          \</div><div class="line">                                                    CY_BLE_STACK_BOND_RAM_SIZE +                                        \</div><div class="line">                                                    (CY_BLE_GATT_MTU_PLUS_L2CAP_MEM_EXT * CY_BLE_GATT_MTU_BUFF_COUNT) + \</div><div class="line">                                                    (CY_BLE_L2CAP_PSM_PLUS_L2CAP_MEM_EXT * CY_BLE_L2CAP_PSM_COUNT) +    \</div><div class="line">                                                    (CY_BLE_L2CAP_CBFC_PLUS_L2CAP_MEM_EXT * 2u *                        \</div><div class="line">                                                        CY_BLE_L2CAP_LOGICAL_CHANNEL_COUNT) +                           \</div><div class="line">                                                    (CY_BLE_L2CAP_MTU_PLUS_L2CAP_MEM_EXT * 2u *                         \</div><div class="line">                                                        CY_BLE_L2CAP_LOGICAL_CHANNEL_COUNT) +                           \</div><div class="line">                                                    (CY_BLE_STACK_BUFFER_MGR_UTIL_RAM_SZ * CY_BLE_STACK_APP_MIN_POOL) + \</div><div class="line">                                                    (CY_BLE_RAM_SIZE_HOST_SINGLE_CONN * CY_BLE_CONN_COUNT) +            \</div><div class="line">                                                    <a class="code" href="group__group__ble__common__api__macros.html#gadb7153b83ed46772320cc1333471df85">CY_BLE_GATT_DB_ATTR_BUFF_SIZE</a> +                                     \</div><div class="line">                                                    (CY_BLE_GATT_PREPARE_WRITE_BUFF_LEN))) <span class="comment">/* This buffer must always be the latest */</span></div><div class="ttc" id="group__group__ble__common__api__macros_html_gadb7153b83ed46772320cc1333471df85"><div class="ttname"><a href="group__group__ble__common__api__macros.html#gadb7153b83ed46772320cc1333471df85">CY_BLE_GATT_DB_ATTR_BUFF_SIZE</a></div><div class="ttdeci">#define CY_BLE_GATT_DB_ATTR_BUFF_SIZE</div><div class="ttdoc">The size of RAM memory required for store attribute handle state (Enable/Disable) ...</div><div class="ttdef"><b>Definition:</b> cy_ble_cfg_common.h:458</div></div>
+<div class="ttc" id="group__group__ble__common__api__macros_html_ga34124dadf7cecb00bc63b1859b17dd4b"><div class="ttname"><a href="group__group__ble__common__api__macros.html#ga34124dadf7cecb00bc63b1859b17dd4b">CY_BLE_LL_CONTROLLER_HEAP_REQ_SOC</a></div><div class="ttdeci">#define CY_BLE_LL_CONTROLLER_HEAP_REQ_SOC</div><div class="ttdoc">The size of RAM memory required for the Stack controller. </div><div class="ttdef"><b>Definition:</b> cy_ble_cfg_common.h:450</div></div>
 </div><!-- fragment -->
 <p>The size of RAM memory required for the Stack host. </p>
 
@@ -629,7 +634,7 @@ Macros</h2></td></tr>
 <div id="nav-path" class="navpath">
     <ul>
         <li class="footer">
-            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50</b> by <b>Cypress Semiconductor Corporation</b>.
+            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.60</b> by <b>Cypress Semiconductor Corporation</b>.
             All rights reserved.
         </li>
     </ul>

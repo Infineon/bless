@@ -1,13 +1,13 @@
 /***************************************************************************//**
 * \file cy_ble.h
-* \version 3.50
+* \version 3.60
 *
 * \brief
 *  Contains the prototypes and constants used in the PSoC 6 BLE Middleware.
 *
 ********************************************************************************
 * \copyright
-* Copyright 2017-2020, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2017-2021, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -61,7 +61,7 @@ extern "C" {
 #define CY_BLE_MW_VERSION_MAJOR              (3)
 
 /** Library minor version */
-#define CY_BLE_MW_VERSION_MINOR              (50)
+#define CY_BLE_MW_VERSION_MINOR              (60)
 
 #define CY_BLE_M0S8BLESS_VERSION             (4u)
 #define CY_BLE_SEMA                          (3u)

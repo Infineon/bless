@@ -1,13 +1,13 @@
 /***************************************************************************//**
 * \file cy_ble_lls.c
-* \version 3.50
+* \version 3.60
 *
 * \brief
 *  This file contains the source code for the Link Loss service.
 *
 ********************************************************************************
 * \copyright
-* Copyright 2017-2020, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2017-2021, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.

@@ -1,6 +1,7 @@
 var NAVTREE =
 [
-  [ "Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50", "index.html", [
+  [ "Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.60", "index.html", [
+    [ "Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50", "index.html", null ],
     [ "General Description", "page_ble_general.html", [
       [ "When to use the BLE", "page_ble_general.html#group_ble_when_use", null ],
       [ "SIG adopted Profiles and Services", "page_ble_general.html#group_ble_sig_adopted", null ],
@@ -73,20 +74,20 @@ var NAVTREEINDEX =
 "group__group__ble__common__2_m_b_p_s__api__functions.html",
 "group__group__ble__common__api__events.html#gga7c1ef7e6d246e0f3eb6c883e23d82b86afd86cd1bb99cbaeaf062428dab5a0437",
 "group__group__ble__common__api__gatt__definitions.html#ga7609ec9fd5973eadda6b98e8dfbda580",
-"group__group__ble__common__api__macros__appearance__values.html#gaea3107194ffcfb58f97f99df2ce0da54",
-"group__group__ble__common__macros__error.html#ga774c432ee27bec22ac04c068f5ce1036",
-"group__group__ble__service__api___c_p_s__definitions.html#ga3f0b964c91c893025182dfcda3895fa5",
-"group__group__ble__service__api___g_l_s__definitions.html#gga79bb1658e6b91512eafee62ebf6cfe98adefcf16bad7ccfef5130c67a12654c2e",
-"group__group__ble__service__api___n_d_c_s__definitions.html",
-"group__group__ble__service__api___w_p_t_s__definitions.html",
-"group__group__ble__service__api__events.html#ggada4b6b6d080ad4380e3a2e3cab4f2d51aa0f95f6c2869300047449dbca2daf4fc",
-"structcy__stc__ble__ancss__t.html#aab4bb286e5f7358e4899f2d84719c03a",
-"structcy__stc__ble__cscsc__srvr__full__char__info__t.html#a912c685d26f0f9f04e4d587696424060",
-"structcy__stc__ble__gap__enhance__conn__complete__param__t.html#a3d2ab4e891f29926c76c7b23b857daa1",
-"structcy__stc__ble__gattc__t.html#ab738ddae5aeb7db199adff0ccb24c368",
-"structcy__stc__ble__ipsc__config__t.html#a50d1eaaf4d7771843b6a23c52f8888da",
-"structcy__stc__ble__rscs__char__value__t.html#af4d32eac41e471bbc7e105a573c5003d",
-"structcy__stc__ble__wssc__t.html#a202aa66fde0bf0c858d9291dd839851f"
+"group__group__ble__common__api__macros__appearance__values.html#gade94ab0d6b0cb9c4c6e493b7d6e94fc6",
+"group__group__ble__common__macros__error.html#ga76eb792d3f4e074043616a1045bec771",
+"group__group__ble__service__api___c_p_s__definitions.html#ga3b9ccb680466ca31f1d6e4513171b2d7",
+"group__group__ble__service__api___g_l_s__definitions.html#gga79bb1658e6b91512eafee62ebf6cfe98a54eafaca980cf761e38df4d823b4bffd",
+"group__group__ble__service__api___n_d_c_s__client.html#gadf7bdebe3ce113545e88f40972be02bc",
+"group__group__ble__service__api___w_p_t_s__client.html#gaf3920321a4c662e0e59e211e9b10559c",
+"group__group__ble__service__api__events.html#ggada4b6b6d080ad4380e3a2e3cab4f2d51a9f055863e2daa2e834de456c24ca2489",
+"structcy__stc__ble__ancss__t.html",
+"structcy__stc__ble__cscsc__srvr__full__char__info__t.html",
+"structcy__stc__ble__gap__enhance__conn__complete__param__t.html#a04a98ee1c5cde9effa61519aab55c04b",
+"structcy__stc__ble__gattc__t.html",
+"structcy__stc__ble__ipsc__char__t.html#a963ad73e901a4b1d04084fe1adce182d",
+"structcy__stc__ble__rscs__char__value__t.html#a6ca92b87183fd50a219508e75c1766c0",
+"structcy__stc__ble__wssc__config__t.html#a9d29d047c3fe1cb098311fe53341fcf4"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

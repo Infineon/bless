@@ -1,6 +1,6 @@
 /*******************************************************************************
 * \file cy_ble_stack_host_main.h
-* \version 3.50
+* \version 3.60
 *
 * \brief
 *  This file contains declarations of public BLE APIs other than those covered by
@@ -12,7 +12,7 @@
 * 
 ********************************************************************************
 * \copyright
-* Copyright 2017-2020, Cypress Semiconductor Corporation. All rights reserved.
+* Copyright 2017-2021, Cypress Semiconductor Corporation. All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -152,8 +152,12 @@ extern "C" {
 /** Data Buffer index for L2CAP configured MTU Size */
 #define CY_BLE_STACK_APP_POOL_4_SZ                (0x03u)
 
+/** Data Buffer index for GATT DB maximum entry Size 
+ * (Cypress ID: BLESTACK_5_X-78) */
+#define CY_BLE_STACK_APP_POOL_5_SZ                (0x04u)
+
 /** Maximum Application Pool  */
-#define CY_BLE_STACK_APP_MIN_POOL                 (CY_BLE_STACK_APP_POOL_4_SZ + 1u)
+#define CY_BLE_STACK_APP_MIN_POOL                 (CY_BLE_STACK_APP_POOL_5_SZ + 1u)
 
 /** GATT minimum attribute length */
 #define CY_BLE_GATT_MAX_ATTR_LEN_MIN_VAL          (0x00u)
@@ -2329,7 +2333,8 @@ void Cy_BLE_HciShutdown
 ***************************************************************************//**
 * 
 *  The application must use this function for sending HCI command/data packet to the controller. 
-*  Refer to BLE Core 5.0 Specification, Vol 2, Part E Section 7 for details on HCI command/data packet format.
+*  Refer to BLE Core 5.0 Specification, Vol 2, Part E Section 7 for details on HCI command/data packet format.
+
 
 *  This function must be called after calling 'Cy_BLE_RegisterHciCb()'.
 * 

@@ -1,13 +1,13 @@
 /***************************************************************************//**
 * \file cy_ble.c
-* \version 3.50
+* \version 3.60
 *
 * \brief
 *  This file contains the source code for the API of the PSoC 6 BLE Middleware.
 *
 ********************************************************************************
 * \copyright
-* Copyright 2017-2020, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2017-2021, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -161,11 +161,7 @@ cy_en_ble_api_result_t Cy_BLE_InitHost(const cy_stc_ble_config_t *config)
             }
         }
 
-        if(cy_ble_configPtr->ServiceInitFunc == NULL)
-        {
-            apiResult = CY_BLE_ERROR_INVALID_PARAMETER;
-        }
-        else
+        if(cy_ble_configPtr->ServiceInitFunc != NULL)
         {
             cy_ble_configPtr->ServiceInitFunc();
         }
@@ -273,18 +269,28 @@ cy_en_ble_api_result_t Cy_BLE_EnableHost(void)
          *        |                                                         | logical channels
          */
 
+        /* Data Buffer information for ATT/GATT Configured MTU Size */
         uint16_t dataBuffIdx0 = CY_BLE_ALIGN_TO_4(cy_ble_configPtr->params->mtuSize +
                                                    CY_BLE_MEM_EXT_SZ + CY_BLE_L2CAP_HDR_SZ);
 
+        /* Data Buffer information forL2CAP configuration for number of PSM Channels */
         uint16_t dataBuffIdx1 = CY_BLE_ALIGN_TO_4(cy_ble_configPtr->params->l2capPsmCount *
                                                   (CY_BLE_L2CAP_PSM_SIZE + CY_BLE_MEM_EXT_SZ));
 
+        /* Data Buffer information for L2CAP configuration for number of CBFC Channels */
         uint16_t dataBuffIdx2 = CY_BLE_ALIGN_TO_4(cy_ble_configPtr->params->l2capChanCount *
                                                   (CY_BLE_L2CAP_CBFC_CHANNEL_SIZE + CY_BLE_MEM_EXT_SZ));
-
+        
+        /* Data Buffer information for L2CAP configured MTU Size */
         uint16_t dataBuffIdx3 = CY_BLE_ALIGN_TO_4(cy_ble_configPtr->params->l2capMtuSize +
                                                    CY_BLE_MEM_EXT_SZ + CY_BLE_L2CAP_HDR_SZ);
 
+    #if defined(CY_BLE_STACK_APP_POOL_5_SZ)
+        /* Data Buffer information for GATT DB maximum entry Size */
+        uint16_t dbInxCount   = cy_ble_configPtr->params->gattDbIndexCount;
+        uint16_t dataBuffIdx4 = CY_BLE_ALIGN_TO_4((dbInxCount / 8u) +  CY_BLE_MEM_EXT_SZ +
+                                                  (((dbInxCount % 8u) != 0u) ? 1u : 0u )) ;
+    #endif /* defined(CY_BLE_STACK_APP_POOL_5_SZ) */
 
         /* If mtu > 23 stack queue depth (stack queue depth per connection - 1) * maxBleConnection */
         uint16_t mtuBuffCount = (cy_ble_configPtr->stackParam->maxConnCount *
@@ -297,7 +303,10 @@ cy_en_ble_api_result_t Cy_BLE_EnableHost(void)
             { dataBuffIdx0, mtuBuffCount                                   },
             { dataBuffIdx1, cy_ble_configPtr->params->l2capPsmCount        },
             { dataBuffIdx2, 2u * cy_ble_configPtr->params->l2capChanCount  },
-            { dataBuffIdx3, 2u * cy_ble_configPtr->params->l2capChanCount  }
+            { dataBuffIdx3, 2u * cy_ble_configPtr->params->l2capChanCount  },
+        #if defined(CY_BLE_STACK_APP_POOL_5_SZ)
+            { dataBuffIdx4, 1u                                             },
+        #endif /* defined(CY_BLE_STACK_APP_POOL_5_SZ) */    
         };
 
         cy_stc_ble_stack_init_info_t stackInitParam;

@@ -1,13 +1,13 @@
 /***************************************************************************//**
 * \file cy_ble_cfg_common.h
-* \version 3.50
+* \version 3.60
 *
 * \brief
 *  This file contains the source code for the API of the PSoC 6 BLE Middleware.
 *
 ********************************************************************************
 * \copyright
-* Copyright 2017-2020, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2017-2021, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -435,8 +435,6 @@
 /** CRC size for stack flash */
 #define CY_BLE_STACK_FLASH_CRC_SIZE                 (2u)
 
-#define CY_BLE_GATT_DB_INDEX_COUNT_MAX              (512u)
-
 /**
  * \addtogroup group_ble_common_api_macros
  * \{
@@ -452,6 +450,14 @@
         #define CY_BLE_LL_CONTROLLER_HEAP_REQ_SOC   (0u)
     #endif /* CY_BLE_STACK_MODE_SOC */
 
+    /** The size of RAM memory required for store attribute handle state (Enable/Disable) */
+    #if defined(CY_BLE_STACK_APP_POOL_5_SZ)
+        #define CY_BLE_GATT_DB_ATTR_BUFF_SIZE  (CY_BLE_ALIGN_TO_4( (CY_BLE_GATT_DB_INDEX_COUNT / 8u) + CY_BLE_MEM_EXT_SZ + \
+                                                                   ((CY_BLE_GATT_DB_INDEX_COUNT % 8u) ? 1u : 0u) ))    
+    #else
+        #define CY_BLE_GATT_DB_ATTR_BUFF_SIZE   (0u)
+    #endif /*(CY_BLE_STACK_APP_POOL_5_SZ) */
+
     /** The size of RAM memory required for the Stack host */
     #define CY_BLE_STACK_RAM_SIZE   (CY_BLE_ALIGN_TO_4(CY_BLE_DEFAULT_HOST_RAM_SIZE + CY_BLE_LL_CONTROLLER_HEAP_REQ_SOC +\
                                                     CY_BLE_RAM_SECURE_CONNECTIONS_SIZE + CY_BLE_L2CAP_Q_HEAP +          \
@@ -463,7 +469,8 @@
                                                     (CY_BLE_L2CAP_MTU_PLUS_L2CAP_MEM_EXT * 2u *                         \
                                                         CY_BLE_L2CAP_LOGICAL_CHANNEL_COUNT) +                           \
                                                     (CY_BLE_STACK_BUFFER_MGR_UTIL_RAM_SZ * CY_BLE_STACK_APP_MIN_POOL) + \
-                                                    (CY_BLE_RAM_SIZE_HOST_SINGLE_CONN * CY_BLE_CONN_COUNT) +  \
+                                                    (CY_BLE_RAM_SIZE_HOST_SINGLE_CONN * CY_BLE_CONN_COUNT) +            \
+                                                    CY_BLE_GATT_DB_ATTR_BUFF_SIZE +                                     \
                                                     (CY_BLE_GATT_PREPARE_WRITE_BUFF_LEN))) /* This buffer must always be the latest */
 #else
     /** The size of RAM memory required for the Stack Controller */

@@ -1,4 +1,4 @@
-﻿# Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50
+﻿# Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.60
 
 ### What's Included?
 Please refer to the [README.md](./README.md) and the [API Reference Guide](https://cypresssemiconductorco.github.io/bless/ble_api_reference_manual/html/index.html) for a complete description of the PSoC 6 BLE Middleware.
@@ -6,15 +6,16 @@ Please refer to the [README.md](./README.md) and the [API Reference Guide](https
 The revision history of the PSoC 6 BLE Middleware is also available on the [API Reference Guide Changelog](https://cypresssemiconductorco.github.io/bless/ble_api_reference_manual/html/page_group_ble_changelog.html).
 
 ### New in this release:
-* Added PILO support for the PSoC 64 Secure device
-* Added BLE Stack controller libraries with IPC communication (BLESS_CONTROLLER_IPC) for CM0+ 
-* Improved the handling of Cy_BLE_StackShutdown API to avoid timing-sensitive bugs
-* Improved the handling of the CY_BLE_EVT_GATTS_WRITE_REQ event to allow operation with a custom GATT database
-* Enhanced the BLE ISR to handle LL Channel Map in interrupt context for SoC mode. 
+* BLE Stack 5.0.10 
 
 ### Defect Fixes
-* Updated the CY_BLE_SFLASH_DIE_xxx macros (in cy_ble_gap.h) according to the PSoC 6 BLE production configuration. The silicon-generated “Company assigned” part of the device address had a high repetition rate of the generated MAC address
-* Updated Cy_BLE_ControllerEnterLPM API for handling a scenario where wake-up is initiated by the hardware.
+* Updated channel map indication handler to optimize the Low-Power-Mode (LPM) performance of PSoC 6 BLE Controller.
+* Added changes required to qualify for BLE Spec. 5.2.
+* Updated Cy_BLE_Init function. Cy_BLE_Init() returns CY_BLE_ERROR_INVALID_PARAMETER when BLE configured as Observer or Broadcaster only.
+* Updated the procedure of processing the Write Request event from Stack. BLE middleware returns CY_BLE_EVT_GATTS_WRITE_REQ event twice for the Custom profile.
+* Updated Radio TX Power Change Handling procedure. The radio TX power change handler was incorrectly being called from interrupt context whereas the ideal location for the same is from the task context.
+* Enhanced GATT Server implementation. Updated the GATT server implementation to handle large data base (> 512 entries).
+* Re-factored Shutdown code for Dual CPU mode. Improved the handling of Cy_BLE_StackShutdown API to avoid timing-sensitive bugs.
 
 Refer to section [Changelog of PSoC 6 BLE Middleware API Reference Guide](https://cypresssemiconductorco.github.io/bless/ble_api_reference_manual/html/page_group_ble_changelog.html) for details.
 

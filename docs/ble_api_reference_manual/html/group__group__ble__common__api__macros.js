@@ -1,6 +1,7 @@
 var group__group__ble__common__api__macros =
 [
     [ "CY_BLE_LL_CONTROLLER_HEAP_REQ_SOC", "group__group__ble__common__api__macros.html#ga34124dadf7cecb00bc63b1859b17dd4b", null ],
+    [ "CY_BLE_GATT_DB_ATTR_BUFF_SIZE", "group__group__ble__common__api__macros.html#gadb7153b83ed46772320cc1333471df85", null ],
     [ "CY_BLE_STACK_RAM_SIZE", "group__group__ble__common__api__macros.html#ga009e2688edfe3dc77235947015b506a2", null ],
     [ "CY_BLE_STACK_CONTROLLER_RAM_SIZE", "group__group__ble__common__api__macros.html#gaa8184726701023692e946aaae83530ca", null ],
     [ "CY_BLE_STACK_FLASH_SIZE", "group__group__ble__common__api__macros.html#gac8d46edfa039f98e1c96a5180e58c808", null ],

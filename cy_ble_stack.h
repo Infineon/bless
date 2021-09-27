@@ -1,13 +1,13 @@
 /*******************************************************************************
 * \file cy_ble_stack.h
-* \version 3.50
+* \version 3.60
 *
 * \brief
 * This file contains the BLE Stack, which will be updated on the Jenkins
 * build and the common structures, APIs.
 *
 *******************************************************************************
-* Copyright 2017-2020, Cypress Semiconductor Corporation. All rights reserved.
+* Copyright 2017-2021, Cypress Semiconductor Corporation. All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -43,10 +43,10 @@ extern "C" {
 #define CY_BLE_STACK_MINOR                                               (0u)
 
 /** Patch version number for device firmware. */
-#define CY_BLE_STACK_PATCH                                               (8u)
+#define CY_BLE_STACK_PATCH                                               (10u)
 
 /** Firmware build number. */
-#define CY_BLE_STACK_BUILD                                               (220u)
+#define CY_BLE_STACK_BUILD                                               (365u)
 
 /** BT Address Size */
 #define CY_BLE_BD_ADDR_SIZE                                              (0x06u)
@@ -585,7 +585,7 @@ typedef enum
      */
     CY_BLE_EVT_SET_PRIVACY_MODE_COMPLETE,  /* 0x2017u */
 
-    /* Range for vendor events - 0x3000 to 0x5FFF */
+    /* Range for vendor events - 0x3000 to 0x3FFF */
 
     /** This event indicates completion of the Cy_BLE_IsLlControlProcPending() function.
      *  Event parameter returned with this event is of (cy_stc_ble_events_param_generic_t*) type.
@@ -2057,12 +2057,13 @@ cy_en_ble_api_result_t Cy_BLE_GetStackLibraryVersion
 *
 *  Array dataBuff [totalDataBufferPools] shall provide the information to BLE Stack based on the below table -
 *
-*  Index | Application config. param  | bufferSize                                                                           | noOfBuffer
-*  ----- | -------------------------- | ---------------------------------------------------------------------------------    | ---------------
-*    0   | GATT MTU                   | (GATT MTU + CY_BLE_MEM_EXT_SZ + CY_BLE_L2CAP_HDR_SZ)                                 | 3
-*    1   | Num. of PSM supported      | ((CY_BLE_L2CAP_PSM_SIZE + CY_BLE_MEM_EXT_SZ) * no of PSM supported)                  | No of PSM supported
-*    2   | Num. of L2CAP CBFC channels| ((CY_BLE_L2CAP_CBFC_CHANNEL_SIZE + CY_BLE_MEM_EXT_SZ) * No of L2CAP logical channels)| 2 * No of L2cap logical channels
-*    3   | L2CAP MTU (0x17 to 0xFFD0u)| (L2CAP MTU + CY_BLE_MEM_EXT_SZ + CY_BLE_L2CAP_HDR_SZ)                                | 2 * No of L2cap logical channels
+*  Index | Application config. param          | bufferSize                                                                           | noOfBuffer
+*  ----- | ---------------------------------- | ---------------------------------------------------------------------------------    | ---------------
+*    0   | GATT MTU                           | (GATT MTU + CY_BLE_MEM_EXT_SZ + CY_BLE_L2CAP_HDR_SZ)                                 | 3
+*    1   | Num. of PSM supported              | ((CY_BLE_L2CAP_PSM_SIZE + CY_BLE_MEM_EXT_SZ) * no of PSM supported)                  | No of PSM supported
+*    2   | Num. of L2CAP CBFC channels        | ((CY_BLE_L2CAP_CBFC_CHANNEL_SIZE + CY_BLE_MEM_EXT_SZ) * No of L2CAP logical channels)| 2 * No of L2cap logical channels
+*    3   | L2CAP MTU (0x17 to 0xFFD0u)        | (L2CAP MTU + CY_BLE_MEM_EXT_SZ + CY_BLE_L2CAP_HDR_SZ)                                | 2 * No of L2cap logical channels
+*    4   | GATT DB max entry (0x1 to 0xFFFFu) | (Max Entry / 8) + CY_BLE_MEM_EXT_SZ                                                  | 1
 *
 *   Index position is fixed for each data buffer corresponding to configuration parameters.
 *   First four buffers with valid size (shall be > 12) corresponding to each field are required

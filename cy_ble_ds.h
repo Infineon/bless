@@ -1,13 +1,13 @@
 /********************************************************************************************************************//**
 * \file cy_ble_ds.h
-* \version 3.50
+* \version 3.60
 *
 * \brief
 *  Contains the documentation data.
 *
 ***********************************************************************************************************************
 * \copyright
-* Copyright 2016-2020, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2016-2021, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -505,12 +505,12 @@
 * application level Makefile. The following table describes all the BLE stack components, pre-built images, and 
 * the relationship between them in different BLE operating modes:
 * 
-* \htmlonly
 * <table class="doxtable" width="90%" border="1" align="center" cellpadding="3" cellspacing="0" 
 *        style="width: 100%; font-size: 14px;">
 *     <tr bgcolor="#D7EFEE">
 *       <td rowspan="3" valign="center" style="text-align: center;">
-*         <b>Components</b><br>(libraries / pre-built images) 
+*         <b>Components</b>
+*         (libraries / pre-built images) 
 *       </td>
 *       <td rowspan="3" valign="center" style="text-align: center; font-weight: bold;">
 *         Description
@@ -523,15 +523,17 @@
 *       <td colspan="2" style="text-align: center;">
 *         Complete BLE Protocol</td>
 *       <td rowspan="2" valign="center" nowrap="nowrap" style="text-align: center;">
-*         BLE HCI<br>(over Software API)
+*         BLE HCI
+*         (over Software API)
 *       </td>
 *     </tr>
 *     <tr bgcolor="#D7EFEE">
 *       <td valign="center" nowrap="nowrap" style="text-align: center;">
-*         BLE Dual<br>CPU Mode<br>(Host part)
+*         BLE Dual CPU Mode
+*        (Host part)
 *       </td>
 *       <td valign="center" nowrap="nowrap" style="text-align: center;">
-*         BLE Single<br>CPU Mode
+*         BLE Single CPU Mode
 *       </td>
 *     </tr>
 *     <tr>
@@ -602,10 +604,8 @@
 *       <td colspan="1" style="text-align: center;"><strong>(Y)</strong></td>
 *     </tr>
 * </table>
-* \endhtmlonly
 * 
 * The following fragments of the application level Makefile show how to enable different BLE modes.
-* \htmlonly
 * <table class="doxtable" width="90%" border="1" align="center" cellpadding="3" cellspacing="0" style="width: 100%; font-size: 14px;">
 *     <tr bgcolor="#D7EFEE" >
 *       <td style="text-align: center; font-weight: bold;">Dual CPU mode</td>
@@ -615,8 +615,6 @@
 *     <tr bgcolor="#FFFFFF" valign="top">
 *       <td>APPNAME=BLE_APP_DUAL_CORE<br>
 *           COMPONENTS=BLESS_HOST_IPC CM0_BLESS<br>         
-*           # NOTE: CM0_BLESS - is a pre-built image with<br>
-*           # BLESS controller<br>
 *       </td>
 *       <td>APPNAME=BLE_APP_SINGLE_CORE<br>
 *           COMPONENTS=BLESS_HOST BLESS_CONTROLLER<br>
@@ -626,26 +624,26 @@
 *       </td>
 *     </tr> 
 * </table>
-* \endhtmlonly
 * 
+* \note CM0_BLESS - is a pre-built image with BLESS controller<br>
+*
 **\subsection group_ble_subsection_conf_cons_libraries BLE Stack Libraries
 * 
 * The BLE stack libraries are compliant with the Arm Embedded Application Binary Interface
 * (EABI). They are compiled with the Arm compiler version 5.03. The following table shows 
 * the mapping between the BLE stack libraries and the user-configured COMPONENT:
 * 
-* \htmlonly
 * <table class="doxtable" width="90%" border="1" align="center" cellpadding="3" cellspacing="0" style="width: 100%; font-size: 14px;">
 *     <tr bgcolor="#D7EFEE" style="text-align: center; font-weight: bold;">
 *       <td>COMPONENT Name</td>
 *       <td>Library Name/Path in PSoC 6 BLE Middleware</td>
-*       <td>Used for<br>Toolchains<br>(WCHAR)</td>
-*       <td>SOFT/HARD<br>Floating<br>Point</td>
+*       <td>Used for Toolchains (WCHAR)</td>
+*       <td>SOFT/HARD Floating Point</td>
 *     </tr>
 *     <tr>
 *       <td rowspan="6" align="center">BLESS_HOST_IPC</td>
 *       <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_SOFTFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_host.a</td>
-*       <td rowspan="2" align="center">GCC<br>(WCHAR 32)</td>
+*       <td rowspan="2" align="center">GCC (WCHAR 32)</td>
 *       <td align="center">SOFTFP</td>
 *     </tr>
 *     <tr>     
@@ -654,7 +652,7 @@
 *     </tr>
 *     <tr>     
 *       <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_SOFTFP/TOOLCHAIN_IAR/cy_ble_stack_host.a</td>
-*       <td rowspan="2" align="center">IAR<br>(WCHAR 32)</td>
+*       <td rowspan="2" align="center">IAR (WCHAR 32)</td>
 *       <td align="center">SOFTFP</td>
 *     </tr>
 *     <tr>     
@@ -663,7 +661,7 @@
 *     </tr>
 *     <tr>     
 *       <td>COMPONENT_BLESS_HOST_IPC/COMPONENT_SOFTFP/TOOLCHAIN_ARM/cy_ble_stack_host.ar</td>
-*       <td rowspan="2" align="center">Arm<br>Compiler 6<br>(WCHAR 16)</td>
+*       <td rowspan="2" align="center">Arm Compiler 6 (WCHAR 16)</td>
 *       <td align="center">SOFTFP</td>
 *     </tr>
 *     <tr>     
@@ -673,7 +671,7 @@
 *     <tr>
 *       <td rowspan="6" align="center">BLESS_HOST</td>
 *       <td>COMPONENT_BLESS_HOST/COMPONENT_SOFTFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_host.a</td>
-*       <td rowspan="2" align="center">GCC<br>(WCHAR 32)</td>
+*       <td rowspan="2" align="center">GCC (WCHAR 32)</td>
 *       <td align="center">SOFTFP</td>
 *     </tr>
 *     <tr>     
@@ -682,7 +680,7 @@
 *     </tr>
 *     <tr>     
 *       <td>COMPONENT_BLESS_HOST/COMPONENT_SOFTFP/TOOLCHAIN_IAR/ cy_ble_stack_host.a</td>
-*       <td rowspan="2" align="center">IAR<br>(WCHAR 32)</td>
+*       <td rowspan="2" align="center">IAR (WCHAR 32)</td>
 *       <td align="center">SOFTFP</td>
 *     </tr>
 *     <tr>     
@@ -691,7 +689,7 @@
 *     </tr>
 *     <tr>     
 *       <td>COMPONENT_BLESS_HOST/COMPONENT_SOFTFP/TOOLCHAIN_ARM/cy_ble_stack_host.ar</td>
-*       <td rowspan="2" align="center">Arm<br>Compiler 6<br>(WCHAR 16)</td>
+*       <td rowspan="2" align="center">Arm Compiler 6 (WCHAR 16)</td>
 *       <td align="center">SOFTFP</td>
 *     </tr>
 *     <tr>     
@@ -701,7 +699,7 @@
 *     <tr>
 *       <td rowspan="12" align="center">BLESS_CONTROLLER</td>
 *       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_GCC_ARM/cy_ble_stack_controller.a</td>
-*       <td rowspan="4" align="center">GCC<br>(WCHAR 32)</td>
+*       <td rowspan="4" align="center">GCC (WCHAR 32)</td>
 *       <td rowspan="2" align="center">SOFTFP</td>
 *     </tr>
 *     <tr>     
@@ -716,7 +714,7 @@
 *     </tr>
 *     <tr>     
 *       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_IAR/cy_ble_stack_controller.a</td>
-*       <td rowspan="4" align="center">IAR<br>(WCHAR 32)</td>
+*       <td rowspan="4" align="center">IAR (WCHAR 32)</td>
 *       <td rowspan="2" align="center">SOFTFP</td>
 *     </tr>
 *     <tr>     
@@ -731,7 +729,7 @@
 *     </tr>
 *     <tr>     
 *       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_SOFTFP/TOOLCHAIN_ARM/cy_ble_stack_controller.ar</td>
-*       <td rowspan="4" align="center">Arm<br>Compiler 6<br>(WCHAR 16)</td>
+*       <td rowspan="4" align="center">Arm Compiler 6 (WCHAR 16)</td>
 *       <td rowspan="2" align="center">SOFTFP</td>
 *     </tr>
 *     <tr>     
@@ -745,7 +743,6 @@
 *       <td>COMPONENT_BLESS_CONTROLLER/COMPONENT_HARDFP/TOOLCHAIN_ARM/cy_ble_stack_manager.ar</td>
 *     </tr>
 * </table>
-* \endhtmlonly
 * 
 **\subsection  group_ble_subsection_conf_cons_precompiled CM0+ BLESS Controller Pre-compiled Image
 *
@@ -821,9 +818,7 @@
 * The BLESS interrupt is configured on the core where the BLE controller is running. The following table shows 
 * details of interrupt configuration depending on the BLE core modes. 
 *
-* \htmlonly
-* <table class="doxtable" width="90%" border="1" align="center" cellpadding="3"
-*        cellspacing="0" style="width: 100%; font-size: 14px;">
+* <table class="doxtable" width="90%" border="1" align="center" cellpadding="3" cellspacing="0" style="width: 100%; font-size: 14px;">
 *     <tr bgcolor="#D7EFEE" >
 *       <td style="text-align: center; font-weight: bold;">BLE Core mode</td>
 *       <td style="text-align: center; font-weight: bold;">BLE Controller core</td>
@@ -840,17 +835,15 @@
 *       <td>
 *            cy_stc_sysint_t blessIsrCfg =             <br>
 *            {                                         <br>&nbsp; &nbsp; &nbsp; &nbsp;      
-*                 /* The BLESS interrupt */            <br>&nbsp; &nbsp; &nbsp; &nbsp;
+*                 // The BLESS interrupt               <br>&nbsp; &nbsp; &nbsp; &nbsp;
 *                 .intrSrc = bless_interrupt_IRQn,     <br>&nbsp; &nbsp; &nbsp; &nbsp;
 *                                                      <br>&nbsp; &nbsp; &nbsp; &nbsp;
-*                 /* The interrupt priority number */  <br>&nbsp; &nbsp; &nbsp; &nbsp;
+*                 // The interrupt priority number     <br>&nbsp; &nbsp; &nbsp; &nbsp;
 *                 .intrPriority = 1u                   <br>
 *            };<br>                     
 *        <b>Note.</b> Priority level (intrPriority ) must have the highest value in system.</td>
 *     </tr>
-*     
 * </table>
-* \endhtmlonly
 * 
 * The following code shows how to implement the ISR handler for the BLESS interrupt service. The 
 * Cy_BLE_BlessIsrHandler() function is called from BLESS ISR to process interrupt events generated by BLESS:
@@ -1007,7 +1000,6 @@
 * code sharing, define CY_BLE_SHARING_MODE in the project. This parameter allows choosing between the following 
 * options:
 * 
-* \htmlonly
 * <table class="doxtable">
 *     <tr align="center">
 *         <th>Option</th>
@@ -1028,17 +1020,13 @@
 *             The PSoC 6 BLE Middleware provides macro CY_BLE_STACK_RAM_SIZE which defines the ram size.
 * 
 *             The following code snippet shows how to dynamically allocate memory for BLE stack:<br>
-*         \endhtmlonly
-*         \code
-*             /* Allocate memory for BLE stack */
-*             cy_ble_config.stackParam->memoryHeapPtr = (uint8 *)malloc(CY_BLE_STACK_RAM_SIZE);
-*             
-*             if(cy_ble_config.stackParam->memoryHeapPtr == NULL)
-*             {
-*                 Cy_SysLib_Halt(0x00u);
-*             }
-*         \endcode
-*         \htmlonly
+*             // Allocate memory for BLE stack <br>
+*             cy_ble_config.stackParam->memoryHeapPtr = (uint8 *)malloc(CY_BLE_STACK_RAM_SIZE);<br>
+*             <br>
+*             if(cy_ble_config.stackParam->memoryHeapPtr == NULL)<br>
+*             {<br>&nbsp;&nbsp;&nbsp;&nbsp;
+*                 Cy_SysLib_Halt(0x00u);<br>
+*             }<br>
 *             <b>Note</b> This mode requires approximately 3024 additional bytes of heap memory. 
 *             If there is not enough heap memory, the PSoC 6 BLE Middleware will not work. The Heap size can 
 *             be modified by editing linker scripts.
@@ -1050,14 +1038,12 @@
 *         <td>This option makes the middleware only have the profile-specific code. Stack is excluded.</td>
 *     </tr>
 * </table>
-* \endhtmlonly
 * 
 ***********************************************************************************************************************
 **\page page_ble_toolchain Supported Software and Tools
 **
 * This version of the PSoC 6 BLE Middleware was validated for compatibility with the following Software and Tools:
 * 
-* \htmlonly
 * <table class="doxtable">
 *   <tr>
 *     <th>Software and Tools</th>
@@ -1092,7 +1078,6 @@
 *     <td>6.11</td>
 *   </tr>
 * </table>
-* \endhtmlonly 
 * 
 * <b>Note <sup>1</sup></b> The PSoC 6 BLE Middleware includes the pre-compiled libraries for
 * Arm Compiler 6. They are built with the following options to be compatible with 
@@ -1407,7 +1392,6 @@
 * BLE solutions provided by Cypress are listed on the Bluetooth SIG website as certified solutions. The qualification 
 * is modular, allowing greater flexibility to customers. The following is the list of Qualified Design IDs (QD ID) 
 * and Declaration IDs.
-* \htmlonly
 * <table class="doxtable">
 *     <tr>
 *       <th>QD ID(s)</th>
@@ -1425,7 +1409,6 @@
 *             a high-performance dual-core architecture, and critical security features in a single chip.</td>
 *     </tr>
 * </table>
-* \endhtmlonly    
 * 
 **
 **\section section_ble_MISRA MISRA-C Compliance
@@ -1538,9 +1521,21 @@
 * 
 * <table class="doxtable">
 *     <tr><th><b>Version</b></th><th><b>Changes</b></th><th><b>Reason for Change</b></th></tr> 
-*
 *     <tr>
-*         <td rowspan="7">3.50</td>
+*         <td rowspan="3">3.60</td>
+*         <td>Updated the procedure of processing the Write Request event from Stack.</td>
+*         <td>BLE middleware returns CY_BLE_EVT_GATTS_WRITE_REQ event twice for the Custom profile.</td>
+*     </tr>
+*     <tr>
+*         <td>Updated Cy_BLE_Init function.</td>
+*         <td>Cy_BLE_Init() returns CY_BLE_ERROR_INVALID_PARAMETER when BLE configured as Observer or Broadcaster only.</td>
+*     </tr>
+*     <tr>
+*         <td>Updated the BLE Stack to version 5.0.10.265.</td>
+*         <td>Refer to \ref section_group_ble_changelog_BLE_Stack_Changes.</td>
+*     </tr>
+*     <tr>
+*         <td rowspan="6">3.50</td>
 *         <td>Updated PILO part of BLESS MW HAL to be compatible with psoc6pdl 1.6.1.<br><br>
 *             Refer to section \ref group_ble_lfclk_Pilo_conf for details about the requirements for using the PILO as the LF clock source.</td>
 *         <td>To support PILO on the PSoC 64 Secure device.</td>
@@ -1827,6 +1822,32 @@
 * 
 * <table class="doxtable">
 *     <tr><th><b>Version</b></th><th><b>Changes</b></th><th><b>Reason for Change</b></th></tr>
+*
+*     <tr>
+*         <td rowspan="6">5.0.10.265</td>
+*         <td>Updated BLE Stack ATT and GATT.</td>
+*         <td>Updated to fix incorrect return code in error messages.</td>
+*     </tr>
+*     <tr>
+*         <td>Updated BLE Controller.</td>
+*         <td>Added changes required to qualify for BLE Spec. 5.2.</td>
+*     </tr>
+*     <tr>
+*         <td>Updated channel map indication handler.</td>
+*         <td>Optimized the Low-Power-Mode (LPM) performance of PSoC 6 BLE Controller. </td>
+*     </tr>
+*     <tr>
+*         <td>Updated Radio TX Power Change Handling Procedure.</td>
+*         <td>The radio TX power change handler was incorrectly being called from interrupt context whereas the ideal location for the same is from the task context.</td>
+*     </tr>
+*     <tr>
+*         <td>Enhanced GATT Server implementation.</td>
+*         <td>Updated the GATT server implementation to handle large data base (> 512 entries).</td>
+*     </tr>
+*     <tr>
+*        <td>Re-factored Shutdown code for Dual CPU mode.</td>
+*        <td>Improved the handling of Cy_BLE_StackShutdown API to avoid timing-sensitive bugs.</td>
+*     </tr>
 *
 *     <tr>
 *         <td rowspan="3">5.0.8.220</td>

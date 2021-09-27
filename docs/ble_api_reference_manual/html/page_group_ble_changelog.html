@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50: Changelog</title>
+<title>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.60: Changelog</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><a href="http://www.cypress.com/"><img alt="Logo" src="IFXCYP_one-line.png"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50</div>
+   <div id="projectname">Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.60</div>
   </td>
  </tr>
  </tbody>
@@ -89,11 +89,15 @@ PSoC 6 BLE Middleware Changes</h1>
 <p>This section lists changes made to the PSoC 6 BLE Middleware.</p>
 <table class="doxtable">
 <tr>
-<th><b>Version</b></th><th><b>Changes</b></th><th><p class="starttd"><b>Reason for Change</b></p>
-<p class="endtd"></p>
-</th></tr>
+<th><b>Version</b></th><th><b>Changes</b></th><th><b>Reason for Change</b> </th></tr>
 <tr>
-<td rowspan="7">3.50 </td><td>Updated PILO part of BLESS MW HAL to be compatible with psoc6pdl 1.6.1.<br />
+<td rowspan="3">3.60 </td><td>Updated the procedure of processing the Write Request event from Stack. </td><td>BLE middleware returns CY_BLE_EVT_GATTS_WRITE_REQ event twice for the Custom profile.  </td></tr>
+<tr>
+<td>Updated Cy_BLE_Init function. </td><td><a class="el" href="group__group__ble__common__api__functions.html#gac43daf6ecb84fde5390065532c7b7e69" title="Initializes the PSoC 6 BLE Middleware. ">Cy_BLE_Init()</a> returns CY_BLE_ERROR_INVALID_PARAMETER when BLE configured as Observer or Broadcaster only.  </td></tr>
+<tr>
+<td>Updated the BLE Stack to version 5.0.10.265. </td><td>Refer to <a class="el" href="page_group_ble_changelog.html#section_group_ble_changelog_BLE_Stack_Changes">BLE Stack Changes</a>.  </td></tr>
+<tr>
+<td rowspan="6">3.50 </td><td>Updated PILO part of BLESS MW HAL to be compatible with psoc6pdl 1.6.1.<br />
 <br />
  Refer to section <a class="el" href="page_ble_section_more_information.html#group_ble_lfclk_Pilo_conf">Configuring PILO for BLESS Deep Sleep Mode</a> for details about the requirements for using the PILO as the LF clock source. </td><td>To support PILO on the PSoC 64 Secure device.  </td></tr>
 <tr>
@@ -282,6 +286,20 @@ BLE Stack Changes</h1>
 <p class="endtd"></p>
 </th></tr>
 <tr>
+<td rowspan="6">5.0.10.265 </td><td>Updated BLE Stack ATT and GATT. </td><td>Updated to fix incorrect return code in error messages.  </td></tr>
+<tr>
+<td>Updated BLE Controller. </td><td>Added changes required to qualify for BLE Spec. 5.2.  </td></tr>
+<tr>
+<td>Updated channel map indication handler. </td><td>Optimized the Low-Power-Mode (LPM) performance of PSoC 6 BLE Controller.   </td></tr>
+<tr>
+<td>Updated Radio TX Power Change Handling Procedure. </td><td>The radio TX power change handler was incorrectly being called from interrupt context whereas the ideal location for the same is from the task context.  </td></tr>
+<tr>
+<td>Enhanced GATT Server implementation. </td><td>Updated the GATT server implementation to handle large data base (&gt; 512 entries).  </td></tr>
+<tr>
+<td>Re-factored Shutdown code for Dual CPU mode. </td><td><p class="starttd">Improved the handling of Cy_BLE_StackShutdown API to avoid timing-sensitive bugs. </p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
 <td rowspan="3">5.0.8.220 </td><td>Updated BLE ISR for SoC mode. </td><td>Enhanced the BLE ISR to handle LL Channel Map in interrupt context for SoC mode.  </td></tr>
 <tr>
 <td>Updated low-power mode API. </td><td>Updated Cy_BLE_ControllerEnterLPM API for handling a scenario where wake-up is initiated by the hardware.  </td></tr>
@@ -396,7 +414,7 @@ BLE Stack Changes</h1>
 <div id="nav-path" class="navpath">
     <ul>
         <li class="footer">
-            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.50</b> by <b>Cypress Semiconductor Corporation</b>.
+            Generated for <b>Cypress PSoC 6 Bluetooth Low Energy Middleware Library 3.60</b> by <b>Cypress Semiconductor Corporation</b>.
             All rights reserved.
         </li>
     </ul>

@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * \file cy_ble_event_handler.c
-* \version 3.50
+* \version 3.60
 *
 * \brief
 *  This file contains the source code for the event Handler State Machine
@@ -8,7 +8,7 @@
 *
 ********************************************************************************
 * \copyright
-* Copyright 2017-2020, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2017-2021, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -845,8 +845,10 @@ void Cy_BLE_ServerEventHandler(cy_en_ble_event_t event, void *evParam)
                 err_param.errInfo.errorCode  = CY_BLE_GATT_ERR_INVALID_HANDLE;
 
                 (void)Cy_BLE_GATTS_ErrorRsp(&err_param);
-                cy_ble_eventHandlerFlag &= (uint8_t) ~CY_BLE_CALLBACK;
             }
+
+            /* Indicate that request was handled */
+            cy_ble_eventHandlerFlag &= (uint8_t) ~CY_BLE_CALLBACK;
         }
         break;
 

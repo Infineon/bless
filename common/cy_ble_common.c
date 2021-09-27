@@ -1,13 +1,13 @@
 /***************************************************************************//**
 * \file cy_ble_common.c
-* \version 3.50
+* \version 3.60
 *
 * \brief
 *  This file contains the source code for the API of the BLE PSoC 6 BLE Middleware.
 *
 ********************************************************************************
 * \copyright
-* Copyright 2017-2020, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2017-2021, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions,
 * disclaimers, and limitations in the end user license agreement accompanying
 * the software package with which this file was provided.
@@ -22,13 +22,6 @@
 #include "cy_ble_hal_pvt.h"
 
 #if defined(CY_IP_MXBLESS) 
-
-
-#if ( (defined(CY_BLE_GATT_DB_INDEX_COUNT)) && \
-      (CY_BLE_GATT_DB_INDEX_COUNT > CY_BLE_GATT_DB_INDEX_COUNT_MAX) && \
-      (!defined(CY_BLE_ERROR_SUPPRESS)))
-    #error The BLE Stack does not support database of more than 512 entries.
-#endif /* if CY_BLE_GATT_DB_INDEX_COUNT > CY_BLE_GATT_DB_INDEX_COUNT_MAX */
 
 
 /******************************************************************************
